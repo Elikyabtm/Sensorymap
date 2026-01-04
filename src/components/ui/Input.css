@@ -1,0 +1,124 @@
+/* Input Component Styles - Basé sur Figma */
+
+.input-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+.input-label {
+  color: var(--components-input-form_fields-filled-text);
+  font-size: 14px;
+  font-family: "Nunito Sans", sans-serif;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.input-container {
+  width: 100%;
+  padding: 16px;
+  border-radius: 8px;
+  display: inline-flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 8px;
+  transition: all var(--transition-base);
+}
+
+/* État par défaut */
+.input-state-default {
+  background: var(--components-input-form_fields-default-surface);
+  outline: 1px var(--components-input-form_fields-default-stroke) solid;
+  outline-offset: -1px;
+}
+
+/* État focused */
+.input-state-focused {
+  background: var(--components-input-form_fields-focused-fill);
+  outline: 1px var(--components-input-form_fields-focused-stroke) solid;
+  outline-offset: -1px;
+}
+
+/* État filled */
+.input-state-filled {
+  background: var(--components-input-form_fields-filled-fill);
+  outline: 1px var(--components-input-form_fields-filled-stroke) solid;
+  outline-offset: -1px;
+}
+
+/* État OK/Success */
+.input-state-ok {
+  background: var(--components-input-form_fields-ok-fill);
+  outline: 1px var(--components-input-form_fields-ok-stroke) solid;
+  outline-offset: -1px;
+}
+
+/* État Error */
+.input-state-error {
+  background: var(--components-input-form_fields-error-fill);
+  outline: 1px var(--components-input-form_fields-error-stroke) solid;
+  outline-offset: -1px;
+}
+
+.input-field {
+  flex: 1 1 0;
+  border: none;
+  background: transparent;
+  outline: none;
+  font-size: 16px;
+  font-family: "Nunito Sans", sans-serif;
+  font-weight: 400;
+  line-height: 22.4px;
+  color: var(--components-input-form_fields-filled-text);
+}
+
+/* Placeholder styling */
+.input-state-default .input-field::placeholder {
+  color: var(--components-input-form_fields-default-placeholder);
+}
+
+.input-state-focused .input-field,
+.input-state-error .input-field {
+  color: var(--components-input-form_fields-focused-text);
+  font-weight: 500;
+}
+
+.input-state-filled .input-field,
+.input-state-ok .input-field {
+  color: var(--components-input-form_fields-filled-text);
+}
+
+.input-field:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Bouton d'icône (ex: afficher/cacher mot de passe) */
+.input-icon-button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.input-icon {
+  width: 25px;
+  height: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Message d'erreur */
+.input-error-message {
+  color: var(--components-input-form_fields-error-stroke);
+  font-size: 14px;
+  font-family: "Nunito Sans", sans-serif;
+  font-weight: 400;
+  line-height: 1.4;
+}

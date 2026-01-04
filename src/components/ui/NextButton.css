@@ -1,0 +1,35 @@
+.next-button {
+  padding: 10px;
+  background: var(--components-button-next-default-fill);
+  box-shadow: var(--components-button-next-shadow);
+  border-radius: 40px;
+  border: 1px solid var(--components-button-next-default-stroke);
+  overflow: hidden;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  width: 45px;
+  height: 45px;
+}
+
+.next-button:hover:not(:disabled) {
+  transform: scale(1.05);
+}
+
+.next-button.pressed,
+.next-button:active:not(:disabled) {
+  background: var(--components-button-next-pressed-fill);
+  transform: scale(0.95);
+}
+
+.next-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.next-button svg {
+  flex-shrink: 0;
+}

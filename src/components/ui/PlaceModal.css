@@ -1,0 +1,155 @@
+/* Ajout overlay transparent pour fermer la modal au clic extérieur */
+.place-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 999;
+  background: transparent;
+  cursor: pointer;
+}
+
+/* Styles exacts selon dimensions Figma */
+.place-modal-wrapper {
+  position: fixed;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+}
+
+/* Dimensions exactes Figma: 344px largeur, 153px hauteur, padding 6px, border-radius 8px */
+.place-modal {
+  width: 344px;
+  height: 153px;
+  padding: 6px;
+  background: white;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.27);
+  border-radius: 8px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: stretch;
+  gap: 8px;
+  pointer-events: auto;
+}
+
+/* Image ajustée pour la nouvelle largeur */
+.place-modal-image {
+  width: 143px;
+  height: 100%;
+  position: relative;
+  border-radius: 4px;
+  overflow: hidden;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+/* Contenu ajusté pour remplir l'espace restant */
+.place-modal-content {
+  flex: 1;
+  height: 100%;
+  padding: 8px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.place-modal-header {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 6px;
+}
+
+.place-modal-title {
+  width: 174px;
+  color: #2d3a40;
+  font-size: 16px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  line-height: 22px;
+  word-wrap: break-word;
+  margin: 0;
+}
+
+.place-modal-senses {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10px;
+}
+
+.sense-indicator {
+  width: 122px;
+  display: inline-flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 8px;
+}
+
+.sense-icon {
+  width: 24px;
+  height: 24px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sense-bar-container {
+  flex: 1 1 0;
+  height: 11px;
+  position: relative;
+}
+
+.sense-bar-bg {
+  width: 90px;
+  height: 11px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  border-radius: 1000px;
+}
+
+.sense-bar-fill {
+  height: 11px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  border-radius: 1000px;
+}
+
+.place-modal-bookmark {
+  width: 36px;
+  height: 35px;
+  padding-left: 4px;
+  padding-right: 4px;
+  position: absolute;
+  left: 157px;
+  top: 118px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 999px;
+  outline: 1.5px #2d3a40 solid;
+  outline-offset: -1.5px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  border: none;
+  cursor: pointer;
+}
+
+.place-modal-bookmark:hover {
+  background: rgba(255, 255, 255, 0.5);
+}

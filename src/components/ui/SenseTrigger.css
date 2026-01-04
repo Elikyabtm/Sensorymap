@@ -1,0 +1,60 @@
+.sense-trigger {
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  background: transparent;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: all var(--transition-base);
+  outline: none;
+}
+
+.sense-trigger:hover {
+  opacity: 0.9;
+}
+
+.sense-trigger:active {
+  transform: scale(0.98);
+}
+
+.sense-icon-container {
+  width: 59px;
+  height: 59px;
+  position: relative;
+}
+
+.sense-icon-circle {
+  width: 59px;
+  height: 59px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  border-radius: 9999px;
+}
+
+.sense-icon-emoji {
+  width: 37px;
+  height: 37px;
+  position: absolute;
+  left: 11px;
+  top: 9.5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  overflow: hidden;
+}
+
+.sense-label {
+  text-align: center;
+  font-size: 16px;
+  font-family: "Nunito Sans", sans-serif;
+  font-weight: 500;
+  word-wrap: break-word;
+}

@@ -1,0 +1,116 @@
+.header-container {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  right: 16px;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  /* hauteur fixée à 40px */
+  height: 40px;
+}
+
+/* Application styles Figma exact pour la barre de recherche */
+.search-bar {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: var(--components-input-search_bar-default-surface, #fafbfe);
+  border-radius: 100px;
+  outline: 1px var(--components-input-search_bar-default-stroke, #445e9a) solid;
+  outline-offset: -1px;
+  height: 40px;
+}
+
+.search-icon {
+  width: 25px;
+  height: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.search-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  color: #2f2f2f;
+  background: transparent;
+  font-family: "Nunito Sans", sans-serif;
+  font-weight: 400;
+}
+
+.search-input::placeholder {
+  color: var(--components-input-search_bar-placeholder, #4f70b5);
+}
+/* </CHANGE> */
+
+.badges-stack {
+  position: relative;
+  /* hauteur fixée à 40px */
+  height: 40px;
+  flex-shrink: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.badge-item {
+  position: absolute;
+  /* top ajusté pour centrer verticalement */
+  top: 50%;
+  transform: translateY(-50%);
+  transition: transform 0.2s ease;
+}
+
+.badge-circle {
+  /* taille fixée à 40px */
+  width: 40px;
+  height: 40px;
+  border-radius: 9999px;
+  outline: 2px white solid;
+  outlineOffset: -1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+/* taille emoji réduite dans badge */
+.badge-circle span {
+  font-size: 18px;
+}
+
+.profile-icon {
+  /* dimensions fixées à 40px */
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-circle {
+  /* taille fixée à 40px */
+  width: 40px;
+  height: 40px;
+  padding: 3px;
+  background: var(--components-profile_picture-surface, white);
+  border-radius: 9999px;
+  outline: 1px var(--components-profile_picture-stroke, #445e9a) solid;
+  outline-offset: -1px;
+  /* Ajout flexbox pour centrer l'icône */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+/* Suppression des styles du pictogramme profil HTML qui n'est plus utilisé */

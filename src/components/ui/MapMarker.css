@@ -1,0 +1,16 @@
+.map-marker {
+  cursor: pointer;
+  transition: transform var(--transition-fast);
+}
+
+.map-marker:hover {
+  transform: scale(1.1);
+}
+
+.map-marker-image {
+  object-fit: cover;
+}
+
+.map-marker-badge {
+  pointer-events: none;
+}

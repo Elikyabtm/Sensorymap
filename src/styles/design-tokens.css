@@ -1,0 +1,203 @@
+/* Design Tokens - Variables CSS réutilisables */
+
+:root {
+  /* Couleurs principales */
+  --color-primary-purple: #a78bfa;
+  --color-primary-green: #86c65b;
+  --color-primary-orange: #ff9566;
+
+  /* Couleurs de fond */
+  --color-bg-white: #ffffff;
+  --color-bg-light: #f2f5fb;
+  --color-bg-gray: #b4b4b4;
+  --color-bg-dark: #1a1a1a;
+  --color-bg-black: #000000;
+
+  /* Couleurs de texte */
+  --color-text-primary: #000000;
+  --color-text-secondary: #666666;
+  --color-text-white: #ffffff;
+
+  /* Couleurs sémantiques */
+  --color-success: #4caf50;
+  --color-error: #f44336;
+  --color-warning: #ff9800;
+
+  /* Ajout des variables Figma pour la barre de progression */
+  --components-progress_bar-secondary: #ccd7f0;
+  --components-progress_bar-filled: #445e9a;
+
+  /* Ajout des variables Figma pour les boutons - Primary */
+  --components-button-cta-primary-default-fill: #5d82cf;
+  --components-button-cta-primary-default-stroke: rgba(255, 255, 255, 0);
+  --components-button-cta-primary-default-text: white;
+
+  --components-button-cta-primary-pressed-fill: #4f70b5;
+  --components-button-cta-primary-pressed-stroke: rgba(255, 255, 255, 0);
+  --components-button-cta-primary-pressed-text: white;
+
+  --components-button-cta-primary-disabled-fill: #8fa6dd;
+  --components-button-cta-primary-disabled-stroke: rgba(255, 255, 255, 0);
+  --components-button-cta-primary-disabled-text: white;
+
+  /* Ajout des variables Figma pour les boutons - Secondary */
+  --components-button-cta-secondary-default-fill: rgba(255, 255, 255, 0);
+  --components-button-cta-secondary-default-stroke: #4f70b5;
+  --components-button-cta-secondary-default-text: #364a78;
+
+  --components-button-cta-secondary-pressed-fill: #f2f5fb;
+  --components-button-cta-secondary-pressed-stroke: #4f70b5;
+  --components-button-cta-secondary-pressed-text: #364a78;
+
+  --components-button-cta-secondary-disabled-fill: rgba(255, 255, 255, 0);
+  --components-button-cta-secondary-disabled-stroke: #8fa6dd;
+  --components-button-cta-secondary-disabled-text: #8fa6dd;
+
+  /* Ajout variables Figma pour bouton recenter */
+  /* Ajout des variables Figma pour le bouton recenter */
+  --components-button-recenter-default-fill: rgba(255, 255, 255, 0.5);
+  --components-button-recenter-default-stroke: #364a78;
+  /* </CHANGE> */
+
+  /* Ajout des variables Figma pour les inputs */
+  /* Input - Default state */
+  --components-input-form_fields-default-surface: rgba(255, 255, 255, 0.5);
+  --components-input-form_fields-default-stroke: #445e9a;
+  --components-input-form_fields-default-placeholder: #4f70b5;
+
+  /* Input - Focused state */
+  --components-input-form_fields-focused-fill: rgba(255, 255, 255, 0.5);
+  --components-input-form_fields-focused-stroke: #364a78;
+  --components-input-form_fields-focused-text: #4f4f4f;
+
+  /* Input - Filled state */
+  --components-input-form_fields-filled-fill: #f2f5fb;
+  --components-input-form_fields-filled-stroke: #445e9a;
+  --components-input-form_fields-filled-text: #445e9a;
+
+  /* Input - OK/Success state */
+  --components-input-form_fields-ok-fill: #f2f5fb;
+  --components-input-form_fields-ok-stroke: #70b586;
+  --components-input-form_fields-ok-text: #445e9a;
+
+  /* Input - Error state */
+  --components-input-form_fields-error-fill: #f2f5fb;
+  --components-input-form_fields-error-stroke: #d97373;
+  --components-input-form_fields-error-text: #4f4f4f;
+
+  /* Ajout des variables Figma pour le Select */
+  /* Select - Default state */
+  --components-select-large-default-fill: white;
+  --components-select-large-default-stroke: #5d82cf;
+  --components-select-large-default-text: #445e9a;
+
+  /* Select - Focused state */
+  --components-select-large-focused-fill: #e4eaf7;
+  --components-select-large-focused-stroke: #4f70b5;
+  --components-select-large-focused-text: #364a78;
+
+  /* Ajout des variables Figma pour les Sense Triggers */
+  /* Sense Trigger - Light (Lumière) */
+  --components-select-triggers-default-light-fill: rgba(255, 255, 255, 0);
+  --components-select-triggers-default-light-stroke: rgba(255, 255, 255, 0);
+  --components-select-triggers-default-light-text: #2f2f2f;
+  --components-select-triggers-focused-light-fill: rgba(154, 122, 193, 0.2);
+  --components-select-triggers-focused-light-stroke: #9a7ac1;
+  --components-select-triggers-focused-light-text: #2f2f2f;
+
+  /* Sense Trigger - Sound (Son) */
+  --components-select-triggers-default-sound-fill: rgba(255, 255, 255, 0);
+  --components-select-triggers-default-sound-stroke: rgba(255, 255, 255, 0);
+  --components-select-triggers-default-sound-text: #2f2f2f;
+  --components-select-triggers-focused-sound-fill: rgba(144, 195, 89, 0.2);
+  --components-select-triggers-focused-sound-stroke: #90c359;
+  --components-select-triggers-focused-sound-text: #2f2f2f;
+
+  /* Sense Trigger - Crowd (Foule) */
+  --components-select-triggers-default-crowd-fill: rgba(255, 255, 255, 0);
+  --components-select-triggers-default-crowd-stroke: rgba(255, 255, 255, 0);
+  --components-select-triggers-default-crowd-text: #2f2f2f;
+  --components-select-triggers-focused-crowd-fill: rgba(255, 141, 96, 0.2);
+  --components-select-triggers-focused-crowd-stroke: #ff8d60;
+  --components-select-triggers-focused-crowd-text: #2f2f2f;
+
+  /* Couleurs des icônes de sens */
+  --sense-icon-light: #b597f6;
+  --sense-icon-sound: #90c359;
+  --sense-icon-crowd: #ff8d60;
+
+  /* Ajout des variables Figma pour le bottom sheet */
+  /* Bottom Sheet variables */
+  --components-bottom_sheets-surface: #f2f5fb;
+  --components-bottom_sheets-handle: #979797;
+  --components-bottom_sheets-text-title: #2a3556;
+  --components-bottom_sheets-text-subtitle: #141b31;
+  --components-button-exit-default-fill: #e4eaf7;
+  --components-button-exit-default-stroke: rgba(255, 255, 255, 0);
+  --components-divider-color: #afc0e6;
+
+  /* Ajout des variables Figma pour les badges de sens */
+  --components-sensory-badges-default-light-surface: #9a7ac1;
+  --components-sensory-badges-default-light-stroke: white;
+  --components-sensory-badges-default-noise-surface: #4fa1a1;
+  --components-sensory-badges-default-noise-stroke: white;
+  --components-sensory-badges-default-crowd-surface: #d77a4f;
+  --components-sensory-badges-default-crowd-stroke: white;
+
+  /* Variables pour la search bar */
+  --components-input-search_bar-default-surface: #fafbfe;
+  --components-input-search_bar-default-stroke: #445e9a;
+  --components-input-search_bar-placeholder: #4f70b5;
+
+  /* Ajout des variables pour les marqueurs de carte */
+  /* Map Markers */
+  --components-pins-spots-regular-stroke: white;
+  --components-pins-spots-certified-stroke: #9d9064;
+  --components-badge_certified-fill: #9d9064;
+  --components-badge_certified-stroke: #9d9064;
+
+  /* Typographie - Tailles */
+  --font-size-xs: 12px;
+  --font-size-sm: 14px;
+  --font-size-base: 16px;
+  --font-size-lg: 18px;
+  --font-size-xl: 24px;
+  --font-size-2xl: 32px;
+  --font-size-3xl: 48px;
+
+  /* Typographie - Poids */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* Espacements */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --spacing-2xl: 48px;
+
+  /* Bordures */
+  --border-radius-sm: 8px;
+  --border-radius-md: 12px;
+  --border-radius-lg: 16px;
+  --border-radius-xl: 24px;
+  --border-radius-full: 9999px;
+
+  /* Ombres */
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.12);
+  --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.15);
+
+  /* Transitions */
+  --transition-fast: 150ms ease;
+  --transition-base: 250ms ease;
+  --transition-slow: 350ms ease;
+
+  /* Z-index */
+  --z-index-drawer: 1000;
+  --z-index-modal: 2000;
+  --z-index-tooltip: 3000;
+}

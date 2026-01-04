@@ -1,0 +1,63 @@
+/* Select Component - Basé sur le design Figma */
+
+.select-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+}
+
+.select-full-width {
+  width: 100%;
+}
+
+.select-option {
+  width: 100%;
+  padding: 20px;
+  background: var(--components-select-large-default-fill);
+  border-radius: 8px;
+  border: 1px solid var(--components-select-large-default-stroke);
+  outline: none;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  font-family: "Nunito Sans", sans-serif;
+}
+
+.select-option:hover {
+  background: var(--components-select-large-focused-fill);
+}
+
+.select-option:focus {
+  background: var(--components-select-large-focused-fill);
+  border: 2px solid var(--components-select-large-focused-stroke);
+  padding: 19px; /* Compensation pour la bordure plus épaisse */
+}
+
+.select-option-selected {
+  background: var(--components-select-large-focused-fill) !important;
+  border: 2px solid var(--components-select-large-focused-stroke) !important;
+  padding: 19px !important;
+}
+
+.select-option-text {
+  flex: 1 1 0;
+  color: var(--components-select-large-default-text);
+  font-size: 16px;
+  font-weight: 500;
+  word-wrap: break-word;
+  transition: color var(--transition-fast);
+}
+
+.select-option:focus .select-option-text,
+.select-option-selected .select-option-text {
+  color: var(--components-select-large-focused-text);
+}
+
+.select-option:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

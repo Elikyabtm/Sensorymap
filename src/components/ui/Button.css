@@ -1,0 +1,94 @@
+@import "../../styles/design-tokens.css";
+
+/* Structure Figma - Base button avec inline-flex */
+.button {
+  border: none;
+  cursor: pointer;
+  font-family: "Nunito Sans", sans-serif;
+  font-size: 16px;
+  line-height: 22.4px;
+  padding: 18px;
+  border-radius: 12px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  transition: all var(--transition-fast);
+  outline-offset: -1px;
+}
+
+/* Primary variant - Default state */
+.button-primary.button-default {
+  background: var(--components-button-cta-primary-default-fill);
+  color: var(--components-button-cta-primary-default-text);
+  font-weight: 700;
+  outline: 1px var(--components-button-cta-primary-default-stroke) solid;
+}
+
+/* Primary variant - Pressed state */
+.button-primary.button-pressed {
+  background: var(--components-button-cta-primary-pressed-fill);
+  color: var(--components-button-cta-primary-pressed-text);
+  font-weight: 500;
+  outline: 1px var(--components-button-cta-primary-pressed-stroke) solid;
+}
+
+/* Primary variant - Disabled state */
+.button-primary.button-disabled {
+  background: var(--components-button-cta-primary-disabled-fill);
+  color: var(--components-button-cta-primary-disabled-text);
+  font-weight: 500;
+  outline: 1px var(--components-button-cta-primary-disabled-stroke) solid;
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+/* Secondary variant - Default state */
+.button-secondary.button-default {
+  background: var(--components-button-cta-secondary-default-fill);
+  color: var(--components-button-cta-secondary-default-text);
+  font-weight: 500;
+  outline: 1px var(--components-button-cta-secondary-default-stroke) solid;
+}
+
+/* Secondary variant - Pressed state */
+.button-secondary.button-pressed {
+  background: var(--components-button-cta-secondary-pressed-fill);
+  color: var(--components-button-cta-secondary-pressed-text);
+  font-weight: 500;
+  outline: 1px var(--components-button-cta-secondary-pressed-stroke) solid;
+}
+
+/* Secondary variant - Disabled state */
+.button-secondary.button-disabled {
+  background: var(--components-button-cta-secondary-disabled-fill);
+  color: var(--components-button-cta-secondary-disabled-text);
+  font-weight: 500;
+  outline: 1px var(--components-button-cta-secondary-disabled-stroke) solid;
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.button-full-width {
+  width: 100%;
+}
+
+/* Text variant - pour liens texte soulignés */
+.button-text {
+  background: none;
+  color: var(--color-text-primary);
+  font-weight: 400;
+  padding: 0;
+  border-radius: 0;
+  text-decoration: underline;
+  outline: none;
+}
+
+.button-text.button-pressed {
+  opacity: 0.7;
+}
+
+.button-text.button-disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

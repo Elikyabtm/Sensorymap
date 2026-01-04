@@ -1,0 +1,113 @@
+@import "../../styles/design-tokens.css";
+
+.card {
+  border-radius: var(--border-radius-lg);
+  overflow: hidden;
+  background-color: var(--color-bg-white);
+  transition: transform var(--transition-base);
+}
+
+.card-recommendation {
+  width: 280px;
+  flex-shrink: 0;
+  box-shadow: var(--shadow-md);
+}
+
+.card-list {
+  width: 200px;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+}
+
+.card-image-container {
+  position: relative;
+  width: 100%;
+  height: 180px;
+  background-color: var(--color-bg-gray);
+}
+
+.card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.card-badge {
+  position: absolute;
+  top: var(--spacing-md);
+  left: var(--spacing-md);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: rgba(180, 140, 80, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-badge-icon {
+  font-size: 20px;
+}
+
+.card-content {
+  padding: var(--spacing-md);
+  background-color: var(--color-bg-dark);
+  color: var(--color-text-white);
+  position: relative;
+}
+
+.card-list .card-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0) 100%);
+}
+
+.card-title {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  margin-bottom: var(--spacing-xs);
+}
+
+.card-subtitle {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+}
+
+.card-sensors {
+  display: flex;
+  gap: var(--spacing-xs);
+  margin-top: var(--spacing-md);
+}
+
+.card-sensor {
+  width: 32px;
+  height: 8px;
+  border-radius: var(--border-radius-full);
+}
+
+.card-bookmark {
+  position: absolute;
+  top: var(--spacing-md);
+  right: var(--spacing-md);
+  background-color: var(--color-bg-white);
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform var(--transition-fast);
+}
+
+.card-bookmark:hover {
+  transform: scale(1.1);
+}

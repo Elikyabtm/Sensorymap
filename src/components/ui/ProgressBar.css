@@ -1,0 +1,21 @@
+@import "../../styles/design-tokens.css";
+
+/* Utilisation des couleurs exactes du design Figma */
+.progress-bar-container {
+  width: 100%;
+  height: 4px;
+  position: relative;
+  background: var(--components-progress_bar-secondary);
+  border-radius: 100px;
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background: var(--components-progress_bar-filled);
+  transition: width var(--transition-base);
+  border-radius: 100px;
+}

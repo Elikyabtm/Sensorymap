@@ -1,42 +1,1118 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
+/* Styles pour l'onboarding mobile */
+/* Container ajusté pour ne pas scroller */
+.onboarding-container {
+  width: 100%;
+  height: 100vh;
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  overflow: hidden;
+}
+
+.onboarding-step {
+  width: 100%;
+  max-width: 500px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
   padding: 2rem;
+}
+
+/* Écran de bienvenue */
+.welcome-step {
+  justify-content: center;
+  align-items: center;
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.welcome-title {
+  font-size: 2rem;
+  font-weight: 500;
+  color: #2c2c2c;
+  margin-bottom: 3rem;
+  line-height: 1.4;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.app-name {
+  font-weight: 700;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+/* Suppression du style .welcome-button obsolète qui n'utilise plus le composant Button */
+
+/* Barre de progression */
+.progress-bar {
+  width: 100%;
+  height: 4px;
+  background-color: #e0e0e0;
+  position: absolute;
+  top: 2rem;
+  left: 0;
+  border-radius: 2px;
+  overflow: hidden;
 }
 
-.card {
-  padding: 2em;
+.progress-fill {
+  height: 100%;
+  background-color: #2c2c2c;
+  transition: width 0.3s ease;
+  border-radius: 2px;
 }
 
-.read-the-docs {
-  color: #888;
+/* Titre des étapes */
+.step-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #2c2c2c;
+  margin-top: 4rem;
+  line-height: 1.3;
+  text-align: left;
+  padding: 0 1rem;
+}
+
+/* Bouton suivant (circulaire) */
+.next-button {
+  position: absolute;
+  bottom: 2rem;
+  right: 2rem;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  /* Utilisation de la couleur primary du design system au lieu de #2c2c2c */
+  background-color: var(--components-button-cta-primary-default-fill);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s ease;
+}
+
+.next-button:hover {
+  transform: scale(1.05);
+}
+
+.next-button:active {
+  transform: scale(0.95);
+}
+
+/* Suppression des styles de boutons obsolètes qui créaient des conflits */
+/* Les boutons utilisent maintenant le composant Button.jsx avec le design system */
+
+.welcome-container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: white;
+}
+
+/* Styles pour l'écran de bienvenue */
+.welcome-screen {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 32px;
+  text-align: center;
+}
+
+.logo-circle {
+  width: 200px;
+  height: 200px;
+  background-color: #d9d9d9;
+  border-radius: 50%;
+  margin-bottom: 60px;
+}
+
+.app-title {
+  font-size: 28px;
+  font-weight: 600;
+  color: #2f2f2f;
+  margin-bottom: 12px;
+}
+
+.app-description {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 80px;
+}
+
+.welcome-buttons {
+  width: 100%;
+  max-width: 362px; /* Ajout max-width 362px pour conteneurs de boutons */
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+}
+
+.link-underline {
+  margin-top: 8px;
+  color: #2f2f2f;
+  font-size: 16px;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* Styles pour l'écran de login */
+.login-screen {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  background: white;
+}
+
+.login-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.back-button,
+.close-button {
+  background: none;
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+  /* Ajout flexbox pour centrer l'icône */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+}
+
+.back-button:hover,
+.close-button:hover {
+  background: #f5f5f5;
+}
+
+.login-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #2f2f2f;
+  margin: 0;
+}
+
+.login-content {
+  flex: 1;
+  padding: 32px 24px;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  max-width: 362px; /* Ajout max-width 362px pour login content */
+  margin: 0 auto;
+  width: 100%;
+}
+
+.login-subtitle {
+  font-size: 28px;
+  font-weight: 700;
+  color: #2f2f2f;
+  margin-bottom: 32px;
+}
+
+.form-group {
+  margin-bottom: 24px;
+}
+
+.form-label {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  color: #2f2f2f;
+  margin-bottom: 8px;
+}
+
+.form-input {
+  width: 100%;
+  padding: 16px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 16px;
+  color: #2f2f2f;
+  background: white;
+  box-sizing: border-box;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #2f2f2f;
+}
+
+.form-input::placeholder {
+  color: #999;
+}
+
+.password-input-wrapper {
+  position: relative;
+}
+
+.password-toggle {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  /* Ajout flexbox pour centrer l'icône */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+}
+
+.btn-login {
+  width: 100%;
+  padding: 18px;
+  border: none;
+  border-radius: 12px;
+  color: white;
+  font-size: 16px;
+  font-weight: 500;
+  margin-top: 16px;
+  margin-bottom: 24px;
+  transition: opacity 0.2s;
+}
+
+.btn-login:not(:disabled) {
+  cursor: pointer;
+}
+
+.btn-login:not(:disabled):hover {
+  opacity: 0.9;
+}
+
+.forgot-password {
+  text-align: center;
+  color: #2f2f2f;
+  font-size: 14px;
+  text-decoration: underline;
+  margin-top: 16px;
+  display: block;
+}
+
+/* Styles pour l'écran de création de compte */
+.signup-screen {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  background: white;
+}
+
+.signup-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.signup-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #2f2f2f;
+  margin: 0;
+}
+
+.signup-content {
+  flex: 1;
+  padding: 100px 24px 32px;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  max-width: 362px; /* Ajout max-width 362px pour signup content */
+  margin: 0 auto;
+  width: 100%;
+}
+
+.signup-subtitle {
+  font-size: 28px;
+  font-weight: 700;
+  color: #2f2f2f;
+  margin-bottom: 32px;
+  line-height: 1.3;
+}
+
+.pseudo-input-wrapper {
+  position: relative;
+}
+
+.pseudo-at {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 16px;
+  color: #999;
+  pointer-events: none;
+}
+
+.pseudo-input {
+  padding-left: 36px;
+}
+
+.btn-signup {
+  width: 100%;
+  padding: 18px;
+  border: none;
+  border-radius: 12px;
+  color: white;
+  font-size: 16px;
+  font-weight: 500;
+  margin-top: auto;
+  transition: opacity 0.2s;
+}
+
+.btn-signup:not(:disabled) {
+  cursor: pointer;
+}
+
+.btn-signup:not(:disabled):hover {
+  opacity: 0.9;
+}
+
+.age-options {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+
+.age-button {
+  width: 100%;
+  padding: 18px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background: white;
+  font-size: 16px;
+  color: #2f2f2f;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: left;
+}
+
+.age-button:hover {
+  border-color: #2f2f2f;
+}
+
+.age-button.selected {
+  background: #2f2f2f;
+  color: white;
+  border-color: #2f2f2f;
+}
+
+.avoid-options {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  justify-content: center;
+  margin-bottom: 32px;
+  flex-wrap: wrap;
+}
+
+.avoid-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 12px;
+  border-radius: 12px;
+  transition: transform 0.2s;
+  min-width: 100px;
+}
+
+.avoid-button:hover {
+  transform: scale(1.05);
+}
+
+.avoid-button.selected .avoid-icon {
+  box-shadow: 0 0 0 3px #2f2f2f;
+}
+
+.avoid-icon {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: box-shadow 0.2s;
+}
+
+.avoid-button span {
+  font-size: 14px;
+  color: #2f2f2f;
+  font-weight: 500;
+}
+
+.theme-options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+
+.theme-button {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background: white;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.theme-button:hover {
+  border-color: #2f2f2f;
+}
+
+.theme-button.selected {
+  border-color: #2f2f2f;
+  background: #f5f5f5;
+}
+
+.theme-radio {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #e0e0e0;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.theme-button.selected .theme-radio {
+  border-color: #2f2f2f;
+}
+
+.theme-radio-selected {
+  width: 10px;
+  height: 10px;
+  background: #2f2f2f;
+  border-radius: 50%;
+}
+
+.theme-button span {
+  font-size: 16px;
+  color: #2f2f2f;
+}
+
+/* Ajout des styles pour la home page avec carte et drawer */
+
+/* Home page container */
+.home-container {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+  background: #f5f5f5;
+}
+
+/* Map background */
+.map-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.map-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Ajout des styles pour la carte Leaflet */
+.map-container {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+/* Styles pour les marqueurs avec cercles colorés */
+.custom-map-marker {
+  background: transparent;
+  border: none;
+}
+
+.marker-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 3px solid white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Ajustements pour les contrôles Leaflet */
+.leaflet-control-attribution {
+  font-size: 10px;
+  background: rgba(255, 255, 255, 0.8);
+  padding: 2px 5px;
+}
+
+.leaflet-container {
+  font-family: -apple-system, BlinkMacMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+/* Search header */
+.search-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  background: transparent;
+}
+
+.search-bar {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  background: white;
+  border-radius: 24px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.search-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  color: #2f2f2f;
+  background: transparent;
+}
+
+.search-input::placeholder {
+  color: #999;
+}
+
+.header-icons {
+  display: flex;
+  gap: 8px;
+}
+
+.icon-button {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: none;
+  /* S'assurer que flexbox est défini pour centrer l'icône */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+  flex-shrink: 0;
+}
+
+.icon-button:hover {
+  transform: scale(1.05);
+}
+
+.icon-button:active {
+  transform: scale(0.95);
+}
+
+.profile-button {
+  background: white;
+}
+
+/* Ajout style recenter-button au lieu de modifier map-button */
+/* Bouton recenter (géolocalisation) avec style Figma */
+.recenter-button {
+  /* Restauration du style Figma complet pour le bouton de géolocalisation */
+  width: 48px;
+  height: 48px;
+  background: var(--components-button-recenter-default-fill, rgba(255, 255, 255, 0.5));
+  border-radius: 999px;
+  outline: 1px var(--components-button-recenter-default-stroke, #364a78) solid;
+  outline-offset: -1px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  border: none;
+  cursor: pointer;
+  flex-shrink: 0;
+  /* </CHANGE> */
+  transition: transform 0.2s;
+}
+
+.recenter-button:hover {
+  transform: scale(1.05);
+}
+
+.recenter-button:active {
+  transform: scale(0.95);
+}
+/* </CHANGE> */
+
+/* Map controls */
+.map-controls {
+  position: absolute;
+  bottom: 180px;
+  right: 16px;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.map-button {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #2f2f2f;
+  border: none;
+  /* S'assurer que flexbox est défini pour centrer l'icône */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s;
+  flex-shrink: 0;
+}
+
+.map-button:hover {
+  transform: scale(1.05);
+}
+
+.map-button:active {
+  transform: scale(0.95);
+}
+
+/* Changement couleur alert-button pour utiliser le bleu primary #5D82CF */
+.alert-button {
+  background: #5d82cf;
+}
+
+/* Drawer styles */
+/* Refonte complète du drawer selon le design Figma React Native */
+
+/* Drawer principal */
+.drawer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  /* z-index réduit pour passer sous la modal (était 100) */
+  z-index: 50;
+  /* Remplacement du gris #b4b4b4 par #CCD7F0 */
+  background: #ccd7f0;
+  border-radius: 16px 16px 0 0;
+  box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.15);
+  transition: none;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  touch-action: none;
+}
+
+/* Drawer handle */
+.drawer-handle {
+  width: 100%;
+  padding: 8px 0 4px;
+  display: flex;
+  justify-content: center;
+  cursor: grab;
+  user-select: none;
+  flex-shrink: 0;
+}
+
+.drawer-handle:active {
+  cursor: grabbing;
+}
+
+.drawer-handle-bar {
+  width: 48px;
+  height: 4px;
+  background: #979797;
+  border-radius: 100px;
+}
+
+/* View principale du drawer */
+.drawer-view {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  /* Remplacement du gris #b4b4b4 par #CCD7F0 */
+  background: #ccd7f0;
+}
+
+/* Tabs */
+.drawer-tabs {
+  display: flex;
+  padding: 0;
+  gap: 0;
+  flex-shrink: 0;
+  /* Remplacement du gris #b4b4b4 par #CCD7F0 */
+  background: #ccd7f0;
+}
+
+.drawer-tab {
+  flex: 1;
+  padding: 12px 24px;
+  border: none;
+  background: transparent;
+  color: #666;
+  font-size: 20px;
+  font-weight: 600;
+  border-radius: 16px 16px 0 0;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: -apple-system, BlinkMacMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.drawer-tab.active {
+  background: #f2f5fb;
+  color: #2a3556;
+}
+
+/* Container */
+.drawer-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: #f2f5fb;
+  overflow: hidden;
+}
+
+/* Filters */
+.drawer-filters {
+  display: flex;
+  gap: 16px;
+  padding: 16px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  flex-shrink: 0;
+  background: #f2f5fb;
+}
+
+.drawer-filters::-webkit-scrollbar {
+  display: none;
+}
+
+.filter-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.filter-circle {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  border: 2px solid #ccd7f0;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.filter-circle:hover {
+  border-color: #364a78;
+}
+
+.filter-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.filter-label {
+  font-size: 14px;
+  color: #2a3556;
+  font-weight: 500;
+  font-family: -apple-system, BlinkMacMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+/* Body scrollable */
+.drawer-body {
+  flex: 1;
+  overflow-y: auto;
+  padding-bottom: 24px;
+  background: #f2f5fb;
+}
+
+.drawer-body::-webkit-scrollbar {
+  display: none;
+}
+
+/* Carousel section */
+.carousel-section {
+  margin-bottom: 24px;
+}
+
+.carousel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 16px 12px;
+}
+
+.carousel-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #2a3556;
+  margin: 0;
+  font-family: -apple-system, BlinkMacMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.carousel-cards {
+  display: flex;
+  gap: 12px;
+  padding: 0 16px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.carousel-cards::-webkit-scrollbar {
+  display: none;
+}
+
+/* Spot card */
+.spot-card {
+  min-width: 200px;
+  flex-shrink: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #3b3b3b;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.spot-image {
+  width: 100%;
+  height: 140px;
+  background: linear-gradient(135deg, #c2c2c2 0%, #9e9e9e 100%);
+  position: relative;
+  border-radius: 8px;
+  margin: 8px 8px 0;
+}
+
+.spot-badge {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #9d9064;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.spot-content {
+  padding: 12px;
+  background: #3b3b3b;
+}
+
+.spot-info {
+  margin-bottom: 8px;
+}
+
+.spot-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: white;
+  margin: 0;
+  font-family: -apple-system, BlinkMacMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.spot-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.sensory-datavis {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+.datavis-bar {
+  width: 24px;
+  height: 32px;
+  border-radius: 16px;
+}
+
+.spot-bookmark {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255, 255, 255, 0.3);
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  flex-shrink: 0;
+}
+
+.spot-bookmark:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: white;
+}
+
+/* List item */
+/* Ajout styles manquants pour les listes */
+.list-item {
+  min-width: 160px;
+  height: 200px;
+  flex-shrink: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.list-bg-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.list-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 16px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, transparent 100%);
+  display: flex;
+  align-items: flex-end;
+}
+
+.list-text {
+  font-size: 16px;
+  font-weight: 600;
+  color: white;
+  margin: 0;
+  font-family: -apple-system, BlinkMacMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.list-text sup {
+  font-size: 12px;
+}
+
+/* Ajout des styles pour les filtres de sens dynamiques */
+.sense-filters {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.sense-filter-button {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+}
+
+.sense-filter-button:hover {
+  transform: scale(1.05);
+}
+
+.sense-filter-button:active {
+  transform: scale(0.95);
+}
+
+/* Affichage des 3 sens empilés */
+.sense-filters-stacked {
+  position: relative;
+  width: 72px;
+  height: 48px;
+  cursor: pointer;
+}
+
+.sense-filter-stacked {
+  position: absolute;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+  border: 2px solid white;
+}
+
+.sense-filters-stacked:hover .sense-filter-stacked {
+  transform: translateX(-2px);
+}
+
+/* Modal de sélection des sens */
+/* Refonte du modal en drawer draggable */
+.sense-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 200;
+  transition: background 0.2s ease;
+  pointer-events: all;
+}
+
+.sense-modal-drawer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #e4eaf7;
+  border-radius: 16px 16px 0 0;
+  z-index: 201;
+  transition: height 0.3s ease;
+  overflow: hidden;
 }
