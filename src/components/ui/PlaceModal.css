@@ -13,18 +13,21 @@
 /* Styles exacts selon dimensions Figma */
 .place-modal-wrapper {
   position: fixed;
-  bottom: 80px;
+  bottom: 100px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 1000;
   display: flex;
   justify-content: center;
   pointer-events: none;
+  /* Ajout max-width pour éviter débordement sur petits écrans */
+  max-width: calc(100% - 32px);
+  width: 344px;
 }
 
 /* Dimensions exactes Figma: 344px largeur, 153px hauteur, padding 6px, border-radius 8px */
 .place-modal {
-  width: 344px;
+  width: 100%;
   height: 153px;
   padding: 6px;
   background: white;
@@ -105,6 +108,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
 }
 
 .sense-bar-container {
@@ -132,12 +136,9 @@
 
 .place-modal-bookmark {
   width: 36px;
-  height: 35px;
-  padding-left: 4px;
-  padding-right: 4px;
-  position: absolute;
-  left: 157px;
-  top: 118px;
+  height: 36px;
+  /* Position relative au lieu d'absolue */
+  position: relative;
   background: rgba(255, 255, 255, 0.3);
   border-radius: 999px;
   outline: 1.5px #2d3a40 solid;
@@ -145,9 +146,9 @@
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  gap: 4px;
   border: none;
   cursor: pointer;
+  flex-shrink: 0;
 }
 
 .place-modal-bookmark:hover {
