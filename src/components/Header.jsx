@@ -2,7 +2,7 @@
 import Icon from "./ui/Icon"
 import "../styles/Header.css"
 
-export default function Header({ selectedSenses, onBadgeClick, onProfileClick }) {
+export default function Header({ selectedSenses, onBadgeClick, onProfileClick, onSearchClick }) {
   const senseConfig = {
     light: { label: "Lumière", color: "#b597f6", icon: "⚡" },
     sound: { label: "Bruit", color: "#90c359", icon: "👂" },
@@ -21,11 +21,11 @@ export default function Header({ selectedSenses, onBadgeClick, onProfileClick })
   return (
     <div className="header-container">
       {/* Barre de recherche */}
-      <div className="search-bar">
+      <div className="search-bar" onClick={onSearchClick} style={{ cursor: "pointer" }}>
         <div className="search-icon">
           <Icon name="search" size={25} color="var(--components-input-search_bar-placeholder, #4F70B5)" />
         </div>
-        <input type="text" placeholder="Rechercher..." className="search-input" />
+        <input type="text" placeholder="Rechercher..." className="search-input" readOnly onClick={onSearchClick} />
       </div>
 
       {/* Badges empilés */}

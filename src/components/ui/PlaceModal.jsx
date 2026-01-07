@@ -85,7 +85,7 @@ export const PlaceModal = ({ place, onClose }) => {
               </div>
 
               <button className="place-modal-bookmark" aria-label="Sauvegarder" onClick={handleFavoriteClick}>
-                <Icon name={isFavorite ? "fullheart" : "heart"} size={20} color="#2D3A40" />
+                <Icon name={isFavorite ? "heart" : "fullheart"} size={20} color="#2D3A40" />
               </button>
             </div>
           </div>
