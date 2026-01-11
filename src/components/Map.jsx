@@ -4,6 +4,7 @@ import { MapContainer, TileLayer, Marker, useMap, Circle } from "react-leaflet"
 import L from "leaflet"
 import { useEffect, forwardRef, useImperativeHandle, useState } from "react"
 import placesData from "../data/places.json"
+import { filterPlacesBySenses } from "../utils/senseFilters"
 
 const createMarkerIcon = (type, imageUrl) => {
   const isCertified = type === "certified"
@@ -97,13 +98,20 @@ function MapController({ centerPosition }) {
   return null
 }
 
-const Map = forwardRef(({ onMarkerClick }, ref) => {
+const Map = forwardRef(({ onMarkerClick, selectedSenses, selectedCategory, reports, onReportClick }, ref) => {
   const paris = [48.8566, 2.3522]
   const [centerPosition, setCenterPosition] = useState(null)
   const [userLocation, setUserLocation] = useState(null)
   const [locationAccuracy, setLocationAccuracy] = useState(null)
+  const [reportCircle, setReportCircle] = useState(null)
 
   const places = placesData
+
+  let filteredPlaces = filterPlacesBySenses(places, selectedSenses || { light: false, sound: false, crowd: false })
+
+  if (selectedCategory) {
+    filteredPlaces = filteredPlaces.filter((place) => place.category === selectedCategory)
+  }
 
   useEffect(() => {
     if (navigator.geolocation) {
@@ -168,6 +176,17 @@ const Map = forwardRef(({ onMarkerClick }, ref) => {
         alert("La géolocalisation n'est pas supportée par votre navigateur.")
       }
     },
+    setViewToPosition: (position) => {
+      if (position && position.length === 2) {
+        setCenterPosition(position)
+      }
+    },
+    setReportCircle: (circleData) => {
+      setReportCircle(circleData)
+    },
+    clearReportCircle: () => {
+      setReportCircle(null)
+    },
   }))
 
   return (
@@ -198,7 +217,42 @@ const Map = forwardRef(({ onMarkerClick }, ref) => {
         </>
       )}
 
-      {places.map((place) => (
+      {reportCircle && (
+        <Circle
+          center={[reportCircle.lat, reportCircle.lng]}
+          radius={reportCircle.extent}
+          pathOptions={{
+            color: "#364A78",
+            fillColor: reportCircle.fillColor,
+            fillOpacity: reportCircle.opacity,
+            weight: 2,
+          }}
+        />
+      )}
+
+      {reports &&
+        reports.map((report) => (
+          <Circle
+            key={report.id}
+            center={[report.location.lat, report.location.lng]}
+            radius={report.extent}
+            pathOptions={{
+              color: "#364A78",
+              fillColor: `rgba(54, 74, 120, ${0.2 + (report.intensity / 100) * 0.3})`,
+              fillOpacity: 0.2 + (report.intensity / 100) * 0.3,
+              weight: 2,
+            }}
+            eventHandlers={{
+              click: () => {
+                if (onReportClick) {
+                  onReportClick(report)
+                }
+              },
+            }}
+          />
+        ))}
+
+      {filteredPlaces.map((place) => (
         <Marker
           key={place.id}
           position={place.coordinates}

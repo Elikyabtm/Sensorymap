@@ -1,33 +1,112 @@
-import { Icon } from "./ui"
+"use client"
 
-export default function DiscoveryContent() {
+import { Icon } from "./ui"
+import placesData from "../data/places.json"
+import { filterPlacesBySenses } from "../utils/senseFilters"
+
+export default function CommunityContent({ selectedSenses, selectedCategory, onCategoryClick }) {
+  const filteredPlaces = filterPlacesBySenses(
+    placesData,
+    selectedSenses || { light: false, sound: false, crowd: false },
+  ).filter((place) => !selectedCategory || place.category === selectedCategory)
+
+  const certifiedPlaces = filteredPlaces.filter((place) => place.type === "certified")
+
+  const getSenseBarWidth = (value) => {
+    return Math.max(10, 90 - value * 0.9)
+  }
+
+  const categories = [
+    { name: "Café", icon: "cafe" }, // TODO: remplacer par vraie icône café
+    { name: "Restaurant", icon: "restaurant" }, // TODO: remplacer par vraie icône restaurant
+    { name: "Musée", icon: "museum" }, // TODO: remplacer par vraie icône musée
+    { name: "Parc", icon: "park" }, // TODO: remplacer par vraie icône parc
+    { name: "Librairie", icon: "library" }, // TODO: remplacer par vraie icône librairie
+  ]
+
   return (
     <>
-      {/* Recommandations de l'équipe - Section 1 */}
+      <div className="drawer-filters">
+        {categories.map((cat) => (
+          <div key={cat.name} className="filter-item">
+            <button
+              className={`filter-circle ${selectedCategory === cat.name ? "active" : ""}`}
+              onClick={() => onCategoryClick(cat.name)}
+            >
+              <Icon name={cat.icon} size={24} color={selectedCategory === cat.name ? "white" : "#364A78"} />
+            </button>
+            <span className="filter-label">{cat.name}</span>
+          </div>
+        ))}
+      </div>
+      {/* End of correction */}
+
+      {/* Section Sorties à venir */}
+      <div className="carousel-section">
+        <div className="carousel-header">
+          <h3 className="carousel-title">Sorties à venir</h3>
+          <Icon name="arrowRight" size={20} color="#2A3556" />
+        </div>
+        <div className="carousel-cards">
+          {[1, 2, 3].map((i) => (
+            <div key={i} className="event-card">
+              <div className="event-date">17 oct.</div>
+              <div className="event-title">Restaurant indien</div>
+              <div className="event-badges">
+                <div className="event-badge" style={{ backgroundColor: "#B597F6" }}>
+                  <Icon name="light" size={14} color="white" />
+                </div>
+                <div className="event-badge" style={{ backgroundColor: "#BEDC9E" }}>
+                  <Icon name="sound" size={14} color="white" />
+                </div>
+                <div className="event-badge" style={{ backgroundColor: "#FFA576" }}>
+                  <Icon name="crowd" size={14} color="white" />
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Section Les recommandations de l'équipe */}
       <div className="carousel-section">
         <div className="carousel-header">
           <h3 className="carousel-title">Les recommandations de l'équipe</h3>
           <Icon name="arrowRight" size={20} color="#2A3556" />
         </div>
         <div className="carousel-cards">
-          {[1, 2, 3].map((i) => (
-            <div key={i} className="spot-card">
-              <div className="spot-image">
-                <div className="spot-badge">
+          {certifiedPlaces.slice(0, 2).map((place) => (
+            <div key={place.id} className="recommendation-card">
+              <div
+                className="recommendation-image"
+                style={{
+                  backgroundImage: `url(${place.image})`,
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                }}
+              >
+                <div className="certified-badge">
                   <Icon name="star" size={16} color="white" />
                 </div>
               </div>
-              <div className="spot-content">
-                <div className="spot-info">
-                  <h4 className="spot-title">Musée du quai</h4>
-                </div>
-                <div className="spot-footer">
-                  <div className="sensory-datavis">
-                    <div className="datavis-bar" style={{ backgroundColor: "#B597F6" }} />
-                    <div className="datavis-bar" style={{ backgroundColor: "#BEDC9E" }} />
-                    <div className="datavis-bar" style={{ backgroundColor: "#FFA576" }} />
+              <div className="recommendation-content">
+                <div className="recommendation-title">{place.name}</div>
+                <div className="recommendation-footer">
+                  <div className="recommendation-indicators">
+                    <div
+                      className="recommendation-indicator"
+                      style={{ backgroundColor: "#B597F6", width: `${getSenseBarWidth(place.senses.light)}px` }}
+                    />
+                    <div
+                      className="recommendation-indicator"
+                      style={{ backgroundColor: "#BEDC9E", width: `${getSenseBarWidth(place.senses.sound)}px` }}
+                    />
+                    <div
+                      className="recommendation-indicator"
+                      style={{ backgroundColor: "#FFA576", width: `${getSenseBarWidth(place.senses.crowd)}px` }}
+                    />
                   </div>
-                  <button className="spot-bookmark">
+                  <button className="recommendation-bookmark">
                     <Icon name="heart" size={18} color="rgba(255, 255, 255, 0.7)" />
                   </button>
                 </div>
@@ -37,85 +116,67 @@ export default function DiscoveryContent() {
         </div>
       </div>
 
-      {/* Listes */}
+      {/* Section Derniers posts */}
       <div className="carousel-section">
         <div className="carousel-header">
-          <h3 className="carousel-title">Listes</h3>
+          <h3 className="carousel-title">Derniers posts</h3>
           <Icon name="arrowRight" size={20} color="#2A3556" />
         </div>
-        <div className="carousel-cards">
-          {[1, 2, 3].map((i) => (
-            <div key={i} className="list-item">
-              <img className="list-bg-image" src={`https://picsum.photos/160/200?random=${i}`} alt="Liste" />
-              <div className="list-overlay">
-                <h4 className="list-text">
-                  Restaurants calmes du 10<sup>e</sup>
-                </h4>
+        <div style={{ display: "flex", flexDirection: "column", gap: "12px", padding: "0 16px" }}>
+          {[1, 2].map((i) => (
+            <div key={i} className="post-item">
+              <div className="post-image" />
+              <div className="post-content">
+                <div>
+                  <div className="post-title">Titre du post</div>
+                  <div className="post-description">Description ici</div>
+                </div>
+                <div className="post-time">Il y a 2min</div>
               </div>
             </div>
           ))}
         </div>
       </div>
 
-      {/* Recommandations de l'équipe - Section 2 */}
+      {/* Section Les recommandations de l'équipe (répétée) */}
       <div className="carousel-section">
         <div className="carousel-header">
           <h3 className="carousel-title">Les recommandations de l'équipe</h3>
           <Icon name="arrowRight" size={20} color="#2A3556" />
         </div>
         <div className="carousel-cards">
-          {[4, 5, 6].map((i) => (
-            <div key={i} className="spot-card">
-              <div className="spot-image">
-                <div className="spot-badge">
+          {certifiedPlaces.slice(2, 4).map((place) => (
+            <div key={place.id} className="recommendation-card">
+              <div
+                className="recommendation-image"
+                style={{
+                  backgroundImage: `url(${place.image})`,
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                }}
+              >
+                <div className="certified-badge">
                   <Icon name="star" size={16} color="white" />
                 </div>
               </div>
-              <div className="spot-content">
-                <div className="spot-info">
-                  <h4 className="spot-title">Musée du quai</h4>
-                </div>
-                <div className="spot-footer">
-                  <div className="sensory-datavis">
-                    <div className="datavis-bar" style={{ backgroundColor: "#B597F6" }} />
-                    <div className="datavis-bar" style={{ backgroundColor: "#BEDC9E" }} />
-                    <div className="datavis-bar" style={{ backgroundColor: "#FFA576" }} />
+              <div className="recommendation-content">
+                <div className="recommendation-title">{place.name}</div>
+                <div className="recommendation-footer">
+                  <div className="recommendation-indicators">
+                    <div
+                      className="recommendation-indicator"
+                      style={{ backgroundColor: "#B597F6", width: `${getSenseBarWidth(place.senses.light)}px` }}
+                    />
+                    <div
+                      className="recommendation-indicator"
+                      style={{ backgroundColor: "#BEDC9E", width: `${getSenseBarWidth(place.senses.sound)}px` }}
+                    />
+                    <div
+                      className="recommendation-indicator"
+                      style={{ backgroundColor: "#FFA576", width: `${getSenseBarWidth(place.senses.crowd)}px` }}
+                    />
                   </div>
-                  <button className="spot-bookmark">
-                    <Icon name="heart" size={18} color="rgba(255, 255, 255, 0.7)" />
-                  </button>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Recommandations de l'équipe - Section 3 */}
-      <div className="carousel-section">
-        <div className="carousel-header">
-          <h3 className="carousel-title">Les recommandations de l'équipe</h3>
-          <Icon name="arrowRight" size={20} color="#2A3556" />
-        </div>
-        <div className="carousel-cards">
-          {[7, 8, 9].map((i) => (
-            <div key={i} className="spot-card">
-              <div className="spot-image">
-                <div className="spot-badge">
-                  <Icon name="star" size={16} color="white" />
-                </div>
-              </div>
-              <div className="spot-content">
-                <div className="spot-info">
-                  <h4 className="spot-title">Musée du quai</h4>
-                </div>
-                <div className="spot-footer">
-                  <div className="sensory-datavis">
-                    <div className="datavis-bar" style={{ backgroundColor: "#B597F6" }} />
-                    <div className="datavis-bar" style={{ backgroundColor: "#BEDC9E" }} />
-                    <div className="datavis-bar" style={{ backgroundColor: "#FFA576" }} />
-                  </div>
-                  <button className="spot-bookmark">
+                  <button className="recommendation-bookmark">
                     <Icon name="heart" size={18} color="rgba(255, 255, 255, 0.7)" />
                   </button>
                 </div>

@@ -1,5 +1,6 @@
 "use client"
 import Icon from "./ui/Icon"
+import SenseBadge from "./ui/SenseBadge"
 import "../styles/Header.css"
 
 export default function Header({ selectedSenses, onBadgeClick, onProfileClick, onSearchClick }) {
@@ -40,9 +41,7 @@ export default function Header({ selectedSenses, onBadgeClick, onProfileClick, o
                 zIndex: badgeCount - displayIndex,
               }}
             >
-              <div className="badge-circle" style={{ background: badgeColors[sense] }}>
-                <span>{senseConfig[sense].icon}</span>
-              </div>
+              <SenseBadge type={sense} variant="contour" size={40} />
             </div>
           ))}
         </div>

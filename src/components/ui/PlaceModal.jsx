@@ -4,7 +4,7 @@ import { useState } from "react"
 import { Icon } from "./Icon"
 import "./PlaceModal.css"
 
-export const PlaceModal = ({ place, onClose }) => {
+export const PlaceModal = ({ place, onClose, onOpenDetails }) => {
   const [isFavorite, setIsFavorite] = useState(false)
 
   if (!place) return null
@@ -15,12 +15,22 @@ export const PlaceModal = ({ place, onClose }) => {
     setIsFavorite(!isFavorite)
   }
 
+  const handleModalClick = (e) => {
+    // Ne pas ouvrir si on clique sur le bookmark ou le bouton de fermeture
+    if (e.target.closest(".place-modal-bookmark") || e.target.closest(".place-modal-overlay")) {
+      return
+    }
+    if (onOpenDetails) {
+      onOpenDetails(place)
+    }
+  }
+
   return (
     <>
       <div className="place-modal-overlay" onClick={onClose} />
 
       <div className="place-modal-wrapper">
-        <div className="place-modal">
+        <div className="place-modal" onClick={handleModalClick} style={{ cursor: "pointer" }}>
           <div style={{ position: "relative", width: "143px", height: "100%" }}>
             <img src={place.imageUrl || "/placeholder.svg"} alt={place.name} className="place-modal-image" />
           </div>
@@ -85,7 +95,7 @@ export const PlaceModal = ({ place, onClose }) => {
               </div>
 
               <button className="place-modal-bookmark" aria-label="Sauvegarder" onClick={handleFavoriteClick}>
-                <Icon name={isFavorite ? "heart" : "fullheart"} size={20} color="#2D3A40" />
+                <Icon name={isFavorite ? "fullheart" : "heart"} size={20} color="#2D3A40" />
               </button>
             </div>
           </div>

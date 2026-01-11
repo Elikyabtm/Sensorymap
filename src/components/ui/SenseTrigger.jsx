@@ -1,11 +1,10 @@
 "use client"
+import SenseBadge from "./SenseBadge"
 import "./SenseTrigger.css"
 
 const SenseTrigger = ({ type, label, selected, onClick, ...props }) => {
   const senseConfig = {
     light: {
-      icon: "⚡",
-      color: "#B597F6",
       bgVar: selected
         ? "var(--components-select-triggers-focused-light-fill)"
         : "var(--components-select-triggers-default-light-fill)",
@@ -17,8 +16,6 @@ const SenseTrigger = ({ type, label, selected, onClick, ...props }) => {
         : "var(--components-select-triggers-default-light-text)",
     },
     sound: {
-      icon: "👂",
-      color: "#90C359",
       bgVar: selected
         ? "var(--components-select-triggers-focused-sound-fill)"
         : "var(--components-select-triggers-default-sound-fill)",
@@ -30,8 +27,6 @@ const SenseTrigger = ({ type, label, selected, onClick, ...props }) => {
         : "var(--components-select-triggers-default-sound-text)",
     },
     crowd: {
-      icon: "👥",
-      color: "#FF8D60",
       bgVar: selected
         ? "var(--components-select-triggers-focused-crowd-fill)"
         : "var(--components-select-triggers-default-crowd-fill)",
@@ -57,9 +52,8 @@ const SenseTrigger = ({ type, label, selected, onClick, ...props }) => {
       }}
       {...props}
     >
-      <div className="sense-icon-container" style={{ boxShadow: "1px 2px 2px rgba(0, 0, 0, 0.15)" }}>
-        <div className="sense-icon-circle" style={{ background: config.color }} />
-        <div className="sense-icon-emoji">{config.icon}</div>
+      <div className="sense-icon-container">
+        <SenseBadge type={type} variant="sansContour" size={59} />
       </div>
       <div className="sense-label" style={{ color: config.textVar }}>
         {label}

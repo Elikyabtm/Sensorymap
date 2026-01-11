@@ -26,29 +26,9 @@
 .sense-icon-container {
   width: 59px;
   height: 59px;
-  position: relative;
-}
-
-.sense-icon-circle {
-  width: 59px;
-  height: 59px;
-  position: absolute;
-  left: 0;
-  top: 0;
-  border-radius: 9999px;
-}
-
-.sense-icon-emoji {
-  width: 37px;
-  height: 37px;
-  position: absolute;
-  left: 11px;
-  top: 9.5px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 24px;
-  overflow: hidden;
 }
 
 .sense-label {

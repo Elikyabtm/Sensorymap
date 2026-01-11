@@ -9,6 +9,8 @@ import CommunityContent from "./CommunityContent"
 import DiscoveryContent from "./DiscoveryContent"
 import SenseModal from "./SenseModal"
 import SearchPage from "./SearchPage"
+import PlaceDetailsPage from "./PlaceDetailsPage"
+import ReportModal from "./ReportModal"
 import placesData from "../data/places.json"
 
 export default function HomePage() {
@@ -25,6 +27,15 @@ export default function HomePage() {
 
   const [selectedPlace, setSelectedPlace] = useState(null)
   const [showSearchPage, setShowSearchPage] = useState(false)
+  const [selectedCategory, setSelectedCategory] = useState(null)
+
+  const [showPlaceDetails, setShowPlaceDetails] = useState(false)
+  const [placeDetailsData, setPlaceDetailsData] = useState(null)
+
+  const [showReportModal, setShowReportModal] = useState(false)
+  const [userPosition, setUserPosition] = useState(null)
+  const [reports, setReports] = useState([])
+  const [selectedReport, setSelectedReport] = useState(null)
 
   const mapRef = useRef(null)
 
@@ -37,6 +48,22 @@ export default function HomePage() {
     handleResize()
     window.addEventListener("resize", handleResize)
     return () => window.removeEventListener("resize", handleResize)
+  }, [])
+
+  useEffect(() => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          setUserPosition({
+            lat: position.coords.latitude,
+            lng: position.coords.longitude,
+          })
+        },
+        (error) => {
+          console.log("[v0] Geolocation error:", error)
+        },
+      )
+    }
   }, [])
 
   const handlePointerDown = (e) => {
@@ -85,37 +112,123 @@ export default function HomePage() {
   const handlePlaceSelectFromSearch = (place) => {
     setSelectedPlace(place)
     setDrawerHeight(80)
-    // Optionally zoom to the place on the map
-    if (mapRef.current && place.coordinates) {
-      // Map component will handle the zoom via centerPosition
+  }
+
+  const handleCategoryClick = (category) => {
+    setSelectedCategory((prev) => (prev === category ? null : category))
+  }
+
+  const handleOpenPlaceDetails = (place) => {
+    setPlaceDetailsData(place)
+    setShowPlaceDetails(true)
+    setSelectedPlace(null)
+  }
+
+  const handleClosePlaceDetails = () => {
+    setShowPlaceDetails(false)
+    setPlaceDetailsData(null)
+  }
+
+  const handleOpenReport = () => {
+    setShowReportModal(true)
+  }
+
+  const handleReportSubmit = (reportData) => {
+    const newReport = {
+      id: Date.now(),
+      ...reportData,
+      timestamp: new Date().toISOString(),
     }
+    setReports((prev) => [...prev, newReport])
+    setShowReportModal(false)
+  }
+
+  const handleReportClick = (report) => {
+    setSelectedReport(report)
   }
 
   const showMapControls = !selectedPlace && clampedHeight < windowHeight * 0.6
 
   return (
     <div className="home-page">
+      {showPlaceDetails && <PlaceDetailsPage place={placeDetailsData} onClose={handleClosePlaceDetails} />}
+
       {showSearchPage && (
         <SearchPage
           onClose={() => setShowSearchPage(false)}
           places={places}
           onPlaceSelect={handlePlaceSelectFromSearch}
+          onCategoryFilter={setSelectedCategory}
+          selectedCategoryProp={selectedCategory}
         />
       )}
 
-      {/* Map background */}
+      <ReportModal
+        isOpen={showReportModal}
+        onClose={() => setShowReportModal(false)}
+        onSubmit={handleReportSubmit}
+        userPosition={userPosition}
+        mapRef={mapRef}
+      />
+
+      {selectedReport && (
+        <div className="report-details-overlay" onClick={() => setSelectedReport(null)}>
+          <div className="report-details-modal" onClick={(e) => e.stopPropagation()}>
+            <button className="report-details-close" onClick={() => setSelectedReport(null)}>
+              <Icon name="cross" size={24} color="#2D3A40" />
+            </button>
+            <h3>Signalement</h3>
+            <div className="report-details-content">
+              <div className="report-details-triggers">
+                <strong>Déclencheurs:</strong>
+                <div className="report-details-badges">
+                  {selectedReport.triggers.map((trigger) => (
+                    <span key={trigger} className={`report-badge ${trigger}`}>
+                      {trigger === "sound" ? "Bruit" : trigger === "light" ? "Lumière" : "Foule"}
+                    </span>
+                  ))}
+                </div>
+              </div>
+              <p>
+                <strong>Intensité:</strong>{" "}
+                {selectedReport.intensity < 33 ? "Faible" : selectedReport.intensity < 66 ? "Moyen" : "Forte"}
+              </p>
+              <p>
+                <strong>Étendue:</strong> {selectedReport.extent}m
+              </p>
+              {selectedReport.description && (
+                <p>
+                  <strong>Description:</strong> {selectedReport.description}
+                </p>
+              )}
+              <p className="report-details-time">{new Date(selectedReport.timestamp).toLocaleString("fr-FR")}</p>
+            </div>
+          </div>
+        </div>
+      )}
+
       <div className="map-container">
-        <Map ref={mapRef} onMarkerClick={handleMarkerClick} />
-        {selectedPlace && <PlaceModal place={selectedPlace} onClose={() => setSelectedPlace(null)} />}
+        <Map
+          ref={mapRef}
+          onMarkerClick={handleMarkerClick}
+          selectedSenses={selectedSenses}
+          selectedCategory={selectedCategory}
+          reports={reports}
+          onReportClick={handleReportClick}
+        />
+        {selectedPlace && (
+          <PlaceModal
+            place={selectedPlace}
+            onClose={() => setSelectedPlace(null)}
+            onOpenDetails={handleOpenPlaceDetails}
+          />
+        )}
       </div>
 
-      {/* Header */}
       <Header
         selectedSenses={selectedSenses}
         onBadgeClick={() => setShowSenseModal(true)}
-        onProfileClick={() => {
-          /* TODO: ouvrir profil */
-        }}
+        onProfileClick={() => {}}
         onSearchClick={() => setShowSearchPage(true)}
       />
 
@@ -127,19 +240,17 @@ export default function HomePage() {
         windowHeight={windowHeight}
       />
 
-      {/* Map controls */}
       {showMapControls && (
         <div className="map-controls" style={{ bottom: `${clampedHeight + 12}px` }}>
           <button className="recenter-button" onClick={handleRecenterMap}>
             <Icon name="position" size={24} color="#364A78" />
           </button>
-          <button className="map-button alert-button">
+          <button className="map-button alert-button" onClick={handleOpenReport}>
             <Icon name="warning" size={32} color="white" />
           </button>
         </div>
       )}
 
-      {/* Drawer */}
       {!showSenseModal && (
         <div ref={drawerRef} className="drawer" style={{ height: `${clampedHeight}px` }}>
           <div
@@ -170,21 +281,20 @@ export default function HomePage() {
             </div>
 
             <div className="drawer-container">
-              {/* Filters scrollable horizontalement */}
-              <div className="drawer-filters">
-                {[1, 2, 3, 4, 5, 6].map((index) => (
-                  <div key={index} className="filter-item">
-                    <div className="filter-circle">
-                      <div className="filter-icon">+</div>
-                    </div>
-                    <div className="filter-label">Label</div>
-                  </div>
-                ))}
-              </div>
-
-              {/* Scrollable body content */}
               <div className="drawer-body">
-                {activeTab === "discover" ? <DiscoveryContent /> : <CommunityContent />}
+                {activeTab === "discover" ? (
+                  <DiscoveryContent
+                    selectedSenses={selectedSenses}
+                    selectedCategory={selectedCategory}
+                    onCategoryClick={handleCategoryClick}
+                  />
+                ) : (
+                  <CommunityContent
+                    selectedSenses={selectedSenses}
+                    selectedCategory={selectedCategory}
+                    onCategoryClick={handleCategoryClick}
+                  />
+                )}
               </div>
             </div>
           </div>

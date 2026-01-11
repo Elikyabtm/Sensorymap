@@ -1,8 +1,45 @@
-import { Icon } from "./ui"
+"use client"
 
-export default function CommunityContent() {
+import { Icon } from "./ui"
+import placesData from "../data/places.json"
+import { filterPlacesBySenses } from "../utils/senseFilters"
+
+export default function CommunityContent({ selectedSenses, selectedCategory, onCategoryClick }) {
+  const filteredPlaces = filterPlacesBySenses(
+    placesData,
+    selectedSenses || { light: false, sound: false, crowd: false },
+  ).filter((place) => !selectedCategory || place.category === selectedCategory)
+
+  const certifiedPlaces = filteredPlaces.filter((place) => place.type === "certified")
+
+  const getSenseBarWidth = (value) => {
+    return Math.max(10, 90 - value * 0.9)
+  }
+
+  const categories = [
+    { name: "Café", icon: "cafe" }, // TODO: remplacer par vraie icône café
+    { name: "Restaurant", icon: "restaurant" }, // TODO: remplacer par vraie icône restaurant
+    { name: "Musée", icon: "museum" }, // TODO: remplacer par vraie icône musée
+    { name: "Parc", icon: "park" }, // TODO: remplacer par vraie icône parc
+    { name: "Librairie", icon: "library" }, // TODO: remplacer par vraie icône librairie
+  ]
+
   return (
     <>
+      <div className="drawer-filters">
+        {categories.map((cat) => (
+          <div key={cat.name} className="filter-item">
+            <button
+              className={`filter-circle ${selectedCategory === cat.name ? "active" : ""}`}
+              onClick={() => onCategoryClick(cat.name)}
+            >
+              <Icon name={cat.icon} size={24} color={selectedCategory === cat.name ? "white" : "#364A78"} />
+            </button>
+            <span className="filter-label">{cat.name}</span>
+          </div>
+        ))}
+      </div>
+      {/* End of correction */}
 
       {/* Section Sorties à venir */}
       <div className="carousel-section">
@@ -38,20 +75,36 @@ export default function CommunityContent() {
           <Icon name="arrowRight" size={20} color="#2A3556" />
         </div>
         <div className="carousel-cards">
-          {[1, 2].map((i) => (
-            <div key={i} className="recommendation-card">
-              <div className="recommendation-image">
+          {certifiedPlaces.slice(0, 2).map((place) => (
+            <div key={place.id} className="recommendation-card">
+              <div
+                className="recommendation-image"
+                style={{
+                  backgroundImage: `url(${place.image})`,
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                }}
+              >
                 <div className="certified-badge">
                   <Icon name="star" size={16} color="white" />
                 </div>
               </div>
               <div className="recommendation-content">
-                <div className="recommendation-title">Musée du quai</div>
+                <div className="recommendation-title">{place.name}</div>
                 <div className="recommendation-footer">
                   <div className="recommendation-indicators">
-                    <div className="recommendation-indicator" style={{ backgroundColor: "#B597F6" }} />
-                    <div className="recommendation-indicator" style={{ backgroundColor: "#BEDC9E" }} />
-                    <div className="recommendation-indicator" style={{ backgroundColor: "#FFA576" }} />
+                    <div
+                      className="recommendation-indicator"
+                      style={{ backgroundColor: "#B597F6", width: `${getSenseBarWidth(place.senses.light)}px` }}
+                    />
+                    <div
+                      className="recommendation-indicator"
+                      style={{ backgroundColor: "#BEDC9E", width: `${getSenseBarWidth(place.senses.sound)}px` }}
+                    />
+                    <div
+                      className="recommendation-indicator"
+                      style={{ backgroundColor: "#FFA576", width: `${getSenseBarWidth(place.senses.crowd)}px` }}
+                    />
                   </div>
                   <button className="recommendation-bookmark">
                     <Icon name="heart" size={18} color="rgba(255, 255, 255, 0.7)" />
@@ -92,20 +145,36 @@ export default function CommunityContent() {
           <Icon name="arrowRight" size={20} color="#2A3556" />
         </div>
         <div className="carousel-cards">
-          {[3, 4].map((i) => (
-            <div key={i} className="recommendation-card">
-              <div className="recommendation-image">
+          {certifiedPlaces.slice(2, 4).map((place) => (
+            <div key={place.id} className="recommendation-card">
+              <div
+                className="recommendation-image"
+                style={{
+                  backgroundImage: `url(${place.image})`,
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                }}
+              >
                 <div className="certified-badge">
                   <Icon name="star" size={16} color="white" />
                 </div>
               </div>
               <div className="recommendation-content">
-                <div className="recommendation-title">Musée du quai</div>
+                <div className="recommendation-title">{place.name}</div>
                 <div className="recommendation-footer">
                   <div className="recommendation-indicators">
-                    <div className="recommendation-indicator" style={{ backgroundColor: "#B597F6" }} />
-                    <div className="recommendation-indicator" style={{ backgroundColor: "#BEDC9E" }} />
-                    <div className="recommendation-indicator" style={{ backgroundColor: "#FFA576" }} />
+                    <div
+                      className="recommendation-indicator"
+                      style={{ backgroundColor: "#B597F6", width: `${getSenseBarWidth(place.senses.light)}px` }}
+                    />
+                    <div
+                      className="recommendation-indicator"
+                      style={{ backgroundColor: "#BEDC9E", width: `${getSenseBarWidth(place.senses.sound)}px` }}
+                    />
+                    <div
+                      className="recommendation-indicator"
+                      style={{ backgroundColor: "#FFA576", width: `${getSenseBarWidth(place.senses.crowd)}px` }}
+                    />
                   </div>
                   <button className="recommendation-bookmark">
                     <Icon name="heart" size={18} color="rgba(255, 255, 255, 0.7)" />

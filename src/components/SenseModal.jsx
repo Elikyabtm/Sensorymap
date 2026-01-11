@@ -4,6 +4,7 @@ import { useState } from "react"
 
 import { useRef, useEffect } from "react"
 import { SenseTrigger, Typography, Icon } from "./ui"
+import SenseBadge from "./ui/SenseBadge"
 
 export default function SenseModal({ isOpen, onClose, selectedSenses, onToggleSense, windowHeight }) {
   const senseModalRef = useRef(null)
@@ -149,9 +150,24 @@ export default function SenseModal({ isOpen, onClose, selectedSenses, onToggleSe
               display: "flex",
             }}
           >
-            <SenseTrigger type="light" selected={selectedSenses.light} onClick={() => onToggleSense("light")} />
-            <SenseTrigger type="sound" selected={selectedSenses.sound} onClick={() => onToggleSense("sound")} />
-            <SenseTrigger type="crowd" selected={selectedSenses.crowd} onClick={() => onToggleSense("crowd")} />
+            <SenseTrigger
+              type="light"
+              label="Lumière"
+              selected={selectedSenses.light}
+              onClick={() => onToggleSense("light")}
+            />
+            <SenseTrigger
+              type="sound"
+              label="Bruit"
+              selected={selectedSenses.sound}
+              onClick={() => onToggleSense("sound")}
+            />
+            <SenseTrigger
+              type="crowd"
+              label="Foule"
+              selected={selectedSenses.crowd}
+              onClick={() => onToggleSense("crowd")}
+            />
           </div>
 
           {/* Section légende des triggers */}
@@ -194,32 +210,12 @@ export default function SenseModal({ isOpen, onClose, selectedSenses, onToggleSe
                   style={{
                     width: "59px",
                     height: "59px",
-                    position: "relative",
-                    boxShadow: "1px 2px 2px rgba(0, 0, 0, 0.15)",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
                   }}
                 >
-                  <div
-                    style={{
-                      width: "59px",
-                      height: "59px",
-                      left: 0,
-                      top: 0,
-                      position: "absolute",
-                      background: "#B597F6",
-                      borderRadius: "9999px",
-                    }}
-                  />
-                  <div
-                    style={{
-                      position: "absolute",
-                      top: "50%",
-                      left: "50%",
-                      transform: "translate(-50%, -50%)",
-                      fontSize: "32px",
-                    }}
-                  >
-                    ⚡
-                  </div>
+                  <SenseBadge type="light" variant="description" size={42} />
                 </div>
                 <div
                   style={{
@@ -276,32 +272,12 @@ export default function SenseModal({ isOpen, onClose, selectedSenses, onToggleSe
                   style={{
                     width: "59px",
                     height: "59px",
-                    position: "relative",
-                    boxShadow: "1px 2px 2px rgba(0, 0, 0, 0.15)",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
                   }}
                 >
-                  <div
-                    style={{
-                      width: "59px",
-                      height: "59px",
-                      left: 0,
-                      top: 0,
-                      position: "absolute",
-                      background: "#90C359",
-                      borderRadius: "9999px",
-                    }}
-                  />
-                  <div
-                    style={{
-                      position: "absolute",
-                      top: "50%",
-                      left: "50%",
-                      transform: "translate(-50%, -50%)",
-                      fontSize: "32px",
-                    }}
-                  >
-                    👂
-                  </div>
+                  <SenseBadge type="sound" variant="description" size={42} />
                 </div>
                 <div
                   style={{
@@ -358,32 +334,12 @@ export default function SenseModal({ isOpen, onClose, selectedSenses, onToggleSe
                   style={{
                     width: "59px",
                     height: "59px",
-                    position: "relative",
-                    boxShadow: "1px 2px 2px rgba(0, 0, 0, 0.15)",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
                   }}
                 >
-                  <div
-                    style={{
-                      width: "59px",
-                      height: "59px",
-                      left: 0,
-                      top: 0,
-                      position: "absolute",
-                      background: "#FF8D60",
-                      borderRadius: "9999px",
-                    }}
-                  />
-                  <div
-                    style={{
-                      position: "absolute",
-                      top: "50%",
-                      left: "50%",
-                      transform: "translate(-50%, -50%)",
-                      fontSize: "32px",
-                    }}
-                  >
-                    👥
-                  </div>
+                  <SenseBadge type="crowd" variant="description" size={42} />
                 </div>
                 <div
                   style={{

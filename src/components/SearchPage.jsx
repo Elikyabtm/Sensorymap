@@ -4,17 +4,23 @@ import { useState, useEffect } from "react"
 import { Icon } from "./ui/Icon"
 import "../styles/SearchPage.css"
 
-const SearchPage = ({ onClose, places, onPlaceSelect }) => {
+const SearchPage = ({ onClose, places, onPlaceSelect, onCategoryFilter, selectedCategoryProp }) => {
   const [searchQuery, setSearchQuery] = useState("")
   const [recentSearches, setRecentSearches] = useState([])
+  const [selectedCategory, setSelectedCategory] = useState(selectedCategoryProp || null)
 
   useEffect(() => {
-    // Charger l'historique depuis localStorage
     const saved = localStorage.getItem("searchHistory")
     if (saved) {
       setRecentSearches(JSON.parse(saved))
     }
   }, [])
+
+  useEffect(() => {
+    if (selectedCategoryProp !== undefined) {
+      setSelectedCategory(selectedCategoryProp)
+    }
+  }, [selectedCategoryProp])
 
   const addToHistory = (placeName) => {
     const updated = [placeName, ...recentSearches.filter((s) => s !== placeName)].slice(0, 5)
@@ -33,6 +39,20 @@ const SearchPage = ({ onClose, places, onPlaceSelect }) => {
   const nearbyPlaces = places.slice(0, 3)
 
   const categories = [...new Set(places.map((p) => p.category))]
+
+  const handleCategoryClick = (category) => {
+    if (selectedCategory === category) {
+      setSelectedCategory(null)
+      if (onCategoryFilter) {
+        onCategoryFilter(null)
+      }
+    } else {
+      setSelectedCategory(category)
+      if (onCategoryFilter) {
+        onCategoryFilter(category)
+      }
+    }
+  }
 
   const handlePlaceClick = (place) => {
     addToHistory(place.name)
@@ -70,8 +90,12 @@ const SearchPage = ({ onClose, places, onPlaceSelect }) => {
 
       <div className="search-categories">
         {categories.slice(0, 4).map((category, index) => (
-          <button key={index} className="search-category-badge">
-            <Icon name="heart" size={20} color="#4F70B5" />
+          <button
+            key={index}
+            className={`search-category-badge ${selectedCategory === category ? "active" : ""}`}
+            onClick={() => handleCategoryClick(category)}
+          >
+            <Icon name="heart" size={20} color={selectedCategory === category ? "#364A78" : "#445E9A"} />
             <span>{category}</span>
           </button>
         ))}
@@ -96,7 +120,6 @@ const SearchPage = ({ onClose, places, onPlaceSelect }) => {
           </div>
         )}
 
-        {/* Recherches récentes */}
         {!searchQuery.trim() && recentSearches.length > 0 && (
           <div className="search-section">
             <h3 className="search-section-title">Recherches récentes</h3>
@@ -111,7 +134,6 @@ const SearchPage = ({ onClose, places, onPlaceSelect }) => {
           </div>
         )}
 
-        {/* À proximité */}
         {!searchQuery.trim() && (
           <div className="search-section">
             <h3 className="search-section-title">À proximité</h3>
@@ -125,7 +147,6 @@ const SearchPage = ({ onClose, places, onPlaceSelect }) => {
           </div>
         )}
 
-        {/* Les recommandations de l'équipe */}
         {!searchQuery.trim() && (
           <div className="search-section">
             <div className="search-section-header">

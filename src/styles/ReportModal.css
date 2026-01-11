@@ -1,0 +1,337 @@
+.report-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: transparent; /* Pas de fond sombre pour voir la carte */
+  z-index: 300;
+  display: flex;
+  align-items: flex-end;
+  pointer-events: none; /* Permettre les interactions avec la carte */
+}
+
+.report-modal {
+  background: #e4eaf7;
+  width: 100%;
+  max-height: 65vh; /* Réduit à 65% pour laisser la carte visible au-dessus */
+  border-radius: 24px 24px 0 0;
+  display: flex;
+  flex-direction: column;
+  animation: slideUp 0.3s ease-out;
+  pointer-events: auto; /* Modal cliquable */
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.15);
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.report-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px;
+  border-bottom: 1px solid rgba(54, 74, 120, 0.1);
+  position: relative;
+}
+
+.report-modal-header h2 {
+  font-family: "Nunito Sans", sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: #2d3a40;
+  margin: 0;
+  flex: 1;
+  text-align: center;
+}
+
+.report-back-btn,
+.report-close-btn {
+  background: #f5f5f5; /* Fond visible pour le bouton fermer */
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+}
+
+.report-back-btn {
+  left: 16px;
+}
+
+.report-close-btn {
+  right: 16px;
+}
+
+.report-modal-content {
+  padding: 24px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+/* Step 1: Location */
+.report-search-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid #ccd7f0;
+  border-radius: 100px;
+  padding: 12px 20px;
+  margin-bottom: 16px;
+}
+
+.report-search-bar input {
+  flex: 1;
+  border: none;
+  background: none;
+  font-family: "Nunito Sans", sans-serif;
+  font-size: 16px;
+  color: #2d3a40;
+  outline: none;
+}
+
+.report-search-bar input::placeholder {
+  color: #9e9e9e;
+}
+
+.report-location-btn {
+  width: 100%;
+  background: #2d3a40;
+  color: #ffffff;
+  border: none;
+  border-radius: 12px;
+  padding: 16px;
+  font-family: "Nunito Sans", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 16px;
+  /* Assurer que le bouton est cliquable */
+  pointer-events: auto;
+  z-index: 1;
+}
+
+.report-location-btn:hover {
+  background: #3d4a50;
+}
+
+.report-location-btn:active {
+  transform: scale(0.98);
+}
+
+.report-manual-btn {
+  width: 100%;
+  background: none;
+  color: #364a78;
+  border: none;
+  font-family: "Nunito Sans", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: underline;
+  padding: 12px;
+}
+
+/* Step 2: When */
+.report-question {
+  font-family: "Nunito Sans", sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: #2d3a40;
+  margin: 0 0 24px 0;
+}
+
+.report-radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.report-radio {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 12px;
+  cursor: pointer;
+  font-family: "Nunito Sans", sans-serif;
+  font-size: 16px;
+  color: #2d3a40;
+}
+
+.report-radio input[type="radio"] {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+}
+
+.report-calendar-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  background: rgba(255, 255, 255, 0.5);
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-family: "Nunito Sans", sans-serif;
+  font-size: 16px;
+  color: #2d3a40;
+  font-weight: 500;
+}
+
+/* Step 3: Triggers */
+.report-triggers {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.report-trigger {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+  background: rgba(255, 255, 255, 0.7);
+  border: 2px solid transparent;
+  border-radius: 12px;
+  cursor: pointer;
+  font-family: "Nunito Sans", sans-serif;
+  font-size: 16px;
+  color: #2d3a40;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.report-trigger.active {
+  background: #e4eaf7;
+  border-color: #364a78;
+}
+
+.report-trigger-circle {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.report-trigger.active .report-trigger-circle {
+  background: #364a78;
+}
+
+/* Step 4 & 6: Sliders */
+.report-slider-container {
+  margin-bottom: 24px;
+}
+
+.report-slider {
+  width: 100%;
+  height: 4px;
+  -webkit-appearance: none;
+  appearance: none;
+  background: #d9d9d9;
+  outline: none;
+  border-radius: 2px;
+  margin-bottom: 12px;
+}
+
+.report-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 24px;
+  height: 24px;
+  background: #364a78;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.report-slider::-moz-range-thumb {
+  width: 24px;
+  height: 24px;
+  background: #364a78;
+  border-radius: 50%;
+  cursor: pointer;
+  border: none;
+}
+
+.report-slider-labels {
+  display: flex;
+  justify-content: space-between;
+  font-family: "Nunito Sans", sans-serif;
+  font-size: 14px;
+  color: #2d3a40;
+}
+
+.report-extent-value {
+  text-align: center;
+  font-family: "Nunito Sans", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: #364a78;
+}
+
+/* Step 5: Description */
+.report-textarea {
+  width: 100%;
+  padding: 16px;
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid #ccd7f0;
+  border-radius: 12px;
+  font-family: "Nunito Sans", sans-serif;
+  font-size: 16px;
+  color: #2d3a40;
+  outline: none;
+  resize: vertical;
+  margin-bottom: 24px;
+}
+
+.report-textarea::placeholder {
+  color: #9e9e9e;
+}
+
+/* Continue Button */
+.report-continue-btn {
+  width: 100%;
+  background: #364a78;
+  color: #ffffff;
+  border: none;
+  border-radius: 12px;
+  padding: 16px;
+  font-family: "Nunito Sans", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.report-continue-btn:hover {
+  opacity: 0.9;
+}
+
+.report-continue-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

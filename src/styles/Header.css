@@ -17,6 +17,7 @@
 /* Application styles Figma exact pour la barre de recherche */
 .search-bar {
   flex: 1;
+  min-width: 0; /* Permet au flex de se comprimer si nécessaire */
   display: flex;
   align-items: center;
   gap: 8px;

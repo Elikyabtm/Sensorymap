@@ -75,23 +75,40 @@
 }
 
 .search-category-badge {
+  height: 32px;
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 8px 16px;
-  background: #ffffff;
-  border: 1px solid #445e9a;
+  padding: 0 16px;
+  background: rgba(255, 255, 255, 0.5);
+  border: none;
+  outline: 1px solid #445e9a;
+  outline-offset: -1px;
   border-radius: 100px;
   cursor: pointer;
   white-space: nowrap;
   font-family: "Nunito Sans", sans-serif;
-  font-size: 14px;
-  font-weight: 600;
-  color: #4f70b5;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 22.4px;
+  color: #445e9a;
+  flex-shrink: 0;
+  transition: all 0.2s;
 }
 
 .search-category-badge:hover {
   background: #e4eaf7;
+}
+
+.search-category-badge.active {
+  background: #e4eaf7;
+  outline: 1.5px solid #364a78;
+  outline-offset: -1.5px;
+  color: #364a78;
+}
+
+.search-category-badge.active svg {
+  color: #364a78;
 }
 
 .search-content {

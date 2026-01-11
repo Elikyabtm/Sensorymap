@@ -3,13 +3,13 @@
     "id": "cafe-kitsune",
     "name": "Café Kitsuné – Palais Royal",
     "category": "Café",
-    "type": "certified",
-    "coordinates": [48.86359, 2.33649],
+    "type": "regular",
+    "coordinates": [48.86570716798363, 2.337197553195107],
     "image": "https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=400",
     "senses": {
-      "light": 70,
-      "sound": 40,
-      "crowd": 50
+      "light": 20,
+      "sound": 15,
+      "crowd": 35
     }
   },
   {
@@ -17,50 +17,50 @@
     "name": "Café Nuances – Opéra",
     "category": "Café",
     "type": "regular",
-    "coordinates": [48.87096, 2.33304],
+    "coordinates": [48.86810274852639, 2.3313393397017736],
     "image": "https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=400",
     "senses": {
-      "light": 60,
-      "sound": 50,
-      "crowd": 60
+      "light": 35,
+      "sound": 20,
+      "crowd": 45
     }
   },
   {
     "id": "cafe-institut-suedois",
     "name": "Café de l'Institut Suédois",
     "category": "Café",
-    "type": "certified",
-    "coordinates": [48.85749, 2.36058],
+    "type": "regular",
+    "coordinates": [48.85913016259971, 2.3623455162938845],
     "image": "https://images.unsplash.com/photo-1445116572660-236099ec97a0?w=400",
     "senses": {
-      "light": 80,
-      "sound": 30,
-      "crowd": 40
+      "light": 25,
+      "sound": 20,
+      "crowd": 30
     }
   },
   {
     "id": "ohp-cafe",
-    "name": "O/HP Café – Hôtel des Provinces",
+    "name": "Café Joyeux",
     "category": "Café",
     "type": "regular",
-    "coordinates": [48.87103, 2.34812],
+    "coordinates": [48.88892503176633, 2.3188696575684142],
     "image": "https://images.unsplash.com/photo-1559305616-3e7a6c1c7e8a?w=400",
     "senses": {
-      "light": 75,
+      "light": 15,
       "sound": 35,
-      "crowd": 45
+      "crowd": 40
     }
   },
   {
     "id": "serres-auteuil",
     "name": "Serres d'Auteuil",
     "category": "Parc",
-    "type": "certified",
-    "coordinates": [48.84724, 2.25258],
+    "type": "regular",
+    "coordinates": [48.84641693418915, 2.2522723144056207],
     "image": "https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?w=400",
     "senses": {
-      "light": 90,
-      "sound": 20,
+      "light": 10,
+      "sound": 10,
       "crowd": 30
     }
   },
@@ -69,24 +69,24 @@
     "name": "Square du Vert-Galant",
     "category": "Parc",
     "type": "regular",
-    "coordinates": [48.85716, 2.34282],
+    "coordinates": [48.857409988752394, 2.340281695961337],
     "image": "https://images.unsplash.com/photo-1519331379826-f10be5486c6f?w=400",
     "senses": {
-      "light": 85,
-      "sound": 25,
-      "crowd": 55
+      "light": 35,
+      "sound": 15,
+      "crowd": 15
     }
   },
   {
     "id": "jardin-musee-vie-romantique",
-    "name": "Jardin du Musée de la Vie Romantique",
+    "name": "Jardin Lionel Assouad",
     "category": "Parc",
-    "type": "certified",
-    "coordinates": [48.88209, 2.3331],
+    "type": "regular",
+    "coordinates": [48.827927289062124, 2.3234712298121494],
     "image": "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=400",
     "senses": {
-      "light": 80,
-      "sound": 15,
+      "light": 15,
+      "sound": 30,
       "crowd": 25
     }
   },
@@ -95,37 +95,37 @@
     "name": "Jardin du Luxembourg – zones latérales",
     "category": "Parc",
     "type": "regular",
-    "coordinates": [48.84622, 2.33716],
+    "coordinates": [48.846992478095764, 2.3363472305359427],
     "image": "https://images.unsplash.com/photo-1524935655608-984daf191d1d?w=400",
     "senses": {
-      "light": 85,
-      "sound": 30,
-      "crowd": 65
+      "light": 30,
+      "sound": 40,
+      "crowd": 20
     }
   },
   {
     "id": "musee-zadkine",
     "name": "Musée Zadkine",
     "category": "Musée",
-    "type": "certified",
-    "coordinates": [48.84217, 2.32938],
+    "type": "regular",
+    "coordinates": [48.84361170335158, 2.334274809981967],
     "image": "https://images.unsplash.com/photo-1565374773071-8bbf25a36d8e?w=400",
     "senses": {
-      "light": 60,
+      "light": 35,
       "sound": 10,
-      "crowd": 20
+      "crowd": 10
     }
   },
   {
     "id": "musee-vie-romantique",
     "name": "Musée de la Vie Romantique",
     "category": "Musée",
-    "type": "certified",
-    "coordinates": [48.8823, 2.33335],
+    "type": "regular",
+    "coordinates": [48.88153265909193, 2.3334920955247545],
     "image": "https://images.unsplash.com/photo-1564399579883-451a5d44ec08?w=400",
     "senses": {
-      "light": 55,
-      "sound": 15,
+      "light": 15,
+      "sound": 30,
       "crowd": 25
     }
   },
@@ -134,25 +134,25 @@
     "name": "Musée de l'Orangerie",
     "category": "Musée",
     "type": "regular",
-    "coordinates": [48.86379, 2.32263],
+    "coordinates": [48.86397893641786, 2.322672397372646],
     "image": "https://images.unsplash.com/photo-1578321272176-b7bbc0679853?w=400",
     "senses": {
-      "light": 50,
-      "sound": 20,
-      "crowd": 70
+      "light": 10,
+      "sound": 40,
+      "crowd": 50
     }
   },
   {
     "id": "musee-guimet",
     "name": "Musée Guimet",
     "category": "Musée",
-    "type": "certified",
-    "coordinates": [48.8651, 2.29302],
+    "type": "regular",
+    "coordinates": [48.865271158110296, 2.293792583879272],
     "image": "https://images.unsplash.com/photo-1582555172866-f73bb12a2ab3?w=400",
     "senses": {
-      "light": 45,
-      "sound": 25,
-      "crowd": 50
+      "light": 30,
+      "sound": 15,
+      "crowd": 35
     }
   },
   {
@@ -160,25 +160,25 @@
     "name": "Bibliothèque Forney",
     "category": "Bibliothèque",
     "type": "regular",
-    "coordinates": [48.85692, 2.36259],
+    "coordinates": [48.85361071366779, 2.359281801069538],
     "image": "https://images.unsplash.com/photo-1521587760476-6c12a4b040da?w=400",
     "senses": {
-      "light": 65,
-      "sound": 10,
-      "crowd": 30
+      "light": 15,
+      "sound": 5,
+      "crowd": 35
     }
   },
   {
     "id": "mediatheque-yourcenar",
     "name": "Médiathèque Marguerite Yourcenar",
     "category": "Bibliothèque",
-    "type": "certified",
-    "coordinates": [48.84361, 2.40907],
+    "type": "regular",
+    "coordinates": [48.83706217553677, 2.303700891440058],
     "image": "https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=400",
     "senses": {
-      "light": 70,
-      "sound": 5,
-      "crowd": 35
+      "light": 30,
+      "sound": 15,
+      "crowd": 30
     }
   },
   {
@@ -186,38 +186,38 @@
     "name": "Médiathèque Françoise Sagan",
     "category": "Bibliothèque",
     "type": "regular",
-    "coordinates": [48.88052, 2.36327],
+    "coordinates": [48.875702668086724, 2.3537903098550523],
     "image": "https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=400",
     "senses": {
-      "light": 75,
-      "sound": 8,
-      "crowd": 40
+      "light": 35,
+      "sound": 25,
+      "crowd": 15
     }
   },
   {
     "id": "bibliotheque-sainte-genevieve",
     "name": "Bibliothèque Sainte-Geneviève",
     "category": "Bibliothèque",
-    "type": "certified",
-    "coordinates": [48.84679, 2.3431],
+    "type": "regular",
+    "coordinates": [48.847136234997386, 2.3464054968192003],
     "image": "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=400",
     "senses": {
-      "light": 60,
-      "sound": 5,
-      "crowd": 50
+      "light": 15,
+      "sound": 10,
+      "crowd": 40
     }
   },
   {
     "id": "le-tres-particulier",
     "name": "Le Très Particulier – Montmartre",
     "category": "Bar",
-    "type": "certified",
-    "coordinates": [48.88558, 2.33322],
+    "type": "regular",
+    "coordinates": [48.887913326444554, 2.335321777839751],
     "image": "https://images.unsplash.com/photo-1470337458703-46ad1756a187?w=400",
     "senses": {
-      "light": 40,
-      "sound": 45,
-      "crowd": 55
+      "light": 5,
+      "sound": 15,
+      "crowd": 35
     }
   },
   {
@@ -225,25 +225,25 @@
     "name": "Sherry Butt – Marais",
     "category": "Bar",
     "type": "regular",
-    "coordinates": [48.85863, 2.35811],
+    "coordinates": [48.85329611682007, 2.3640907417384738],
     "image": "https://images.unsplash.com/photo-1566417713940-fe7c737a9ef2?w=400",
     "senses": {
-      "light": 35,
-      "sound": 55,
-      "crowd": 65
+      "light": 30,
+      "sound": 20,
+      "crowd": 40
     }
   },
   {
     "id": "le-lavomatic",
     "name": "Le Lavomatic",
     "category": "Bar",
-    "type": "certified",
-    "coordinates": [48.86442, 2.35037],
+    "type": "regular",
+    "coordinates": [48.86848266519481, 2.361871913511362],
     "image": "https://images.unsplash.com/photo-1543007630-9710e4a00a20?w=400",
     "senses": {
-      "light": 30,
-      "sound": 60,
-      "crowd": 70
+      "light": 40,
+      "sound": 35,
+      "crowd": 20
     }
   },
   {
@@ -254,9 +254,9 @@
     "coordinates": [48.8693, 2.33169],
     "image": "https://images.unsplash.com/photo-1572116469696-31de0f17cc34?w=400",
     "senses": {
-      "light": 45,
-      "sound": 50,
-      "crowd": 60
+      "light": 10,
+      "sound": 30,
+      "crowd": 45
     }
   },
   {
@@ -264,25 +264,25 @@
     "name": "Chez Vong",
     "category": "Restaurant",
     "type": "regular",
-    "coordinates": [48.8616, 2.34619],
+    "coordinates": [48.862831593872215, 2.3491932281498187],
     "image": "https://images.unsplash.com/photo-1552566626-52f8b828add9?w=400",
     "senses": {
-      "light": 50,
-      "sound": 55,
-      "crowd": 65
+      "light": 35,
+      "sound": 20,
+      "crowd": 20
     }
   },
   {
     "id": "sola",
     "name": "Sola",
     "category": "Restaurant",
-    "type": "certified",
-    "coordinates": [48.84868, 2.33223],
+    "type": "regular",
+    "coordinates": [48.85161264768951, 2.3483117745869184],
     "image": "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=400",
     "senses": {
-      "light": 55,
-      "sound": 40,
-      "crowd": 50
+      "light": 30,
+      "sound": 10,
+      "crowd": 10
     }
   },
   {
@@ -290,51 +290,51 @@
     "name": "Noura – Montparnasse",
     "category": "Restaurant",
     "type": "regular",
-    "coordinates": [48.84199, 2.32492],
+    "coordinates": [48.84192618711526, 2.330767592784695],
     "image": "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=400",
     "senses": {
-      "light": 60,
-      "sound": 50,
-      "crowd": 60
+      "light": 20,
+      "sound": 35,
+      "crowd": 20
     }
   },
   {
     "id": "la-matta",
     "name": "La Matta",
     "category": "Restaurant",
-    "type": "certified",
-    "coordinates": [48.8787, 2.33462],
+    "type": "regular",
+    "coordinates": [48.85664733046753, 2.2792985104672776],
     "image": "https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?w=400",
     "senses": {
-      "light": 65,
-      "sound": 45,
-      "crowd": 55
+      "light": 15,
+      "sound": 20,
+      "crowd": 35
     }
   },
   {
     "id": "arome-16e",
-    "name": "Arome – 16ᵉ",
+    "name": "Atome Coffee Shop",
     "category": "Lieu recommandé",
     "type": "certified",
-    "coordinates": [48.87161, 2.30721],
+    "coordinates": [48.856986312169134, 2.2721796772919096],
     "image": "https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?w=400",
     "senses": {
-      "light": 70,
-      "sound": 35,
-      "crowd": 45
+      "light": 20,
+      "sound": 10,
+      "crowd": 10
     }
   },
   {
     "id": "parc-buttes-chapeau-rouge",
     "name": "Parc des Buttes du Chapeau Rouge",
     "category": "Lieu recommandé",
-    "type": "regular",
-    "coordinates": [48.88361, 2.38771],
+    "type": "certified",
+    "coordinates": [48.881888515496165, 2.398518411438503],
     "image": "https://images.unsplash.com/photo-1519331379826-f10be5486c6f?w=400",
     "senses": {
-      "light": 85,
-      "sound": 20,
-      "crowd": 35
+      "light": 20,
+      "sound": 30,
+      "crowd": 15
     }
   },
   {
@@ -342,25 +342,25 @@
     "name": "Musée Bourdelle",
     "category": "Lieu recommandé",
     "type": "certified",
-    "coordinates": [48.83919, 2.30803],
+    "coordinates": [48.84316986673932, 2.3186448865075917],
     "image": "https://images.unsplash.com/photo-1536924940846-227afb31e2a5?w=400",
     "senses": {
-      "light": 55,
+      "light": 35,
       "sound": 15,
-      "crowd": 30
+      "crowd": 15
     }
   },
   {
     "id": "bibliotheque-cite-sciences",
     "name": "Bibliothèque Cité des Sciences",
     "category": "Lieu recommandé",
-    "type": "regular",
-    "coordinates": [48.89669, 2.38806],
+    "type": "certified",
+    "coordinates": [48.89496350308385, 2.3872374304190522],
     "image": "https://images.unsplash.com/photo-1568667256549-094345857637?w=400",
     "senses": {
-      "light": 75,
+      "light": 35,
       "sound": 10,
-      "crowd": 45
+      "crowd": 15
     }
   },
   {
@@ -368,12 +368,12 @@
     "name": "Bar Bibliothèque – Saint-Germain",
     "category": "Lieu recommandé",
     "type": "certified",
-    "coordinates": [48.85202, 2.33609],
+    "coordinates": [48.870640828634386, 2.279990009503382],
     "image": "https://images.unsplash.com/photo-1509669803555-fd5d83d7c9ca?w=400",
     "senses": {
-      "light": 50,
-      "sound": 40,
-      "crowd": 50
+      "light": 10,
+      "sound": 15,
+      "crowd": 35
     }
   }
 ]
