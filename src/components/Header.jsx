@@ -50,7 +50,7 @@ export default function Header({ selectedSenses, onBadgeClick, onProfileClick, o
       {/* Icône de profil */}
       <div className="profile-icon" onClick={onProfileClick}>
         <div className="profile-circle">
-          <Icon name="profile" size={20} color="var(--components-input-form_fields-default-placeholder, #4F70B5)" />
+          <Icon name="profile" size={24} color="var(--components-input-form_fields-default-placeholder, #4F70B5)" />
         </div>
       </div>
     </div>

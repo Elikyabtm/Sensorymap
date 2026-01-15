@@ -1,0 +1,276 @@
+.place-review-flow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--📃-layout-background, #f2f5fb);
+  z-index: 2000;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.review-flow-header {
+  padding: 20px;
+  padding-top: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.review-close-button {
+  width: 35px;
+  height: 35px;
+  background: var(--🧩-components-actions-exit-default-fill, #e4eaf7);
+  border: 1px solid rgba(255, 255, 255, 0);
+  border-radius: 1000px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.review-close-button:hover {
+  background: #d0daf2;
+}
+
+.review-progress-container {
+  padding: 0 24px;
+  margin-bottom: 28px;
+}
+
+.review-content {
+  flex: 1;
+  padding: 0 24px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.review-step {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  flex: 1;
+}
+
+.review-step-header {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  text-align: center;
+}
+
+/* Étape 1 - Ambiance slider */
+.ambiance-slider-section {
+  display: flex;
+  flex-direction: column;
+  gap: 62px;
+  padding: 8px;
+  margin-top: 127px;
+}
+
+.ambiance-label {
+  text-align: center;
+  color: #4b4b4b;
+  font-size: 15px;
+  font-family: "SF Pro", sans-serif;
+  font-weight: 400;
+  line-height: 22px;
+}
+
+.slider-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Correction style slider ambiance pour qu'il fonctionne */
+.ambiance-slider {
+  width: 100%;
+  height: 8px;
+  -webkit-appearance: none;
+  appearance: none;
+  border-radius: 1000px;
+  outline: none;
+  cursor: pointer;
+}
+
+.ambiance-slider::-webkit-slider-runnable-track {
+  height: 8px;
+  border-radius: 1000px;
+}
+
+.ambiance-slider::-moz-range-track {
+  height: 8px;
+  border-radius: 1000px;
+}
+
+.ambiance-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 24px;
+  height: 24px;
+  background: var(--🧩-components-slider-handle, #445e9a);
+  border: 1px solid var(--🧩-components-slider-handle-stroke, #445e9a);
+  border-radius: 50%;
+  cursor: pointer;
+  margin-top: -8px;
+}
+
+.ambiance-slider::-moz-range-thumb {
+  width: 24px;
+  height: 24px;
+  background: var(--🧩-components-slider-handle, #445e9a);
+  border: 1px solid var(--🧩-components-slider-handle-stroke, #445e9a);
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.slider-labels {
+  display: flex;
+  justify-content: space-between;
+  color: var(--🧩-components-slider-label, #2a3556);
+  font-size: 14px;
+  font-family: "Nunito Sans", sans-serif;
+  font-weight: 400;
+  line-height: 22px;
+}
+
+/* Étape 2 - Sense sliders */
+.sense-sliders-section {
+  display: flex;
+  flex-direction: column;
+  gap: 23px;
+  margin-top: 18px;
+}
+
+.sense-slider-card {
+  padding: 12px 16px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.sense-slider-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.sense-slider-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Nouveau style slider avec double div Figma */
+/* Correction style sliders de sens pour qu'ils fonctionnent */
+.sense-slider {
+  flex: 1;
+  height: 8px;
+  -webkit-appearance: none;
+  appearance: none;
+  border-radius: 1000px;
+  outline: none;
+  cursor: pointer;
+}
+
+.sense-slider::-webkit-slider-runnable-track {
+  height: 8px;
+  border-radius: 1000px;
+}
+
+.sense-slider::-moz-range-track {
+  height: 8px;
+  border-radius: 1000px;
+}
+
+.sense-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 24px;
+  height: 24px;
+  background: #445e9a;
+  border: 1px solid #445e9a;
+  border-radius: 50%;
+  cursor: pointer;
+  margin-top: -8px;
+}
+
+.sense-slider::-moz-range-thumb {
+  width: 24px;
+  height: 24px;
+  background: #445e9a;
+  border: 1px solid #445e9a;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+/* Étape 3 - Commentaire */
+.comment-section {
+  display: flex;
+  flex-direction: column;
+  gap: 23px;
+  margin-top: 18px;
+}
+
+.comment-field {
+  display: flex;
+  flex-direction: column;
+}
+
+.comment-textarea {
+  width: 100%;
+  height: 102px;
+  padding: 8px 16px;
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid #afc0e6;
+  border-radius: 8px;
+  color: #364a78;
+  font-size: 16px;
+  font-family: "Nunito Sans", sans-serif;
+  font-weight: 400;
+  line-height: 22px;
+  resize: none;
+  outline: none;
+}
+
+.comment-textarea::placeholder {
+  color: #979797;
+}
+
+.comment-textarea:focus {
+  border-color: #445e9a;
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.skip-link {
+  background: none;
+  border: none;
+  color: var(--🧩-components-textlink-light_background-fill, #445e9a);
+  font-size: 16px;
+  font-family: "Nunito Sans", sans-serif;
+  font-weight: 600;
+  text-decoration: underline;
+  line-height: 22.4px;
+  cursor: pointer;
+  text-align: center;
+  padding: 8px;
+}
+
+.skip-link:hover {
+  color: #364a78;
+}
+
+/* Footer avec bouton */
+.review-footer {
+  padding: 20px 24px;
+  padding-bottom: 32px;
+  max-width: 370px;
+  margin: 0 auto;
+  width: 100%;
+}

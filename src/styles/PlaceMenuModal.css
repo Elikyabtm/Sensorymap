@@ -1,0 +1,69 @@
+.place-menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 2000;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.place-menu-modal {
+  width: 100%;
+  max-width: 100%;
+  padding: 12px 20px;
+  background: #fafbfe;
+  box-shadow: 0px -4px 15px rgba(68, 94, 154, 0.15);
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.place-menu-list {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.place-menu-item-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.place-menu-item {
+  width: 100%;
+  padding: 16px 4px;
+  background: transparent;
+  border: none;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.place-menu-item:hover {
+  background: rgba(68, 94, 154, 0.05);
+}
+
+.place-menu-item-label {
+  flex: 1;
+  color: #445e9a;
+  font-size: 16px;
+  font-family: "Nunito Sans", sans-serif;
+  font-weight: 500;
+  text-align: left;
+}
+
+.place-menu-divider {
+  width: 100%;
+  height: 1px;
+  background: #e0e0e0;
+}

@@ -215,7 +215,7 @@ export default function SenseModal({ isOpen, onClose, selectedSenses, onToggleSe
                     justifyContent: "center",
                   }}
                 >
-                  <SenseBadge type="light" variant="description" size={42} />
+                    <Icon name="light" size={36} color="#9A7AC1" />
                 </div>
                 <div
                   style={{
@@ -228,7 +228,7 @@ export default function SenseModal({ isOpen, onClose, selectedSenses, onToggleSe
                   }}
                 >
                   <Typography variant="body" weight="semibold" color="primary" style={{ alignSelf: "stretch" }}>
-                    Lumières
+                    Lumière
                   </Typography>
                   <Typography variant="body" weight="regular" color="primary" style={{ alignSelf: "stretch" }}>
                     Description du trigger lumière
@@ -247,15 +247,6 @@ export default function SenseModal({ isOpen, onClose, selectedSenses, onToggleSe
                 ></div>
               </div>
 
-              {/* Ligne de séparation */}
-              <div
-                style={{
-                  alignSelf: "stretch",
-                  height: "0px",
-                  outline: "0.50px var(--components-bottom_sheets-text-divider, #AFC0E6) solid",
-                  outlineOffset: "-0.25px",
-                }}
-              ></div>
 
               {/* Bruit */}
               <div
@@ -277,7 +268,7 @@ export default function SenseModal({ isOpen, onClose, selectedSenses, onToggleSe
                     justifyContent: "center",
                   }}
                 >
-                  <SenseBadge type="sound" variant="description" size={42} />
+                    <Icon name="sound" size={36} color="#D77A4F" />
                 </div>
                 <div
                   style={{
@@ -309,15 +300,7 @@ export default function SenseModal({ isOpen, onClose, selectedSenses, onToggleSe
                 ></div>
               </div>
 
-              {/* Ligne de séparation */}
-              <div
-                style={{
-                  alignSelf: "stretch",
-                  height: "0px",
-                  outline: "0.50px var(--components-bottom_sheets-text-divider, #AFC0E6) solid",
-                  outlineOffset: "-0.25px",
-                }}
-              ></div>
+
 
               {/* Foule */}
               <div
@@ -339,7 +322,7 @@ export default function SenseModal({ isOpen, onClose, selectedSenses, onToggleSe
                     justifyContent: "center",
                   }}
                 >
-                  <SenseBadge type="crowd" variant="description" size={42} />
+                    <Icon name="crowd" size={36} color="#4FA1A1" />
                 </div>
                 <div
                   style={{

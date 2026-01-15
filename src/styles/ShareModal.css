@@ -1,0 +1,121 @@
+.share-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 2000;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.share-modal {
+  width: 100%;
+  max-width: 600px;
+  padding: 20px;
+  background: var(--🧩-components-bottom_sheets-surface, #fafbfe);
+  box-shadow: 0px -4px 15px rgba(68, 94, 154, 0.15);
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.share-modal-title {
+  color: var(--🧩-components-bottom_sheets-text-title, #2a3556);
+  font-size: 18px;
+  font-family: "Nunito Sans", sans-serif;
+  font-weight: 700;
+  line-height: 22px;
+  margin: 0;
+}
+
+.share-platforms {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  height: 92px;
+}
+
+.share-platform-button {
+  width: 63px;
+  height: 63px;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  position: relative;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.share-platform-button.instagram {
+  background: linear-gradient(45deg, #faad4f 0%, #dd2a7b 35%, #9537b0 62%, #515bd4 100%);
+}
+
+.share-platform-button.whatsapp {
+  background: #00e510;
+}
+
+.share-platform-button.messenger {
+  background: linear-gradient(45deg, #0498fa 0%, #5c5efe 34%, #f44e90 73%, #fa8679 100%);
+}
+
+.share-platform-button.snapchat {
+  background: #fffa00;
+}
+
+.share-platform-button.more {
+  background: var(--🧩-components-actions-dots_menu-default-fill, #e4eaf7);
+  border: 1px solid rgba(255, 255, 255, 0);
+}
+
+.platform-icon {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.share-url-field {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 16px;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 8px;
+  border: 1px solid #445e9a;
+}
+
+.share-url-input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  color: var(--🧩-components-input-form_fields-default-placeholder, #4f70b5);
+  font-size: 16px;
+  font-family: "Nunito Sans", sans-serif;
+  font-weight: 400;
+  line-height: 22.4px;
+  outline: none;
+}
+
+.share-copy-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.share-modal-spacer {
+  width: 100%;
+  height: 21px;
+  background: var(--🧩-components-bottom_sheets-surface, #fafbfe);
+}

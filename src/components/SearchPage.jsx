@@ -95,7 +95,7 @@ const SearchPage = ({ onClose, places, onPlaceSelect, onCategoryFilter, selected
             className={`search-category-badge ${selectedCategory === category ? "active" : ""}`}
             onClick={() => handleCategoryClick(category)}
           >
-            <Icon name="heart" size={20} color={selectedCategory === category ? "#364A78" : "#445E9A"} />
+            <Icon name="cafe" size={20} color={selectedCategory === category ? "#364A78" : "#445E9A"} />
             <span>{category}</span>
           </button>
         ))}
@@ -161,7 +161,7 @@ const SearchPage = ({ onClose, places, onPlaceSelect, onCategoryFilter, selected
                   <div key={place.id} className="drawer-card" onClick={() => handlePlaceClick(place)}>
                     <div className="drawer-card-image">
                       <div className="drawer-card-badge">
-                        <Icon name="star" size={12} color="#FFFFFF" />
+                        <Icon name="certified" size={12} color="#FFFFFF" />
                       </div>
                       <img src={place.image || "/placeholder.svg"} alt={place.name} />
                     </div>

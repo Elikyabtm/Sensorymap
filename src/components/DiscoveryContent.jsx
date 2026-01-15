@@ -21,7 +21,8 @@ export default function CommunityContent({ selectedSenses, selectedCategory, onC
     { name: "Restaurant", icon: "restaurant" }, // TODO: remplacer par vraie icône restaurant
     { name: "Musée", icon: "museum" }, // TODO: remplacer par vraie icône musée
     { name: "Parc", icon: "park" }, // TODO: remplacer par vraie icône parc
-    { name: "Librairie", icon: "library" }, // TODO: remplacer par vraie icône librairie
+    { name: "Bibliothèque", icon: "library" }, // TODO: remplacer par vraie icône librairie
+    { name: "Bar", icon: "bar" },
   ]
 
   return (
@@ -33,7 +34,7 @@ export default function CommunityContent({ selectedSenses, selectedCategory, onC
               className={`filter-circle ${selectedCategory === cat.name ? "active" : ""}`}
               onClick={() => onCategoryClick(cat.name)}
             >
-              <Icon name={cat.icon} size={24} color={selectedCategory === cat.name ? "white" : "#364A78"} />
+              <Icon name={cat.icon} size={36} color={selectedCategory === cat.name ? "white" : "#364A78"} />
             </button>
             <span className="filter-label">{cat.name}</span>
           </div>
@@ -86,7 +87,7 @@ export default function CommunityContent({ selectedSenses, selectedCategory, onC
                 }}
               >
                 <div className="certified-badge">
-                  <Icon name="star" size={16} color="white" />
+                  <Icon name="certified" size={16} color="white" />
                 </div>
               </div>
               <div className="recommendation-content">
@@ -156,7 +157,7 @@ export default function CommunityContent({ selectedSenses, selectedCategory, onC
                 }}
               >
                 <div className="certified-badge">
-                  <Icon name="star" size={16} color="white" />
+                  <Icon name="certified" size={16} color="white" />
                 </div>
               </div>
               <div className="recommendation-content">

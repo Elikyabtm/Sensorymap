@@ -2,239 +2,373 @@
 
 import { useState } from "react"
 import { Icon } from "./ui/Icon"
-import SenseBadge from "./ui/SenseBadge"
+import { Button } from "./ui/Button"
+import PlaceMenuModal from "./ui/PlaceMenuModal"
+import ShareModal from "./ui/ShareModal"
+import PlaceReviewFlow from "./PlaceReviewFlow"
 import "../styles/PlaceDetailsPage.css"
 
 export default function PlaceDetailsPage({ place, onClose }) {
-  const [isFavorite, setIsFavorite] = useState(false)
+  const now = new Date()
+  const currentHour = now.getHours()
+  const currentDay = now.getDay() === 0 ? 6 : now.getDay() - 1
+
   const [activeTab, setActiveTab] = useState("sens")
-  const [timeSliderValue, setTimeSliderValue] = useState(15) // 15h par défaut
-  const [daySliderValue, setDaySliderValue] = useState(4) // Vendredi = index 4
+  const [timeSliderValue, setTimeSliderValue] = useState(currentHour)
+  const [daySliderValue, setDaySliderValue] = useState(currentDay)
+  const [showMenuModal, setShowMenuModal] = useState(false)
+  const [showShareModal, setShowShareModal] = useState(false)
+  const [showReviewFlow, setShowReviewFlow] = useState(false)
 
   if (!place) return null
 
   const days = ["lun", "mar", "mer", "jeu", "ven", "sam", "dim"]
-  const currentDay = days[daySliderValue]
+  const fullDays = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche"]
 
-  // Convertir la valeur du slider (0-24h) en heure affichable
-  const formatHour = (value) => {
-    const hour = Math.floor(value)
-    return `${hour} h`
+  const getSliderBackground = (value, max) => {
+    const percentage = (value / max) * 100
+    return `linear-gradient(to right, #445E9A 0%, #445E9A ${percentage}%, #CCD7F0 ${percentage}%, #CCD7F0 100%)`
   }
 
-  // Fonction pour déterminer le niveau de sens (lower, low, medium, high)
-  const getSenseLevel = (value) => {
-    if (value <= 15) return "lower"
-    if (value <= 30) return "low"
-    if (value <= 60) return "medium"
-    return "high"
+  const handleReviewComplete = () => {
+    setShowReviewFlow(false)
+    console.log("[v0] Review completed")
   }
 
-  // Fonction pour obtenir le label textuel du sens
-  const getSenseLabel = (type, value) => {
-    if (type === "light") {
-      if (value <= 25) return "Peu lumineux"
-      if (value <= 50) return "Assez lumineux"
-      return "Très lumineux"
-    }
-    if (type === "sound") {
-      if (value <= 25) return "Pas bruyant"
-      if (value <= 50) return "Assez bruyant"
-      return "Très bruyant"
-    }
-    if (type === "crowd") {
-      if (value <= 25) return "Peu fréquenté"
-      if (value <= 50) return "Moyennement fréquenté"
-      return "Très fréquenté"
-    }
+  if (showReviewFlow) {
+    return <PlaceReviewFlow place={place} onClose={() => setShowReviewFlow(false)} onComplete={handleReviewComplete} />
   }
 
   return (
     <div className="place-details-page">
-      {/* Image de couverture */}
-      <div className="place-details-header-image">
-        <img src={place.imageUrl || "/placeholder.svg?height=249&width=393"} alt={place.name} />
+      <div className="place-details-hero">
+        <img
+          src={place.imageUrl || "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&q=80"}
+          alt={place.name}
+          className="place-details-hero-image"
+        />
 
-        {/* Bouton Favoris */}
-        <button
-          className="place-details-favorite-btn"
-          onClick={() => setIsFavorite(!isFavorite)}
-          aria-label="Ajouter aux favoris"
-        >
-          <Icon name={isFavorite ? "fullheart" : "heart"} size={28} color="#2D3A40" />
-        </button>
+        {place.certified && (
+          <div className="place-certified-badge">
+            <div className="certified-icon-wrapper">
+              <svg width="30" height="40" viewBox="0 0 30 40" fill="none">
+                <path d="M15 0L20 10L30 12L22 20L24 30L15 25L6 30L8 20L0 12L10 10L15 0Z" fill="#204040" />
+              </svg>
+            </div>
+            <div className="certified-speech-tail">
+              <svg width="19" height="21" viewBox="0 0 19 21" fill="none">
+                <path d="M0 0L19 10.5L9.5 21L0 0Z" fill="#A6DDAF" />
+              </svg>
+            </div>
+            <div className="certified-badge-text">On est bien ici</div>
+          </div>
+        )}
 
-        {/* Bouton Fermer */}
-        <button className="place-details-close-btn" onClick={onClose} aria-label="Fermer">
-          <Icon name="close" size={28} color="#2D3A40" />
+        <button className="place-close-button" onClick={onClose}>
+          <Icon name="close" size={24} color="#2A3556" />
         </button>
       </div>
 
-      {/* Contenu scrollable */}
-      <div className="place-details-content">
-        {/* Titre et adresse */}
-        <div className="place-details-info">
-          <h1 className="place-details-name">{place.name}</h1>
-          <div className="place-details-address">
-            <Icon name="location" size={20} color="#5E5E5E" />
-            <span>{place.address}</span>
+      <div className="place-details-body">
+        <div className="place-header-section">
+          <div className="place-title-wrapper">
+            <div className="place-title-row">
+              <h1 className="place-title">{place.name}</h1>
+              <button className="place-menu-button" onClick={() => setShowMenuModal(true)}>
+                <Icon name="dots" color="#2A3556" />
+              </button>
+            </div>
+
+            <div className="place-address-row">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <circle cx="10" cy="8.75" r="1.25" stroke="#727272" strokeWidth="1.5" />
+                <path
+                  d="M10 17.5C10 17.5 16.25 13.125 16.25 8.75C16.25 5.02 13.73 2.5 10 2.5C6.27 2.5 3.75 5.02 3.75 8.75C3.75 13.125 10 17.5 10 17.5Z"
+                  stroke="#727272"
+                  strokeWidth="1.5"
+                />
+              </svg>
+              <span className="place-address">{place.address}</span>
+            </div>
           </div>
         </div>
 
-        {/* Boutons d'action */}
-        <div className="place-details-actions">
-          <button className="place-action-btn">
-            <Icon name="contact" size={21} color="#272727" />
-            <span>Contacter</span>
-          </button>
-          <button className="place-action-btn">
-            <Icon name="web" size={21} color="#272727" />
-            <span>Site web</span>
-          </button>
-          <button className="place-action-btn">
-            <Icon name="share" size={21} color="#272727" />
-            <span>Partager</span>
-          </button>
-        </div>
-
-        {/* Onglets */}
-        <div className="place-details-tabs">
-          <button className={`place-tab ${activeTab === "sens" ? "active" : ""}`} onClick={() => setActiveTab("sens")}>
+        <div className="place-tabs">
+          <button
+            className={`place-tab ${activeTab === "sens" ? "place-tab-active" : ""}`}
+            onClick={() => setActiveTab("sens")}
+          >
             Sens
           </button>
           <button
-            className={`place-tab ${activeTab === "community" ? "active" : ""}`}
-            onClick={() => setActiveTab("community")}
+            className={`place-tab ${activeTab === "avis" ? "place-tab-active" : ""}`}
+            onClick={() => setActiveTab("avis")}
           >
-            Communauté
+            Avis
           </button>
         </div>
 
-        {/* Contenu des onglets */}
         {activeTab === "sens" && (
-          <div className="place-details-sense-section">
-            {/* Section intensité sensorielle */}
-            <div className="sense-intensity-card">
-              <div className="sense-intensity-header">
-                <div className="sense-intensity-title-wrapper">
-                  <h2 className="sense-intensity-title">Intensité sensorielle</h2>
-                  <p className="sense-intensity-time">
-                    {currentDay.charAt(0).toUpperCase() + currentDay.slice(1)} {formatHour(timeSliderValue)}
-                  </p>
-                </div>
-                <button className="sense-evaluate-btn">Évaluer</button>
+          <div className="place-sens-content">
+            <div className="sensory-intensity-card">
+              <div className="intensity-header">
+                <h2 className="intensity-title">Intensité sensorielle</h2>
+                <p className="intensity-subtitle">
+                  {fullDays[daySliderValue]} à {timeSliderValue}h
+                </p>
               </div>
 
-              {/* Barres de sens */}
-              <div className="sense-bars-list">
-                {/* Lumière */}
-                <div className="sense-bar-item">
-                  <div className="sense-bar-icon">
-                    <SenseBadge type="light" variant="description" size={28} />
+              <div className="sense-bars-container">
+                <div className="sense-bar-row">
+                  <div className="sense-bar-icon-wrapper">
+                    <Icon name="light" size={24} color="#9A7AC1" />
                   </div>
-                  <div className="sense-bar-info">
-                    <p className="sense-bar-label">{getSenseLabel("light", place.senses.light)}</p>
-                    <div className="sense-bar-wrapper">
-                      <div className="sense-bar-bg" style={{ background: "#FAE2C5" }} />
+                  <div className="sense-bar-content">
+                    <p className="sense-bar-label">Peu lumineux</p>
+                    <div className="sense-progress-bar">
+                      <div className="sense-progress-bg" style={{ background: "rgba(154, 122, 193, 0.20)" }} />
                       <div
-                        className="sense-bar-fill"
+                        className="sense-progress-fill"
                         style={{
-                          width: `${place.senses.light}%`,
-                          background: "#E79A48",
+                          width: `${(place.senses?.light || 10) * 2.77}px`,
+                          background: "#9A7AC1",
                         }}
                       />
                     </div>
                   </div>
                 </div>
 
-                {/* Son */}
-                <div className="sense-bar-item">
-                  <div className="sense-bar-icon">
-                    <SenseBadge type="sound" variant="description" size={28} />
+                <div className="sense-bar-row">
+                  <div className="sense-bar-icon-wrapper">
+                    <Icon name="sound" size={24} color="#D77A4F" />
                   </div>
-                  <div className="sense-bar-info">
-                    <p className="sense-bar-label">{getSenseLabel("sound", place.senses.sound)}</p>
-                    <div className="sense-bar-wrapper">
-                      <div className="sense-bar-bg" style={{ background: "#D3EDED" }} />
+                  <div className="sense-bar-content">
+                    <p className="sense-bar-label">Peu bruyant</p>
+                    <div className="sense-progress-bar">
+                      <div className="sense-progress-bg" style={{ background: "rgba(215, 122, 79, 0.20)" }} />
                       <div
-                        className="sense-bar-fill"
+                        className="sense-progress-fill"
                         style={{
-                          width: `${place.senses.sound}%`,
-                          background: "#8DB8BE",
+                          width: `${(place.senses?.sound || 10) * 2.77}px`,
+                          background: "#D77A4F",
                         }}
                       />
                     </div>
                   </div>
                 </div>
 
-                {/* Foule */}
-                <div className="sense-bar-item">
-                  <div className="sense-bar-icon">
-                    <SenseBadge type="crowd" variant="description" size={28} />
+                <div className="sense-bar-row">
+                  <div className="sense-bar-icon-wrapper">
+                    <Icon name="crowd" size={24} color="#4FA1A1" />
                   </div>
-                  <div className="sense-bar-info">
-                    <p className="sense-bar-label">{getSenseLabel("crowd", place.senses.crowd)}</p>
-                    <div className="sense-bar-wrapper">
-                      <div className="sense-bar-bg" style={{ background: "#EDE9FB" }} />
+                  <div className="sense-bar-content">
+                    <p className="sense-bar-label">Peu de monde</p>
+                    <div className="sense-progress-bar">
+                      <div className="sense-progress-bg" style={{ background: "rgba(79, 161, 161, 0.20)" }} />
                       <div
-                        className="sense-bar-fill"
+                        className="sense-progress-fill"
                         style={{
-                          width: `${place.senses.crowd}%`,
-                          background: "#A27DEB",
+                          width: `${(place.senses?.crowd || 10) * 2.77}px`,
+                          background: "#4FA1A1",
                         }}
                       />
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
 
-            {/* Slider heure */}
-            <div className="time-slider-section">
-              <div className="slider-label-container">
-                <span className="slider-label">{formatHour(timeSliderValue)}</span>
-              </div>
-              <div className="slider-container">
-                <Icon name="sun" size={21} color="#5E5E5E" />
-                <input
-                  type="range"
-                  min="0"
-                  max="23"
-                  value={timeSliderValue}
-                  onChange={(e) => setTimeSliderValue(Number(e.target.value))}
-                  className="time-slider"
-                />
-                <Icon name="moon" size={21} color="#5E5E5E" />
-              </div>
-            </div>
+              <div className="sliders-section">
+                <div className="slider-group">
+                  <div className="slider-label-row">
+                    <span className="slider-label">{timeSliderValue}h</span>
+                  </div>
+                  <div className="slider-with-icons">
+                    <Icon name="sun" size={24} color="#2A3556" />
+                    <div className="slider-track-container">
+                      <input
+                        type="range"
+                        min="0"
+                        max="23"
+                        value={timeSliderValue}
+                        onChange={(e) => setTimeSliderValue(Number(e.target.value))}
+                        className="custom-slider"
+                        style={{
+                          background: getSliderBackground(timeSliderValue, 23),
+                        }}
+                      />
+                    </div>
+                    <Icon name="moon" size={24} color="#2A3556" />
+                  </div>
+                </div>
 
-            {/* Slider jour */}
-            <div className="day-slider-section">
-              <div className="slider-label-container">
-                <span className="slider-label">{currentDay.charAt(0).toUpperCase() + currentDay.slice(1)}</span>
-              </div>
-              <div className="slider-container">
-                <span className="day-label">lun</span>
-                <input
-                  type="range"
-                  min="0"
-                  max="6"
-                  value={daySliderValue}
-                  onChange={(e) => setDaySliderValue(Number(e.target.value))}
-                  className="day-slider"
-                />
-                <span className="day-label">dim</span>
+                <div className="slider-group">
+                  <div className="slider-label-row">
+                    <span className="slider-label">{fullDays[daySliderValue]}</span>
+                  </div>
+                  <div className="slider-with-labels">
+                    <span className="slider-day-label">lun</span>
+                    <div className="slider-track-container slider-with-stops">
+                      <input
+                        type="range"
+                        min="0"
+                        max="6"
+                        value={daySliderValue}
+                        onChange={(e) => setDaySliderValue(Number(e.target.value))}
+                        className="custom-slider"
+                        style={{
+                          background: getSliderBackground(daySliderValue, 6),
+                        }}
+                      />
+                      <div className="slider-stops">
+                        {[0, 1, 2, 3, 4, 5, 6].map((stop) => (
+                          <div key={stop} className={`slider-stop ${stop === 0 ? "slider-stop-active" : ""}`} />
+                        ))}
+                      </div>
+                    </div>
+                    <span className="slider-day-label">dim</span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         )}
 
-        {activeTab === "community" && (
-          <div className="place-details-community-section">
-            <p style={{ padding: "20px", color: "#5E5E5E" }}>Contenu de la communauté à venir...</p>
+        {activeTab === "avis" && (
+          <div className="place-avis-content">
+            <div className="review-post">
+              <div className="review-header">
+                <div className="review-user-section">
+                  <div className="review-avatar">
+                    <img src="https://i.pravatar.cc/35?img=1" alt="User avatar" />
+                  </div>
+                  <div className="review-user-info">
+                    <span className="review-username">@user34</span>
+                    <div className="review-badge">EXPLORATEUR</div>
+                  </div>
+                </div>
+                <span className="review-date">3 jours</span>
+              </div>
+
+              <div className="review-sense-bars">
+                <div className="review-sense-bar" data-type="light">
+                  <div className="review-sense-bar-bg" style={{ background: "rgba(154, 122, 193, 0.20)" }} />
+                  <div className="review-sense-bar-fill" style={{ width: "7.98px", background: "#9A7AC1" }} />
+                </div>
+                <div className="review-sense-bar" data-type="noise">
+                  <div className="review-sense-bar-bg" style={{ background: "rgba(215, 122, 79, 0.20)" }} />
+                  <div className="review-sense-bar-fill" style={{ width: "7.98px", background: "#D77A4F" }} />
+                </div>
+                <div className="review-sense-bar" data-type="crowd">
+                  <div className="review-sense-bar-bg" style={{ background: "rgba(79, 161, 161, 0.20)" }} />
+                  <div className="review-sense-bar-fill" style={{ width: "7.98px", background: "#4FA1A1" }} />
+                </div>
+              </div>
+
+              <p className="review-text">
+                Avoir un lieu aussi incluant et soucieux des personnes sensibles c'est une bénédiction.
+              </p>
+
+              <div className="review-images">
+                <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=200&q=80" alt="Review 1" />
+                <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=200&q=80" alt="Review 2" />
+                <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=200&q=80" alt="Review 3" />
+              </div>
+
+              <div className="review-actions">
+                <div className="review-actions-left">
+                  <button className="review-action-button">
+                    <Icon name="heart" size={25} color="#2A3556" />
+                    <span>12</span>
+                  </button>
+                  <button className="review-action-button">
+                    <Icon name="comment" size={25} color="#2A3556" />
+                    <span>7</span>
+                  </button>
+                </div>
+                <button className="review-menu-button">
+                  <Icon name="dots" size={22} color="#2A3556" />
+                </button>
+              </div>
+            </div>
+
+            <div className="review-post">
+              <div className="review-header">
+                <div className="review-user-section">
+                  <div className="review-avatar">
+                    <img src="https://i.pravatar.cc/35?img=2" alt="User avatar" />
+                  </div>
+                  <div className="review-user-info">
+                    <span className="review-username">@user34</span>
+                    <div className="review-badge">EXPLORATEUR</div>
+                  </div>
+                </div>
+                <span className="review-date">3 jours</span>
+              </div>
+
+              <div className="review-sense-bars">
+                <div className="review-sense-bar" data-type="light">
+                  <div className="review-sense-bar-bg" style={{ background: "rgba(154, 122, 193, 0.20)" }} />
+                  <div className="review-sense-bar-fill" style={{ width: "7.98px", background: "#9A7AC1" }} />
+                </div>
+                <div className="review-sense-bar" data-type="noise">
+                  <div className="review-sense-bar-bg" style={{ background: "rgba(215, 122, 79, 0.20)" }} />
+                  <div className="review-sense-bar-fill" style={{ width: "7.98px", background: "#D77A4F" }} />
+                </div>
+                <div className="review-sense-bar" data-type="crowd">
+                  <div className="review-sense-bar-bg" style={{ background: "rgba(79, 161, 161, 0.20)" }} />
+                  <div className="review-sense-bar-fill" style={{ width: "7.98px", background: "#4FA1A1" }} />
+                </div>
+              </div>
+
+              <p className="review-text">
+                Avoir un lieu aussi incluant et soucieux des personnes sensibles c'est une bénédiction.
+              </p>
+
+              <div className="review-images">
+                <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=200&q=80" alt="Review 1" />
+                <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=200&q=80" alt="Review 2" />
+                <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=200&q=80" alt="Review 3" />
+              </div>
+
+              <div className="review-actions">
+                <div className="review-actions-left">
+                  <button className="review-action-button">
+                    <Icon name="heart" size={25} color="#2A3556" />
+                    <span>12</span>
+                  </button>
+                  <button className="review-action-button">
+                    <Icon name="comment" size={25} color="#2A3556" />
+                    <span>7</span>
+                  </button>
+                </div>
+                <button className="review-menu-button">
+                  <Icon name="dots" size={22} color="#2A3556" />
+                </button>
+              </div>
+            </div>
           </div>
         )}
       </div>
+
+      <div className="place-footer">
+        <Button variant="primary" fullWidth onClick={() => setShowReviewFlow(true)}>
+          <div style={{ display: "flex", alignItems: "center", gap: "8px", justifyContent: "center" }}>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M8 3V13M3 8H13" stroke="white" strokeWidth="2" strokeLinecap="round" />
+            </svg>
+            <span>Partager mon ressenti</span>
+          </div>
+        </Button>
+        <button className="btn-share-icon" onClick={() => setShowShareModal(true)}>
+          <Icon name="share" size={24} color="var(--components-input-form_fields-default-placeholder, #203461ff)" />
+        </button>
+      </div>
+      <PlaceMenuModal isOpen={showMenuModal} onClose={() => setShowMenuModal(false)} place={place} />
+      <ShareModal
+        isOpen={showShareModal}
+        onClose={() => setShowShareModal(false)}
+        shareUrl={`https://sensorymap.app/place/${place.id}`}
+      />
     </div>
   )
 }

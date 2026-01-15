@@ -42,10 +42,10 @@ export const PlaceModal = ({ place, onClose, onOpenDetails }) => {
 
             <div style={{ display: "flex", alignItems: "flex-end", gap: "12px", width: "100%" }}>
               <div className="place-modal-senses">
-                {/* Light */}
+                {/* Sound */}
                 <div className="sense-indicator">
                   <div className="sense-icon">
-                    <Icon name="warning" size={24} color="#E79A48" />
+                    <Icon name="sound" size={18} color="#E79A48" />
                   </div>
                   <div className="sense-bar-container">
                     <div className="sense-bar-bg" style={{ background: "rgba(245, 197, 139, 0.50)" }} />
@@ -59,10 +59,10 @@ export const PlaceModal = ({ place, onClose, onOpenDetails }) => {
                   </div>
                 </div>
 
-                {/* Sound */}
+                {/* Crowd */}
                 <div className="sense-indicator">
                   <div className="sense-icon">
-                    <Icon name="sound" size={24} color="#8DB8BE" />
+                    <Icon name="crowd" size={18} color="#8DB8BE" />
                   </div>
                   <div className="sense-bar-container">
                     <div className="sense-bar-bg" style={{ background: "rgba(168, 218, 220, 0.50)" }} />
@@ -76,10 +76,10 @@ export const PlaceModal = ({ place, onClose, onOpenDetails }) => {
                   </div>
                 </div>
 
-                {/* Crowd */}
+                {/* Light */}
                 <div className="sense-indicator">
                   <div className="sense-icon">
-                    <Icon name="crowd" size={24} color="#A27DEB" />
+                    <Icon name="light" size={18} color="#A27DEB" />
                   </div>
                   <div className="sense-bar-container">
                     <div className="sense-bar-bg" style={{ background: "rgba(220, 211, 246, 0.50)" }} />
