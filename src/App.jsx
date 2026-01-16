@@ -21,6 +21,7 @@ function App() {
   const [signupAge, setSignupAge] = useState("")
   const [selectedAvoids, setSelectedAvoids] = useState([])
   const [signupTheme, setSignupTheme] = useState("")
+  const [userSensoryProfile, setUserSensoryProfile] = useState([])
 
   const handleSkipLogin = () => {
     setView("home")
@@ -71,6 +72,7 @@ function App() {
         selectedAvoids,
         signupTheme,
       })
+      setUserSensoryProfile(selectedAvoids)
       setView("home")
     }
   }
@@ -88,7 +90,7 @@ function App() {
   }
 
   if (view === "home") {
-    return <HomePage />
+    return <HomePage userSensoryProfile={userSensoryProfile} onUpdateSensoryProfile={setUserSensoryProfile} />
   }
 
   if (view === "onboarding") {

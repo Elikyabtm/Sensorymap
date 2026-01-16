@@ -11,9 +11,11 @@ import SenseModal from "./SenseModal"
 import SearchPage from "./SearchPage"
 import PlaceDetailsPage from "./PlaceDetailsPage"
 import ReportModal from "./ReportModal"
+import ProfilePage from "./ProfilePage"
 import placesData from "../data/places.json"
+import { mockPosts, mockEvents } from "../data/communityData"
 
-export default function HomePage() {
+export default function HomePage({ userSensoryProfile = [], onUpdateSensoryProfile }) {
   const [drawerHeight, setDrawerHeight] = useState(80)
   const [isDragging, setIsDragging] = useState(false)
   const [windowHeight, setWindowHeight] = useState(window.innerHeight)
@@ -36,6 +38,7 @@ export default function HomePage() {
   const [userPosition, setUserPosition] = useState(null)
   const [reports, setReports] = useState([])
   const [selectedReport, setSelectedReport] = useState(null)
+  const [showProfilePage, setShowProfilePage] = useState(false)
 
   const mapRef = useRef(null)
 
@@ -93,6 +96,12 @@ export default function HomePage() {
       ...prev,
       [sense]: !prev[sense],
     }))
+
+    const updatedSenses = { ...selectedSenses, [sense]: !selectedSenses[sense] }
+    const activeSenses = Object.keys(updatedSenses).filter((key) => updatedSenses[key])
+    if (onUpdateSensoryProfile) {
+      onUpdateSensoryProfile(activeSenses)
+    }
   }
 
   const maxDrawerHeight = windowHeight * 0.85
@@ -147,12 +156,28 @@ export default function HomePage() {
     setSelectedReport(report)
   }
 
+  const handlePostClick = (post) => {
+    console.log("[v0] Post clicked:", post)
+    // TODO: Ouvrir une modal de détails du post
+  }
+
+  const handleEventClick = (event) => {
+    console.log("[v0] Event clicked:", event)
+    // TODO: Ouvrir une modal de détails de l'événement
+  }
+
   const showMapControls = !selectedPlace && clampedHeight < windowHeight * 0.6
 
   return (
     <div className="home-page">
+      {showProfilePage && (
+        <ProfilePage
+          onClose={() => setShowProfilePage(false)}
+          sensoryProfile={userSensoryProfile}
+          onUpdateProfile={onUpdateSensoryProfile}
+        />
+      )}
       {showPlaceDetails && <PlaceDetailsPage place={placeDetailsData} onClose={handleClosePlaceDetails} />}
-
       {showSearchPage && (
         <SearchPage
           onClose={() => setShowSearchPage(false)}
@@ -162,7 +187,6 @@ export default function HomePage() {
           selectedCategoryProp={selectedCategory}
         />
       )}
-
       <ReportModal
         isOpen={showReportModal}
         onClose={() => setShowReportModal(false)}
@@ -170,7 +194,6 @@ export default function HomePage() {
         userPosition={userPosition}
         mapRef={mapRef}
       />
-
       {selectedReport && (
         <div className="report-details-overlay" onClick={() => setSelectedReport(null)}>
           <div className="report-details-modal" onClick={(e) => e.stopPropagation()}>
@@ -206,7 +229,6 @@ export default function HomePage() {
           </div>
         </div>
       )}
-
       <div className="map-container">
         <Map
           ref={mapRef}
@@ -215,6 +237,11 @@ export default function HomePage() {
           selectedCategory={selectedCategory}
           reports={reports}
           onReportClick={handleReportClick}
+          activeTab={activeTab}
+          communityPosts={mockPosts}
+          communityEvents={mockEvents}
+          onPostClick={handlePostClick}
+          onEventClick={handleEventClick}
         />
         {selectedPlace && (
           <PlaceModal
@@ -224,14 +251,12 @@ export default function HomePage() {
           />
         )}
       </div>
-
       <Header
         selectedSenses={selectedSenses}
         onBadgeClick={() => setShowSenseModal(true)}
-        onProfileClick={() => {}}
+        onProfileClick={() => setShowProfilePage(true)}
         onSearchClick={() => setShowSearchPage(true)}
       />
-
       <SenseModal
         isOpen={showSenseModal}
         onClose={() => setShowSenseModal(false)}
@@ -239,7 +264,6 @@ export default function HomePage() {
         onToggleSense={toggleSense}
         windowHeight={windowHeight}
       />
-
       {showMapControls && (
         <div className="map-controls" style={{ bottom: `${clampedHeight + 12}px` }}>
           <button className="recenter-button" onClick={handleRecenterMap}>
@@ -250,7 +274,6 @@ export default function HomePage() {
           </button>
         </div>
       )}
-
       {!showSenseModal && (
         <div ref={drawerRef} className="drawer" style={{ height: `${clampedHeight}px` }}>
           <div
@@ -263,23 +286,21 @@ export default function HomePage() {
           >
             <div className="drawer-handle-bar"></div>
           </div>
-
           <div className="drawer-view">
             <div className="drawer-tabs">
               <button
                 className={`drawer-tab ${activeTab === "discover" ? "active" : ""}`}
                 onClick={() => setActiveTab("discover")}
               >
-                Discover
+                Découvrir
               </button>
               <button
                 className={`drawer-tab ${activeTab === "community" ? "active" : ""}`}
                 onClick={() => setActiveTab("community")}
               >
-                Community
+                Communauté
               </button>
             </div>
-
             <div className="drawer-container">
               <div className="drawer-body">
                 {activeTab === "discover" ? (

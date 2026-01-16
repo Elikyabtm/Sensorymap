@@ -156,6 +156,14 @@
   --components-badge_certified-fill: #9d9064;
   --components-badge_certified-stroke: #9d9064;
 
+  /* Ajout des variables pour les barres sensorielles */
+  --components-sensory_bar-light-primary: #9a7ac1;
+  --components-sensory_bar-light-secondary: rgba(154, 122, 193, 0.2);
+  --components-sensory_bar-noise-primary: #d77a4f;
+  --components-sensory_bar-noise-secondary: rgba(215, 122, 79, 0.2);
+  --components-sensory_bar-crowd-primary: #4fa1a1;
+  --components-sensory_bar-crowd-secondary: rgba(79, 161, 161, 0.2);
+
   /* Typographie - Tailles */
   --font-size-xs: 12px;
   --font-size-sm: 14px;

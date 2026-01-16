@@ -83,6 +83,63 @@ const createUserLocationIcon = () => {
   })
 }
 
+const createPostMarkerIcon = (avatarUrl) => {
+  const html = `
+    <div style="width: 36px; height: 36px; position: relative;">
+      <img 
+        src="${avatarUrl}" 
+        style="
+          width: 36px; 
+          height: 36px; 
+          position: absolute; 
+          left: 0; 
+          top: 0; 
+          box-shadow: 0px 4px 8px rgba(54, 74, 120, 0.3); 
+          border-radius: 9999px; 
+          border: 2px solid #4FA1A1;
+          object-fit: cover;
+        " 
+      />
+    </div>
+  `
+
+  return L.divIcon({
+    className: "post-marker",
+    html: html,
+    iconSize: [36, 36],
+    iconAnchor: [18, 18],
+  })
+}
+
+const createEventMarkerIcon = () => {
+  const html = `
+    <div style="width: 40px; height: 40px; position: relative;">
+      <div style="
+        width: 40px; 
+        height: 40px; 
+        background: linear-gradient(135deg, #9A7AC1 0%, #4FA1A1 100%);
+        border-radius: 50%;
+        box-shadow: 0px 4px 10px rgba(54, 74, 120, 0.4);
+        border: 2px solid white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      ">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
+          <path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zM5 8V6h14v2H5z"/>
+        </svg>
+      </div>
+    </div>
+  `
+
+  return L.divIcon({
+    className: "event-marker",
+    html: html,
+    iconSize: [40, 40],
+    iconAnchor: [20, 20],
+  })
+}
+
 function MapController({ centerPosition }) {
   const map = useMap()
 
@@ -98,178 +155,232 @@ function MapController({ centerPosition }) {
   return null
 }
 
-const Map = forwardRef(({ onMarkerClick, selectedSenses, selectedCategory, reports, onReportClick }, ref) => {
-  const paris = [48.8566, 2.3522]
-  const [centerPosition, setCenterPosition] = useState(null)
-  const [userLocation, setUserLocation] = useState(null)
-  const [locationAccuracy, setLocationAccuracy] = useState(null)
-  const [reportCircle, setReportCircle] = useState(null)
+const Map = forwardRef(
+  (
+    {
+      onMarkerClick,
+      selectedSenses,
+      selectedCategory,
+      reports,
+      onReportClick,
+      activeTab = "discover",
+      communityPosts = [],
+      communityEvents = [],
+      onPostClick,
+      onEventClick,
+    },
+    ref,
+  ) => {
+    const paris = [48.8566, 2.3522]
+    const [centerPosition, setCenterPosition] = useState(null)
+    const [userLocation, setUserLocation] = useState(null)
+    const [locationAccuracy, setLocationAccuracy] = useState(null)
+    const [reportCircle, setReportCircle] = useState(null)
 
-  const places = placesData
+    const places = placesData
 
-  let filteredPlaces = filterPlacesBySenses(places, selectedSenses || { light: false, sound: false, crowd: false })
+    let filteredPlaces = filterPlacesBySenses(places, selectedSenses || { light: false, sound: false, crowd: false })
 
-  if (selectedCategory) {
-    filteredPlaces = filteredPlaces.filter((place) => place.category === selectedCategory)
-  }
-
-  useEffect(() => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          const { latitude, longitude, accuracy } = position.coords
-          const userPos = [latitude, longitude]
-          setUserLocation(userPos)
-          setLocationAccuracy(accuracy)
-          setCenterPosition(userPos)
-        },
-        (error) => {
-          console.error("Error getting initial location:", error)
-        },
-        {
-          enableHighAccuracy: true,
-          timeout: 5000,
-          maximumAge: 0,
-        },
-      )
-
-      const watchId = navigator.geolocation.watchPosition(
-        (position) => {
-          const { latitude, longitude, accuracy } = position.coords
-          setUserLocation([latitude, longitude])
-          setLocationAccuracy(accuracy)
-        },
-        (error) => {
-          console.error("Error watching location:", error)
-        },
-        {
-          enableHighAccuracy: true,
-          timeout: 5000,
-          maximumAge: 0,
-        },
-      )
-
-      return () => {
-        navigator.geolocation.clearWatch(watchId)
-      }
+    if (selectedCategory) {
+      filteredPlaces = filteredPlaces.filter((place) => place.category === selectedCategory)
     }
-  }, [])
 
-  useImperativeHandle(ref, () => ({
-    recenterToUserLocation: () => {
-      if (userLocation) {
-        setCenterPosition(userLocation)
-      } else if (navigator.geolocation) {
+    const showPlaceMarkers = activeTab === "discover"
+    const showCommunityMarkers = activeTab === "community"
+
+    useEffect(() => {
+      if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
           (position) => {
-            const { latitude, longitude } = position.coords
+            const { latitude, longitude, accuracy } = position.coords
             const userPos = [latitude, longitude]
             setUserLocation(userPos)
+            setLocationAccuracy(accuracy)
             setCenterPosition(userPos)
           },
           (error) => {
-            console.error("Error getting location:", error)
-            alert("Impossible d'obtenir votre position. Veuillez vérifier les permissions.")
+            console.error("Error getting initial location:", error)
+          },
+          {
+            enableHighAccuracy: true,
+            timeout: 5000,
+            maximumAge: 0,
           },
         )
-      } else {
-        alert("La géolocalisation n'est pas supportée par votre navigateur.")
+
+        const watchId = navigator.geolocation.watchPosition(
+          (position) => {
+            const { latitude, longitude, accuracy } = position.coords
+            setUserLocation([latitude, longitude])
+            setLocationAccuracy(accuracy)
+          },
+          (error) => {
+            console.error("Error watching location:", error)
+          },
+          {
+            enableHighAccuracy: true,
+            timeout: 5000,
+            maximumAge: 0,
+          },
+        )
+
+        return () => {
+          navigator.geolocation.clearWatch(watchId)
+        }
       }
-    },
-    setViewToPosition: (position) => {
-      if (position && position.length === 2) {
-        setCenterPosition(position)
-      }
-    },
-    setReportCircle: (circleData) => {
-      setReportCircle(circleData)
-    },
-    clearReportCircle: () => {
-      setReportCircle(null)
-    },
-  }))
+    }, [])
 
-  return (
-    <MapContainer center={paris} zoom={13} style={{ width: "100%", height: "100%" }} zoomControl={false}>
-      <TileLayer
-        url="https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png"
-        attribution='&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors'
-        maxZoom={20}
-      />
-      <MapController centerPosition={centerPosition} />
+    useImperativeHandle(ref, () => ({
+      recenterToUserLocation: () => {
+        if (userLocation) {
+          setCenterPosition(userLocation)
+        } else if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(
+            (position) => {
+              const { latitude, longitude } = position.coords
+              const userPos = [latitude, longitude]
+              setUserLocation(userPos)
+              setCenterPosition(userPos)
+            },
+            (error) => {
+              console.error("Error getting location:", error)
+              alert("Impossible d'obtenir votre position. Veuillez vérifier les permissions.")
+            },
+          )
+        } else {
+          alert("La géolocalisation n'est pas supportée par votre navigateur.")
+        }
+      },
+      setViewToPosition: (position) => {
+        if (position && position.length === 2) {
+          setCenterPosition(position)
+        }
+      },
+      setReportCircle: (circleData) => {
+        setReportCircle(circleData)
+      },
+      clearReportCircle: () => {
+        setReportCircle(null)
+      },
+    }))
 
-      {userLocation && (
-        <>
-          {locationAccuracy && (
-            <Circle
-              center={userLocation}
-              radius={locationAccuracy}
-              pathOptions={{
-                fillColor: "#4285F4",
-                fillOpacity: 0.1,
-                color: "#4285F4",
-                weight: 1,
-                opacity: 0.3,
-              }}
-            />
-          )}
-          <Marker position={userLocation} icon={createUserLocationIcon()} />
-        </>
-      )}
-
-      {reportCircle && (
-        <Circle
-          center={[reportCircle.lat, reportCircle.lng]}
-          radius={reportCircle.extent}
-          pathOptions={{
-            color: "#364A78",
-            fillColor: reportCircle.fillColor,
-            fillOpacity: reportCircle.opacity,
-            weight: 2,
-          }}
+    return (
+      <MapContainer center={paris} zoom={13} style={{ width: "100%", height: "100%" }} zoomControl={false}>
+        <TileLayer
+          url="https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png"
+          attribution='&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors'
+          maxZoom={20}
         />
-      )}
+        <MapController centerPosition={centerPosition} />
 
-      {reports &&
-        reports.map((report) => (
+        {userLocation && (
+          <>
+            {locationAccuracy && (
+              <Circle
+                center={userLocation}
+                radius={locationAccuracy}
+                pathOptions={{
+                  fillColor: "#4285F4",
+                  fillOpacity: 0.1,
+                  color: "#4285F4",
+                  weight: 1,
+                  opacity: 0.3,
+                }}
+              />
+            )}
+            <Marker position={userLocation} icon={createUserLocationIcon()} />
+          </>
+        )}
+
+        {reportCircle && (
           <Circle
-            key={report.id}
-            center={[report.location.lat, report.location.lng]}
-            radius={report.extent}
+            center={[reportCircle.lat, reportCircle.lng]}
+            radius={reportCircle.extent}
             pathOptions={{
               color: "#364A78",
-              fillColor: `rgba(54, 74, 120, ${0.2 + (report.intensity / 100) * 0.3})`,
-              fillOpacity: 0.2 + (report.intensity / 100) * 0.3,
+              fillColor: reportCircle.fillColor,
+              fillOpacity: reportCircle.opacity,
               weight: 2,
             }}
-            eventHandlers={{
-              click: () => {
-                if (onReportClick) {
-                  onReportClick(report)
-                }
-              },
-            }}
           />
-        ))}
+        )}
 
-      {filteredPlaces.map((place) => (
-        <Marker
-          key={place.id}
-          position={place.coordinates}
-          icon={createMarkerIcon(place.type, place.image)}
-          eventHandlers={{
-            click: () => {
-              setCenterPosition(place.coordinates)
-              if (onMarkerClick) {
-                onMarkerClick(place)
-              }
-            },
-          }}
-        />
-      ))}
-    </MapContainer>
-  )
-})
+        {reports &&
+          reports.map((report) => (
+            <Circle
+              key={report.id}
+              center={[report.location.lat, report.location.lng]}
+              radius={report.extent}
+              pathOptions={{
+                color: "#364A78",
+                fillColor: `rgba(54, 74, 120, ${0.2 + (report.intensity / 100) * 0.3})`,
+                fillOpacity: 0.2 + (report.intensity / 100) * 0.3,
+                weight: 2,
+              }}
+              eventHandlers={{
+                click: () => {
+                  if (onReportClick) {
+                    onReportClick(report)
+                  }
+                },
+              }}
+            />
+          ))}
+
+        {showPlaceMarkers &&
+          filteredPlaces.map((place) => (
+            <Marker
+              key={place.id}
+              position={place.coordinates}
+              icon={createMarkerIcon(place.type, place.image)}
+              eventHandlers={{
+                click: () => {
+                  setCenterPosition(place.coordinates)
+                  if (onMarkerClick) {
+                    onMarkerClick(place)
+                  }
+                },
+              }}
+            />
+          ))}
+
+        {showCommunityMarkers &&
+          communityPosts.map((post) => (
+            <Marker
+              key={`post-${post.id}`}
+              position={post.coordinates}
+              icon={createPostMarkerIcon(post.user.avatar)}
+              eventHandlers={{
+                click: () => {
+                  setCenterPosition(post.coordinates)
+                  if (onPostClick) {
+                    onPostClick(post)
+                  }
+                },
+              }}
+            />
+          ))}
+
+        {showCommunityMarkers &&
+          communityEvents.map((event) => (
+            <Marker
+              key={`event-${event.id}`}
+              position={event.coordinates}
+              icon={createEventMarkerIcon()}
+              eventHandlers={{
+                click: () => {
+                  setCenterPosition(event.coordinates)
+                  if (onEventClick) {
+                    onEventClick(event)
+                  }
+                },
+              }}
+            />
+          ))}
+      </MapContainer>
+    )
+  },
+)
 
 Map.displayName = "Map"
 

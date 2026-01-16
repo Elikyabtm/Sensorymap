@@ -164,7 +164,7 @@
 .sense-slider-row {
   display: flex;
   align-items: center;
-  gap: 6px;
+  /* Suppression du gap car plus de rond devant */
 }
 
 /* Nouveau style slider avec double div Figma */
@@ -208,6 +208,37 @@
   border: 1px solid #445e9a;
   border-radius: 50%;
   cursor: pointer;
+}
+
+/* Couleur du curseur selon le type de sens */
+.sense-slider[data-sense="sound"]::-webkit-slider-thumb {
+  background: #d77a4f;
+  border: 1px solid #d77a4f;
+}
+
+.sense-slider[data-sense="sound"]::-moz-range-thumb {
+  background: #d77a4f;
+  border: 1px solid #d77a4f;
+}
+
+.sense-slider[data-sense="crowd"]::-webkit-slider-thumb {
+  background: #4fa1a1;
+  border: 1px solid #4fa1a1;
+}
+
+.sense-slider[data-sense="crowd"]::-moz-range-thumb {
+  background: #4fa1a1;
+  border: 1px solid #4fa1a1;
+}
+
+.sense-slider[data-sense="light"]::-webkit-slider-thumb {
+  background: #9a7ac1;
+  border: 1px solid #9a7ac1;
+}
+
+.sense-slider[data-sense="light"]::-moz-range-thumb {
+  background: #9a7ac1;
+  border: 1px solid #9a7ac1;
 }
 
 /* Étape 3 - Commentaire */

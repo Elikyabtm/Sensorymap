@@ -58,6 +58,44 @@ export default function PlaceReviewFlow({ place, onClose, onComplete }) {
     return "Ambiance très stimulante"
   }
 
+  const getSenseSliderBackground = (senseType, value) => {
+    const percentage = value
+    let primaryColor, secondaryColor
+
+    switch (senseType) {
+      case "sound":
+        primaryColor = "#D77A4F" // Orange pour le son
+        secondaryColor = "rgba(215, 122, 79, 0.20)"
+        break
+      case "crowd":
+        primaryColor = "#4FA1A1" // Cyan pour la foule
+        secondaryColor = "rgba(79, 161, 161, 0.20)"
+        break
+      case "light":
+        primaryColor = "#9A7AC1" // Violet pour la lumière
+        secondaryColor = "rgba(154, 122, 193, 0.20)"
+        break
+      default:
+        primaryColor = "#445E9A"
+        secondaryColor = "#CCD7F0"
+    }
+
+    return `linear-gradient(to right, ${primaryColor} 0%, ${primaryColor} ${percentage}%, ${secondaryColor} ${percentage}%, ${secondaryColor} 100%)`
+  }
+
+  const getSenseThumbColor = (senseType) => {
+    switch (senseType) {
+      case "sound":
+        return "#D77A4F" // Orange pour le son
+      case "crowd":
+        return "#4FA1A1" // Cyan pour la foule
+      case "light":
+        return "#9A7AC1" // Violet pour la lumière
+      default:
+        return "#445E9A"
+    }
+  }
+
   return (
     <div className="place-review-flow">
       {/* Header avec bouton fermer */}
@@ -134,15 +172,6 @@ export default function PlaceReviewFlow({ place, onClose, onComplete }) {
                   </Typography>
                 </div>
                 <div className="sense-slider-row">
-                  <div
-                    style={{
-                      width: 24,
-                      height: 24,
-                      background: "#D77A4F",
-                      borderRadius: "100%",
-                      flexShrink: 0,
-                    }}
-                  />
                   <input
                     type="range"
                     min="0"
@@ -150,7 +179,8 @@ export default function PlaceReviewFlow({ place, onClose, onComplete }) {
                     value={senseValues.sound}
                     onChange={(e) => handleSenseChange("sound", Number(e.target.value))}
                     className="sense-slider"
-                    style={{ background: getSliderBackground(senseValues.sound) }}
+                    data-sense="sound"
+                    style={{ background: getSenseSliderBackground("sound", senseValues.sound) }}
                   />
                 </div>
               </div>
@@ -170,15 +200,6 @@ export default function PlaceReviewFlow({ place, onClose, onComplete }) {
                   </Typography>
                 </div>
                 <div className="sense-slider-row">
-                  <div
-                    style={{
-                      width: 24,
-                      height: 24,
-                      background: "#4FA1A1",
-                      borderRadius: "100%",
-                      flexShrink: 0,
-                    }}
-                  />
                   <input
                     type="range"
                     min="0"
@@ -186,7 +207,8 @@ export default function PlaceReviewFlow({ place, onClose, onComplete }) {
                     value={senseValues.crowd}
                     onChange={(e) => handleSenseChange("crowd", Number(e.target.value))}
                     className="sense-slider"
-                    style={{ background: getSliderBackground(senseValues.crowd) }}
+                    data-sense="crowd"
+                    style={{ background: getSenseSliderBackground("crowd", senseValues.crowd) }}
                   />
                 </div>
               </div>
@@ -206,15 +228,6 @@ export default function PlaceReviewFlow({ place, onClose, onComplete }) {
                   </Typography>
                 </div>
                 <div className="sense-slider-row">
-                  <div
-                    style={{
-                      width: 24,
-                      height: 24,
-                      background: "#9A7AC1",
-                      borderRadius: "100%",
-                      flexShrink: 0,
-                    }}
-                  />
                   <input
                     type="range"
                     min="0"
@@ -222,7 +235,8 @@ export default function PlaceReviewFlow({ place, onClose, onComplete }) {
                     value={senseValues.light}
                     onChange={(e) => handleSenseChange("light", Number(e.target.value))}
                     className="sense-slider"
-                    style={{ background: getSliderBackground(senseValues.light) }}
+                    data-sense="light"
+                    style={{ background: getSenseSliderBackground("light", senseValues.light) }}
                   />
                 </div>
               </div>
