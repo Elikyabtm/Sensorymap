@@ -1,4 +1,4 @@
-"use client"
+
 
 import { MapContainer, TileLayer, Marker, useMap, Circle, Polygon } from "react-leaflet"
 import MarkerClusterGroup from "react-leaflet-cluster"
@@ -329,12 +329,11 @@ const Map = forwardRef(
 
     return (
       <MapContainer center={paris} zoom={13} style={{ width: "100%", height: "100%" }} zoomControl={false}>
-       <TileLayer
-  url={`https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png?api_key=${process.env.NEXT_PUBLIC_STADIA_API_KEY}`}
-  attribution='&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors'
-  maxZoom={20}
-/>
-
+        <TileLayer
+          url="https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png"
+          attribution='&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors'
+          maxZoom={20}
+        />
         <MapController centerPosition={centerPosition} />
 
         {userLocation && (
