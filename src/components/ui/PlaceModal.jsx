@@ -25,6 +25,11 @@ export const PlaceModal = ({ place, onClose, onOpenDetails }) => {
     }
   }
 
+  const handleLearnMoreClick = (e) => {
+    e.stopPropagation()
+    // Logic for handling learn more click
+  }
+
   return (
     <>
       <div className="place-modal-overlay" onClick={onClose} />
@@ -44,7 +49,7 @@ export const PlaceModal = ({ place, onClose, onOpenDetails }) => {
             
             {isCertified && (
               <div className="place-modal-badge">
-                <Icon name="logo" size={17} color="#204040" />
+                <Icon name="certified" size={17} color="#204040" />
                 <span className="place-modal-badge-text">Lieu serein</span>
               </div>
             )}

@@ -279,7 +279,7 @@ const ReportModal = ({ isOpen, onClose, onSubmit, userPosition, mapRef }) => {
                   onClick={() => handleToggleTrigger("sound")}
                 >
                   <div className="report-trigger-circle">
-                    <Icon name="sound" color={selectedTriggers.includes("sound") ? "#FFFFFF" : "#90C359"} size={32} />
+                    <Icon name="sound" color={selectedTriggers.includes("sound") ? "#FFFFFF" : "#FF8D60"} size={32} />
                   </div>
                   <span>Bruit</span>
                 </button>
@@ -289,7 +289,7 @@ const ReportModal = ({ isOpen, onClose, onSubmit, userPosition, mapRef }) => {
                   onClick={() => handleToggleTrigger("crowd")}
                 >
                   <div className="report-trigger-circle">
-                    <Icon name="crowd" color={selectedTriggers.includes("crowd") ? "#FFFFFF" : "#B597F6"} size={32} />
+                    <Icon name="crowd" color={selectedTriggers.includes("crowd") ? "#FFFFFF" : "#5A9E9E"} size={32} />
                   </div>
                   <span>Foule</span>
                 </button>
@@ -299,7 +299,7 @@ const ReportModal = ({ isOpen, onClose, onSubmit, userPosition, mapRef }) => {
                   onClick={() => handleToggleTrigger("light")}
                 >
                   <div className="report-trigger-circle">
-                    <Icon name="light" color={selectedTriggers.includes("light") ? "#FFFFFF" : "#FF8D60"} size={32} />
+                    <Icon name="light" color={selectedTriggers.includes("light") ? "#FFFFFF" : "#B597F6"} size={32} />
                   </div>
                   <span>Lumières</span>
                 </button>

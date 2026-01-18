@@ -2,6 +2,7 @@
   {
     "id": "cafe-kitsune",
     "name": "Café Kitsuné – Palais Royal",
+    "address": "2 Place André Malraux, 75001 Paris",
     "category": "Café",
     "type": "regular",
     "coordinates": [48.86570716798363, 2.337197553195107],
@@ -15,6 +16,7 @@
   {
     "id": "cafe-nuances",
     "name": "Café Nuances – Opéra",
+    "address": "8 Rue de la Michodière, 75002 Paris",
     "category": "Café",
     "type": "regular",
     "coordinates": [48.86810274852639, 2.3313393397017736],
@@ -28,6 +30,7 @@
   {
     "id": "cafe-institut-suedois",
     "name": "Café de l'Institut Suédois",
+    "address": "11 Rue Payenne, 75003 Paris",
     "category": "Café",
     "type": "regular",
     "coordinates": [48.85913016259971, 2.3623455162938845],
@@ -41,6 +44,7 @@
   {
     "id": "ohp-cafe",
     "name": "Café Joyeux",
+    "address": "24 Rue Saint-Augustin, 75002 Paris",
     "category": "Café",
     "type": "regular",
     "coordinates": [48.88892503176633, 2.3188696575684142],
@@ -54,6 +58,7 @@
   {
     "id": "serres-auteuil",
     "name": "Serres d'Auteuil",
+    "address": "3 Avenue de la Porte d'Auteuil, 75016 Paris",
     "category": "Parc",
     "type": "regular",
     "coordinates": [48.84641693418915, 2.2522723144056207],
@@ -67,6 +72,7 @@
   {
     "id": "square-vert-galant",
     "name": "Square du Vert-Galant",
+    "address": "15 Place du Pont Neuf, 75001 Paris",
     "category": "Parc",
     "type": "regular",
     "coordinates": [48.857409988752394, 2.340281695961337],
@@ -80,6 +86,7 @@
   {
     "id": "jardin-musee-vie-romantique",
     "name": "Jardin Lionel Assouad",
+    "address": "16 Rue Chaptal, 75009 Paris",
     "category": "Parc",
     "type": "regular",
     "coordinates": [48.827927289062124, 2.3234712298121494],
@@ -93,6 +100,7 @@
   {
     "id": "jardin-luxembourg",
     "name": "Jardin du Luxembourg – zones latérales",
+    "address": "Rue de Médicis, 75006 Paris",
     "category": "Parc",
     "type": "regular",
     "coordinates": [48.846992478095764, 2.3363472305359427],
@@ -106,6 +114,7 @@
   {
     "id": "musee-zadkine",
     "name": "Musée Zadkine",
+    "address": "100bis Rue d'Assas, 75006 Paris",
     "category": "Musée",
     "type": "regular",
     "coordinates": [48.84361170335158, 2.334274809981967],
@@ -119,6 +128,7 @@
   {
     "id": "musee-vie-romantique",
     "name": "Musée de la Vie Romantique",
+    "address": "16 Rue Chaptal, 75009 Paris",
     "category": "Musée",
     "type": "regular",
     "coordinates": [48.88153265909193, 2.3334920955247545],
@@ -132,6 +142,7 @@
   {
     "id": "musee-orangerie",
     "name": "Musée de l'Orangerie",
+    "address": "Jardin des Tuileries, 75001 Paris",
     "category": "Musée",
     "type": "regular",
     "coordinates": [48.86397893641786, 2.322672397372646],
@@ -145,6 +156,7 @@
   {
     "id": "musee-guimet",
     "name": "Musée Guimet",
+    "address": "6 Place d'Iéna, 75116 Paris",
     "category": "Musée",
     "type": "regular",
     "coordinates": [48.865271158110296, 2.293792583879272],
@@ -158,6 +170,7 @@
   {
     "id": "bibliotheque-forney",
     "name": "Bibliothèque Forney",
+    "address": "1 Rue du Figuier, 75004 Paris",
     "category": "Bibliothèque",
     "type": "regular",
     "coordinates": [48.85361071366779, 2.359281801069538],
@@ -171,7 +184,8 @@
   {
     "id": "mediatheque-yourcenar",
     "name": "Médiathèque Marguerite Yourcenar",
-    "category": "Biblioth��que",
+    "address": "41 Rue d'Alleray, 75015 Paris",
+    "category": "Bibliothèque",
     "type": "regular",
     "coordinates": [48.83706217553677, 2.303700891440058],
     "image": "https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=400",
@@ -184,6 +198,7 @@
   {
     "id": "mediatheque-sagan",
     "name": "Médiathèque Françoise Sagan",
+    "address": "8 Rue Léon Schwartzenberg, 75010 Paris",
     "category": "Bibliothèque",
     "type": "regular",
     "coordinates": [48.875702668086724, 2.3537903098550523],
@@ -197,6 +212,7 @@
   {
     "id": "bibliotheque-sainte-genevieve",
     "name": "Bibliothèque Sainte-Geneviève",
+    "address": "10 Place du Panthéon, 75005 Paris",
     "category": "Bibliothèque",
     "type": "regular",
     "coordinates": [48.847136234997386, 2.3464054968192003],
@@ -210,6 +226,7 @@
   {
     "id": "le-tres-particulier",
     "name": "Le Très Particulier – Montmartre",
+    "address": "23 Avenue Junot, 75018 Paris",
     "category": "Bar",
     "type": "regular",
     "coordinates": [48.887913326444554, 2.335321777839751],
@@ -223,6 +240,7 @@
   {
     "id": "sherry-butt",
     "name": "Sherry Butt – Marais",
+    "address": "20 Rue Beautreillis, 75004 Paris",
     "category": "Bar",
     "type": "regular",
     "coordinates": [48.85329611682007, 2.3640907417384738],
@@ -236,6 +254,7 @@
   {
     "id": "le-lavomatic",
     "name": "Le Lavomatic",
+    "address": "30 Rue René Boulanger, 75010 Paris",
     "category": "Bar",
     "type": "regular",
     "coordinates": [48.86848266519481, 2.361871913511362],
@@ -249,6 +268,7 @@
   {
     "id": "kimpton-bar",
     "name": "Kimpton Bar",
+    "address": "2 Rue Scribe, 75009 Paris",
     "category": "Bar",
     "type": "regular",
     "coordinates": [48.8693, 2.33169],
@@ -262,6 +282,7 @@
   {
     "id": "chez-vong",
     "name": "Chez Vong",
+    "address": "10 Rue de la Grande Truanderie, 75001 Paris",
     "category": "Restaurant",
     "type": "regular",
     "coordinates": [48.862831593872215, 2.3491932281498187],
@@ -275,6 +296,7 @@
   {
     "id": "sola",
     "name": "Sola",
+    "address": "12 Rue de l'Hôtel Colbert, 75005 Paris",
     "category": "Restaurant",
     "type": "regular",
     "coordinates": [48.85161264768951, 2.3483117745869184],
@@ -288,6 +310,7 @@
   {
     "id": "noura-montparnasse",
     "name": "Noura – Montparnasse",
+    "address": "21 Avenue du Maine, 75015 Paris",
     "category": "Restaurant",
     "type": "regular",
     "coordinates": [48.84192618711526, 2.330767592784695],
@@ -301,6 +324,7 @@
   {
     "id": "la-matta",
     "name": "La Matta",
+    "address": "71 Rue de Passy, 75016 Paris",
     "category": "Restaurant",
     "type": "regular",
     "coordinates": [48.85664733046753, 2.2792985104672776],
@@ -314,6 +338,7 @@
   {
     "id": "arome-16e",
     "name": "Atome Coffee Shop",
+    "address": "18 Rue Jean de la Fontaine, 75016 Paris",
     "category": "Lieu recommandé",
     "type": "certified",
     "coordinates": [48.856986312169134, 2.2721796772919096],
@@ -327,6 +352,7 @@
   {
     "id": "parc-buttes-chapeau-rouge",
     "name": "Parc des Buttes du Chapeau Rouge",
+    "address": "5 Avenue Debidour, 75019 Paris",
     "category": "Lieu recommandé",
     "type": "certified",
     "coordinates": [48.881888515496165, 2.398518411438503],
@@ -340,6 +366,7 @@
   {
     "id": "musee-bourdelle",
     "name": "Musée Bourdelle",
+    "address": "18 Rue Antoine Bourdelle, 75015 Paris",
     "category": "Lieu recommandé",
     "type": "certified",
     "coordinates": [48.84316986673932, 2.3186448865075917],
@@ -353,6 +380,7 @@
   {
     "id": "bibliotheque-cite-sciences",
     "name": "Bibliothèque Cité des Sciences",
+    "address": "30 Avenue Corentin Cariou, 75019 Paris",
     "category": "Lieu recommandé",
     "type": "certified",
     "coordinates": [48.89496350308385, 2.3872374304190522],
@@ -366,6 +394,7 @@
   {
     "id": "bar-bibliotheque-saint-germain",
     "name": "Bar Bibliothèque – Saint-Germain",
+    "address": "9 Rue de l'Ancienne Comédie, 75006 Paris",
     "category": "Lieu recommandé",
     "type": "certified",
     "coordinates": [48.870640828634386, 2.279990009503382],

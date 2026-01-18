@@ -14,12 +14,12 @@ export default function DiscoveryContent({ selectedSenses, selectedCategory, onC
   const regularPlaces = filteredPlaces.filter((place) => place.type !== "certified")
 
   const categories = [
-    { name: "Restaurant", icon: "restaurant", label: "Restos" },
+    { name: "Restaurant", icon: "restaurant", label: "Restaurants" },
     { name: "Café", icon: "cafe", label: "Cafés" },
-    { name: "Musée", icon: "museum", label: "Expos" },
+    { name: "Musée", icon: "museum", label: "Musées" },
     { name: "Bar", icon: "bar", label: "Bars" },
     { name: "Parc", icon: "park", label: "Parcs" },
-    { name: "Bibliothèque", icon: "library", label: "Bibl." },
+    { name: "Bibliothèque", icon: "library", label: "Bibliothèques" },
   ]
 
   const lists = [

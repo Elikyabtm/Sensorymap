@@ -8,11 +8,12 @@ import { mockPosts, mockEvents } from "../data/communityData"
 
 export default function CommunityContent({ selectedSenses, selectedCategory, onCategoryClick, onEventClick, onPostClick }) {
   const categories = [
-    { name: "Restos", icon: "restaurant" },
+    { name: "Restaurants", icon: "restaurant" },
     { name: "Cafés", icon: "cafe" },
-    { name: "Expos", icon: "museum" },
+    { name: "Musées", icon: "museum" },
     { name: "Bars", icon: "bar" },
     { name: "Parcs", icon: "park" },
+    { name: "Bibliothèques", icon: "library" },
   ]
 
   return (

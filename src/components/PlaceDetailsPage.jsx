@@ -8,7 +8,7 @@ import ShareModal from "./ui/ShareModal"
 import PlaceReviewFlow from "./PlaceReviewFlow"
 import "../styles/PlaceDetailsPage.css"
 
-export default function PlaceDetailsPage({ place, onClose }) {
+export default function PlaceDetailsPage({ place, onClose, onOpenCertificationAbout }) {
   const now = new Date()
   const currentHour = now.getHours()
   const currentDay = now.getDay() === 0 ? 6 : now.getDay() - 1
@@ -147,7 +147,7 @@ export default function PlaceDetailsPage({ place, onClose }) {
                   </div>
                 </div>
                 
-                <button className="certified-learn-more">En savoir plus</button>
+                <button className="certified-learn-more" onClick={onOpenCertificationAbout}>En savoir plus</button>
               </div>
             )}
           </div>

@@ -76,7 +76,7 @@
   position: absolute;
   top: 8px;
   left: 8px;
-  padding: 2px 6px;
+  padding: 2px 8px;
   background: #8FDA9C;
   border-radius: 8px;
   outline: 1px #8FDA9C solid;
@@ -86,6 +86,13 @@
   align-items: center;
   gap: 4px;
   z-index: 2;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.place-modal-badge:hover {
+  background: #7DD08C;
 }
 
 .place-modal-badge-text {

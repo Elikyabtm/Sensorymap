@@ -5,37 +5,19 @@ import "./SenseTrigger.css"
 const SenseTrigger = ({ type, label, selected, onClick, ...props }) => {
   const senseConfig = {
     light: {
-      bgVar: selected
-        ? "var(--components-select-triggers-focused-light-fill)"
-        : "var(--components-select-triggers-default-light-fill)",
-      strokeVar: selected
-        ? "var(--components-select-triggers-focused-light-stroke)"
-        : "var(--components-select-triggers-default-light-stroke)",
-      textVar: selected
-        ? "var(--components-select-triggers-focused-light-text)"
-        : "var(--components-select-triggers-default-light-text)",
+      bgColor: selected ? "#C8BFD8" : "transparent",
+      strokeColor: selected ? "#8B7BB5" : "transparent",
+      textColor: "#2A3556",
     },
     sound: {
-      bgVar: selected
-        ? "var(--components-select-triggers-focused-sound-fill)"
-        : "var(--components-select-triggers-default-sound-fill)",
-      strokeVar: selected
-        ? "var(--components-select-triggers-focused-sound-stroke)"
-        : "var(--components-select-triggers-default-sound-stroke)",
-      textVar: selected
-        ? "var(--components-select-triggers-focused-sound-text)"
-        : "var(--components-select-triggers-default-sound-text)",
+      bgColor: selected ? "#EFCFC0" : "transparent",
+      strokeColor: selected ? "#C67B52" : "transparent",
+      textColor: "#2A3556",
     },
     crowd: {
-      bgVar: selected
-        ? "var(--components-select-triggers-focused-crowd-fill)"
-        : "var(--components-select-triggers-default-crowd-fill)",
-      strokeVar: selected
-        ? "var(--components-select-triggers-focused-crowd-stroke)"
-        : "var(--components-select-triggers-default-crowd-stroke)",
-      textVar: selected
-        ? "var(--components-select-triggers-focused-crowd-text)"
-        : "var(--components-select-triggers-default-crowd-text)",
+      bgColor: selected ? "#B0D5D5" : "transparent",
+      strokeColor: selected ? "#5A9E9E" : "transparent",
+      textColor: "#2A3556",
     },
   }
 
@@ -47,15 +29,15 @@ const SenseTrigger = ({ type, label, selected, onClick, ...props }) => {
       data-selected={selected}
       onClick={onClick}
       style={{
-        background: config.bgVar,
-        border: `1px solid ${config.strokeVar}`,
+        background: config.bgColor,
+        border: `2px solid ${config.strokeColor}`,
       }}
       {...props}
     >
       <div className="sense-icon-container">
         <SenseBadge type={type} variant="sansContour" size={59} />
       </div>
-      <div className="sense-label" style={{ color: config.textVar }}>
+      <div className="sense-label" style={{ color: config.textColor }}>
         {label}
       </div>
     </button>

@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import { Icon, Button, SenseBadge } from "./ui"
+import SettingsPage from "./SettingsPage"
 import "../styles/ProfilePage.css"
 
 const generateSensoryDescription = (senses) => {
@@ -24,7 +25,8 @@ const generateSensoryDescription = (senses) => {
   }
 }
 
-export default function ProfilePage({ onClose, sensoryProfile = [], onUpdateProfile }) {
+export default function ProfilePage({ onClose, sensoryProfile = [], onUpdateProfile, onOpenCertificationAbout }) {
+  const [showSettings, setShowSettings] = useState(false)
   const [userProfile] = useState({
     username: "@soft_waves",
     avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&h=200&fit=crop",
@@ -55,13 +57,19 @@ export default function ProfilePage({ onClose, sensoryProfile = [], onUpdateProf
 
   return (
     <div className="profile-page">
+      {showSettings && (
+        <SettingsPage 
+          onClose={() => setShowSettings(false)} 
+          onOpenCertificationAbout={onOpenCertificationAbout}
+        />
+      )}
       {/* Header */}
       <div className="profile-header">
         <button className="profile-back-button" onClick={onClose}>
           <Icon name="arrowLeft" size={30} color="#2A3556" />
         </button>
         <h1 className="profile-title">Profil</h1>
-        <button className="profile-settings-button">
+        <button className="profile-settings-button" onClick={() => setShowSettings(true)}>
           <Icon name="settings" size={30} color="#2A3556" />
         </button>
       </div>

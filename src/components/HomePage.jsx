@@ -14,6 +14,7 @@ import PostDetailsPage from "./PostDetailsPage"
 import EventDetailsPage from "./EventDetailsPage"
 import ReportModal from "./ReportModal"
 import ProfilePage from "./ProfilePage"
+import { CertificationAboutPage } from "./CertificationAboutPage"
 import placesData from "../data/places.json"
 import { mockPosts, mockEvents } from "../data/communityData"
 
@@ -48,6 +49,7 @@ export default function HomePage({ userSensoryProfile = [], onUpdateSensoryProfi
 
   const [selectedEvent, setSelectedEvent] = useState(null)
   const [showEventDetails, setShowEventDetails] = useState(false)
+  const [showCertificationAbout, setShowCertificationAbout] = useState(false)
   const [eventDetailsData, setEventDetailsData] = useState(null)
 
   const mapRef = useRef(null)
@@ -201,14 +203,19 @@ export default function HomePage({ userSensoryProfile = [], onUpdateSensoryProfi
 
   return (
     <div className="home-page">
-      {showProfilePage && (
-        <ProfilePage
-          onClose={() => setShowProfilePage(false)}
-          sensoryProfile={userSensoryProfile}
-          onUpdateProfile={onUpdateSensoryProfile}
-        />
-      )}
-      {showPlaceDetails && <PlaceDetailsPage place={placeDetailsData} onClose={handleClosePlaceDetails} />}
+{showProfilePage && (
+  <ProfilePage
+  onClose={() => setShowProfilePage(false)}
+  sensoryProfile={userSensoryProfile}
+  onUpdateProfile={onUpdateSensoryProfile}
+  onOpenCertificationAbout={() => setShowCertificationAbout(true)}
+  />
+  )}
+
+  {showPlaceDetails && <PlaceDetailsPage place={placeDetailsData} onClose={handleClosePlaceDetails} onOpenCertificationAbout={() => setShowCertificationAbout(true)} />}
+      {showCertificationAbout && (
+  <CertificationAboutPage onClose={() => setShowCertificationAbout(false)} />
+  )}
       {showPostDetails && <PostDetailsPage post={postDetailsData} onClose={handleClosePostDetails} />}
       {showEventDetails && <EventDetailsPage event={eventDetailsData} onClose={handleCloseEventDetails} />}
       {showSearchPage && (
@@ -277,11 +284,11 @@ export default function HomePage({ userSensoryProfile = [], onUpdateSensoryProfi
           onEventClick={handleEventClick}
         />
         {selectedPlace && (
-          <PlaceModal
-            place={selectedPlace}
-            onClose={() => setSelectedPlace(null)}
-            onOpenDetails={handleOpenPlaceDetails}
-          />
+<PlaceModal
+  place={selectedPlace}
+  onClose={() => setSelectedPlace(null)}
+  onOpenDetails={handleOpenPlaceDetails}
+  />
         )}
         {selectedPost && (
           <PostModal post={selectedPost} onClose={() => setSelectedPost(null)} onOpenDetails={handleOpenPostDetails} />

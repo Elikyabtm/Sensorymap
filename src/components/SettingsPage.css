@@ -1,0 +1,242 @@
+.settings-page {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #FAFBFE;
+  z-index: 10002;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.settings-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+  background: #FAFBFE;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.settings-back-button {
+  width: 40px;
+  height: 40px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.settings-title {
+  color: #2A3556;
+  font-size: 16px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  margin: 0;
+}
+
+.settings-header-spacer {
+  width: 40px;
+}
+
+.settings-content {
+  flex: 1;
+  padding: 0 16px 24px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.settings-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.settings-section-title {
+  color: #2A3556;
+  font-size: 16px;
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 700;
+  margin: 0;
+  padding-left: 4px;
+}
+
+.settings-section-card {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(42, 53, 86, 0.08);
+}
+
+.settings-profile {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  border-bottom: 1px solid #F0F2F8;
+}
+
+.settings-profile-avatar-wrapper {
+  position: relative;
+  width: 56px;
+  height: 56px;
+}
+
+.settings-profile-avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.settings-profile-edit-avatar {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: white;
+  border: 1px solid #E0E4EE;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.settings-profile-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.settings-profile-username {
+  color: #2A3556;
+  font-size: 16px;
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+.settings-profile-badge {
+  display: inline-flex;
+  padding: 2px 8px;
+  background: #364A78;
+  border-radius: 4px;
+  color: white;
+  font-size: 12px;
+  font-family: 'SF Pro Text', -apple-system, sans-serif;
+  font-weight: 500;
+  line-height: 1.4;
+  width: fit-content;
+}
+
+.settings-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 14px 16px;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #F0F2F8;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.2s ease;
+}
+
+.settings-item:last-child {
+  border-bottom: none;
+}
+
+.settings-item:active {
+  background: #F5F7FC;
+}
+
+.settings-item-label {
+  flex: 1;
+  color: #445E9A;
+  font-size: 16px;
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 500;
+}
+
+.settings-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 8px 0;
+}
+
+.settings-logout-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 14px 24px;
+  background: white;
+  border: 1px solid #364A78;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.settings-logout-button span {
+  color: #364A78;
+  font-size: 16px;
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.settings-logout-button:active {
+  background: #F5F7FC;
+}
+
+.settings-delete-button {
+  background: transparent;
+  border: none;
+  color: #D97373;
+  font-size: 16px;
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 8px 16px;
+}
+
+.settings-delete-button:active {
+  opacity: 0.7;
+}
+
+.settings-footer {
+  background: #2A3556;
+  padding: 32px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  margin-top: auto;
+}
+
+.settings-footer-text {
+  color: white;
+  font-size: 14px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  text-align: center;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.settings-footer-logo {
+  margin-top: 16px;
+}

@@ -85,7 +85,7 @@ export const Card = ({
 
           {/* Bouton favori */}
           <button className={`place-card-favorite ${favorite ? "active" : ""}`} onClick={handleFavoriteClick}>
-            <Icon name={favorite ? "heartFilled" : "heart"} size={21} color={favorite ? "#E57373" : "#5D82CF"} />
+            <Icon name={favorite ? "fullheart" : "heart"} size={21} color={favorite ? "#5165bdff" : "#5D82CF"} />
           </button>
         </div>
       </div>
