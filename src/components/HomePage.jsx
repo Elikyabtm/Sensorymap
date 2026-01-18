@@ -286,6 +286,9 @@ export default function HomePage({ userSensoryProfile = [], onUpdateSensoryProfi
         {selectedPost && (
           <PostModal post={selectedPost} onClose={() => setSelectedPost(null)} onOpenDetails={handleOpenPostDetails} />
         )}
+        {selectedEvent && (
+          <EventModal event={selectedEvent} onClose={() => setSelectedEvent(null)} onOpenDetails={handleOpenEventDetails} />
+        )}
       </div>
       <Header
         selectedSenses={selectedSenses}

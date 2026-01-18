@@ -1,4 +1,4 @@
-
+"use client"
 
 import { MapContainer, TileLayer, Marker, useMap, Circle, Polygon } from "react-leaflet"
 import MarkerClusterGroup from "react-leaflet-cluster"
@@ -419,43 +419,12 @@ const Map = forwardRef(
                     }
                   },
                 }}
-              />
+/>
             ))}
           </MarkerClusterGroup>
         )}
 
-        {showCommunityMarkers && communityPosts.length > 0 && (
-          <MarkerClusterGroup
-            chunkedLoading
-            iconCreateFunction={createClusterCustomIcon}
-            maxClusterRadius={50}
-            spiderfyOnMaxZoom={true}
-            showCoverageOnHover={false}
-            zoomToBoundsOnClick={true}
-            disableClusteringAtZoom={16}
-          >
-            {communityPosts.map((post) => (
-              <Marker
-                key={`post-${post.id}`}
-                position={post.coordinates}
-                icon={createPostMarkerIcon(
-                  post.image || "https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=100&h=100&fit=crop",
-                  post.user.avatar,
-                )}
-                eventHandlers={{
-                  click: () => {
-                    setCenterPosition(post.coordinates)
-                    if (onPostClick) {
-                      onPostClick(post)
-                    }
-                  },
-                }}
-              />
-            ))}
-          </MarkerClusterGroup>
-        )}
-
-        {showCommunityMarkers && communityEvents.length > 0 && (
+        {showCommunityMarkers && communityEvents && communityEvents.length > 0 && (
           <MarkerClusterGroup
             chunkedLoading
             iconCreateFunction={createClusterCustomIcon}
@@ -477,6 +446,37 @@ const Map = forwardRef(
                     setCenterPosition(event.coordinates)
                     if (onEventClick) {
                       onEventClick(event)
+                    }
+                  },
+                }}
+              />
+            ))}
+          </MarkerClusterGroup>
+        )}
+
+        {showCommunityMarkers && communityPosts && communityPosts.length > 0 && (
+          <MarkerClusterGroup
+            chunkedLoading
+            iconCreateFunction={createClusterCustomIcon}
+            maxClusterRadius={50}
+            spiderfyOnMaxZoom={true}
+            showCoverageOnHover={false}
+            zoomToBoundsOnClick={true}
+            disableClusteringAtZoom={16}
+          >
+            {communityPosts.map((post) => (
+              <Marker
+                key={`post-${post.id}`}
+                position={post.coordinates}
+                icon={createPostMarkerIcon(
+                  post.placeImage || "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=100&h=100&fit=crop",
+                  post.avatar || "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100&h=100&fit=crop",
+                )}
+                eventHandlers={{
+                  click: () => {
+                    setCenterPosition(post.coordinates)
+                    if (onPostClick) {
+                      onPostClick(post)
                     }
                   },
                 }}
