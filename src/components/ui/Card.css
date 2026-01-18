@@ -1,113 +1,172 @@
-@import "../../styles/design-tokens.css";
-
-.card {
-  border-radius: var(--border-radius-lg);
+/* Place Card Component */
+.place-card {
+  background: #FAFBFE;
+  border-radius: 8px;
   overflow: hidden;
-  background-color: var(--color-bg-white);
-  transition: transform var(--transition-base);
-}
-
-.card-recommendation {
-  width: 280px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 168px;
   flex-shrink: 0;
-  box-shadow: var(--shadow-md);
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.card-list {
-  width: 200px;
-  flex-shrink: 0;
-  position: relative;
+.place-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-.card:hover {
-  transform: translateY(-4px);
-}
-
-.card-image-container {
+/* Zone image */
+.place-card-image-container {
   position: relative;
   width: 100%;
-  height: 180px;
-  background-color: var(--color-bg-gray);
+  height: 133px;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  overflow: hidden;
 }
 
-.card-image {
+.place-card-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-.card-badge {
+.place-card-image-overlay {
   position: absolute;
-  top: var(--spacing-md);
-  left: var(--spacing-md);
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background-color: rgba(180, 140, 80, 0.9);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(0deg, rgba(141, 167, 226, 0.20) 0%, rgba(141, 167, 226, 0.20) 100%), rgba(255, 255, 255, 0.01);
+  backdrop-filter: blur(2px);
+  pointer-events: none;
+}
+
+/* Badge Lieu serein */
+.place-card-badge {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  padding: 2px 6px;
+  background: #8FDA9C;
+  border-radius: 8px;
+  border: 1px solid #8FDA9C;
   display: flex;
   align-items: center;
-  justify-content: center;
+  gap: 4px;
+  z-index: 2;
 }
 
-.card-badge-icon {
-  font-size: 20px;
+.place-card-badge-text {
+  font-size: 14px;
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 500;
+  color: #204040;
+  text-align: center;
 }
 
-.card-content {
-  padding: var(--spacing-md);
-  background-color: var(--color-bg-dark);
-  color: var(--color-text-white);
+/* Zone contenu */
+.place-card-content {
+  padding: 0 8px 8px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.place-card-title {
+  font-size: 16px;
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 700;
+  color: #2A3556;
+  word-wrap: break-word;
+}
+
+/* Footer avec barres et favori */
+.place-card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 41px;
+}
+
+/* Barres sensorielles verticales */
+.place-card-senses {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.place-card-sense-bar {
+  width: 8px;
+  height: 30px;
   position: relative;
 }
 
-.card-list .card-content {
+.place-card-sense-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 8px;
+  height: 30px;
+  border-radius: 1000px;
+}
+
+.place-card-sense-fill {
   position: absolute;
   bottom: 0;
   left: 0;
-  right: 0;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0) 100%);
+  width: 8px;
+  border-radius: 1000px;
 }
 
-.card-title {
-  font-size: var(--font-size-lg);
-  font-weight: var(--font-weight-semibold);
-  margin-bottom: var(--spacing-xs);
+/* Couleurs barres - Lumiere (violet) */
+.sense-light-bg {
+  background: rgba(154, 122, 193, 0.20);
 }
 
-.card-subtitle {
-  font-size: var(--font-size-sm);
-  color: var(--color-text-secondary);
+.sense-light-fill {
+  background: #9A7AC1;
 }
 
-.card-sensors {
+/* Couleurs barres - Bruit (orange) */
+.sense-sound-bg {
+  background: rgba(215, 122, 79, 0.20);
+}
+
+.sense-sound-fill {
+  background: #D77A4F;
+}
+
+/* Couleurs barres - Foule (turquoise) */
+.sense-crowd-bg {
+  background: rgba(79, 161, 161, 0.20);
+}
+
+.sense-crowd-fill {
+  background: #4FA1A1;
+}
+
+/* Bouton favori */
+.place-card-favorite {
+  width: 35px;
+  height: 35px;
+  background: #FAFBFE;
+  border-radius: 1000px;
+  border: 1px solid #E4EAF7;
   display: flex;
-  gap: var(--spacing-xs);
-  margin-top: var(--spacing-md);
-}
-
-.card-sensor {
-  width: 32px;
-  height: 8px;
-  border-radius: var(--border-radius-full);
-}
-
-.card-bookmark {
-  position: absolute;
-  top: var(--spacing-md);
-  right: var(--spacing-md);
-  background-color: var(--color-bg-white);
-  border: none;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  cursor: pointer;
-  font-size: 20px;
-  display: flex;
-  align-items: center;
   justify-content: center;
-  transition: transform var(--transition-fast);
+  align-items: center;
+  cursor: pointer;
+  transition: transform 0.2s ease;
 }
 
-.card-bookmark:hover {
+.place-card-favorite:hover {
   transform: scale(1.1);
+}
+
+.place-card-favorite.active {
+  background: #FFF0F0;
+  border-color: #E57373;
 }

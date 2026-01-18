@@ -303,7 +303,7 @@ export default function HomePage({ userSensoryProfile = [], onUpdateSensoryProfi
         onToggleSense={toggleSense}
         windowHeight={windowHeight}
       />
-      {clampedHeight < windowHeight * 0.6 && (
+      {clampedHeight < windowHeight * 0.6 && !selectedPlace && !selectedPost && !selectedEvent && (
         <div className="map-controls" style={{ bottom: `${clampedHeight + 12}px` }}>
           <button className="recenter-button" onClick={handleRecenterMap}>
             <Icon name="position" size={24} color="#364A78" />
@@ -353,6 +353,8 @@ export default function HomePage({ userSensoryProfile = [], onUpdateSensoryProfi
                     selectedSenses={selectedSenses}
                     selectedCategory={selectedCategory}
                     onCategoryClick={handleCategoryClick}
+                    onEventClick={handleEventClick}
+                    onPostClick={handlePostClick}
                   />
                 )}
               </div>

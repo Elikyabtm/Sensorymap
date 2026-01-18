@@ -981,7 +981,8 @@ body {
   display: flex;
   flex-direction: column;
   background: #f2f5fb;
-  overflow: hidden;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 /* Filters */
@@ -993,6 +994,9 @@ body {
   scrollbar-width: none;
   flex-shrink: 0;
   background: #f2f5fb;
+  position: sticky;
+  top: 0;
+  z-index: 10;
 }
 
 .drawer-filters::-webkit-scrollbar {
@@ -1087,6 +1091,169 @@ body {
 
 .carousel-cards::-webkit-scrollbar {
   display: none;
+}
+
+/* List card (Listes section) */
+.list-card {
+  width: 125px;
+  height: 148px;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.list-card-shadow {
+  position: absolute;
+  width: 114px;
+  height: 131px;
+  left: 11px;
+  top: 9px;
+  border-radius: 8px;
+  background: #2E3B59;
+}
+
+.list-card-dark .list-card-shadow {
+  background: #2E3B59;
+}
+
+.list-card-medium .list-card-shadow {
+  background: #7C8BAE;
+}
+
+.list-card-light .list-card-shadow {
+  background: #D0D8EA;
+}
+
+.list-card-main {
+  position: absolute;
+  width: 114px;
+  height: 148px;
+  left: 0;
+  top: 0;
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 8px;
+  box-shadow: 0px 2px 7px rgba(54, 74, 120, 0.15);
+}
+
+.list-card-dark .list-card-main {
+  background: #364A78;
+}
+
+.list-card-medium .list-card-main {
+  background: #CCD7F0;
+}
+
+.list-card-light .list-card-main {
+  background: #E9EFFF;
+}
+
+.list-card-decorations {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+}
+
+.list-card-spiral {
+  position: absolute;
+}
+
+.list-card-spiral.spiral-1 {
+  top: -5px;
+  left: 57px;
+}
+
+.list-card-spiral.spiral-2 {
+  top: 39px;
+  left: 61px;
+}
+
+.list-card-spiral.spiral-3 {
+  top: 9px;
+  left: 86px;
+}
+
+.list-card-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -60%);
+}
+
+.list-card-icon.disco {
+  transform: translate(-50%, -55%);
+}
+
+.list-card-stars {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.list-card-stars .star {
+  position: absolute;
+  color: #364A78;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.list-card-stars .star-1 {
+  top: 21px;
+  right: 20px;
+}
+
+.list-card-stars .star-2 {
+  top: 21px;
+  left: 26px;
+}
+
+.list-card-stars .star-3 {
+  top: 48px;
+  left: 8px;
+}
+
+.list-card-stars .star-4 {
+  top: 78px;
+  left: 19px;
+}
+
+.list-card-stars .star-5 {
+  top: 66px;
+  right: 9px;
+  font-size: 18px;
+}
+
+.list-card-content {
+  position: relative;
+  z-index: 1;
+}
+
+.list-card-title {
+  font-size: 14px;
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 700;
+  word-wrap: break-word;
+  line-height: 1.2;
+}
+
+.list-card-dark .list-card-title {
+  color: white;
+}
+
+.list-card-medium .list-card-title,
+.list-card-light .list-card-title {
+  color: #364A78;
+}
+
+.list-card-title sup {
+  font-size: 10px;
 }
 
 /* Spot card */

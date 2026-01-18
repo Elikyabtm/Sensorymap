@@ -11,12 +11,12 @@ export const PlaceModal = ({ place, onClose, onOpenDetails }) => {
 
   const isCertified = place.type === "certified"
 
-  const handleFavoriteClick = () => {
+  const handleFavoriteClick = (e) => {
+    e.stopPropagation()
     setIsFavorite(!isFavorite)
   }
 
   const handleModalClick = (e) => {
-    // Ne pas ouvrir si on clique sur le bookmark ou le bouton de fermeture
     if (e.target.closest(".place-modal-bookmark") || e.target.closest(".place-modal-overlay")) {
       return
     }
@@ -30,9 +30,24 @@ export const PlaceModal = ({ place, onClose, onOpenDetails }) => {
       <div className="place-modal-overlay" onClick={onClose} />
 
       <div className="place-modal-wrapper">
-        <div className="place-modal" onClick={handleModalClick} style={{ cursor: "pointer" }}>
-          <div style={{ position: "relative", width: "143px", height: "100%" }}>
-            <img src={place.imageUrl || "/placeholder.svg"} alt={place.name} className="place-modal-image" />
+        <div 
+          className={`place-modal ${isCertified ? 'place-modal-certified' : ''}`} 
+          onClick={handleModalClick}
+        >
+          <div className="place-modal-image-container">
+            <img 
+              src={place.imageUrl || place.image || "/placeholder.svg"} 
+              alt={place.name} 
+              className="place-modal-image" 
+            />
+            <div className="place-modal-image-overlay" />
+            
+            {isCertified && (
+              <div className="place-modal-badge">
+                <Icon name="logo" size={17} color="#204040" />
+                <span className="place-modal-badge-text">Lieu serein</span>
+              </div>
+            )}
           </div>
 
           <div className="place-modal-content">
@@ -40,62 +55,61 @@ export const PlaceModal = ({ place, onClose, onOpenDetails }) => {
               <h3 className="place-modal-title">{place.name}</h3>
             </div>
 
-            <div style={{ display: "flex", alignItems: "flex-end", gap: "12px", width: "100%" }}>
+            <div className="place-modal-footer">
               <div className="place-modal-senses">
-                {/* Sound */}
-                <div className="sense-indicator">
+                {/* Light */}
+                <div className="sense-row">
                   <div className="sense-icon">
-                    <Icon name="sound" size={18} color="#E79A48" />
+                    <Icon name="light" size={18} color="#9A7AC1" />
                   </div>
-                  <div className="sense-bar-container">
-                    <div className="sense-bar-bg" style={{ background: "rgba(245, 197, 139, 0.50)" }} />
-                    <div
-                      className="sense-bar-fill"
-                      style={{
-                        width: `${(place.senses.light / 100) * 90}px`,
-                        background: "#E79A48",
-                      }}
+                  <div className="sense-bar-wrapper">
+                    <div className="sense-bar-bg sense-bar-light" />
+                    <div 
+                      className="sense-bar-fill sense-bar-light-fill" 
+                      style={{ width: `${Math.max(8, (place.senses?.light || 10) / 100 * 92)}px` }}
+                    />
+                  </div>
+                </div>
+
+                {/* Noise/Sound */}
+                <div className="sense-row">
+                  <div className="sense-icon">
+                    <Icon name="sound" size={18} color="#D77A4F" />
+                  </div>
+                  <div className="sense-bar-wrapper">
+                    <div className="sense-bar-bg sense-bar-noise" />
+                    <div 
+                      className="sense-bar-fill sense-bar-noise-fill" 
+                      style={{ width: `${Math.max(8, (place.senses?.sound || 10) / 100 * 92)}px` }}
                     />
                   </div>
                 </div>
 
                 {/* Crowd */}
-                <div className="sense-indicator">
+                <div className="sense-row">
                   <div className="sense-icon">
-                    <Icon name="crowd" size={18} color="#8DB8BE" />
+                    <Icon name="crowd" size={18} color="#4FA1A1" />
                   </div>
-                  <div className="sense-bar-container">
-                    <div className="sense-bar-bg" style={{ background: "rgba(168, 218, 220, 0.50)" }} />
-                    <div
-                      className="sense-bar-fill"
-                      style={{
-                        width: `${(place.senses.sound / 100) * 90}px`,
-                        background: "#8DB8BE",
-                      }}
-                    />
-                  </div>
-                </div>
-
-                {/* Light */}
-                <div className="sense-indicator">
-                  <div className="sense-icon">
-                    <Icon name="light" size={18} color="#A27DEB" />
-                  </div>
-                  <div className="sense-bar-container">
-                    <div className="sense-bar-bg" style={{ background: "rgba(220, 211, 246, 0.50)" }} />
-                    <div
-                      className="sense-bar-fill"
-                      style={{
-                        width: `${(place.senses.crowd / 100) * 90}px`,
-                        background: "#A27DEB",
-                      }}
+                  <div className="sense-bar-wrapper">
+                    <div className="sense-bar-bg sense-bar-crowd" />
+                    <div 
+                      className="sense-bar-fill sense-bar-crowd-fill" 
+                      style={{ width: `${Math.max(8, (place.senses?.crowd || 10) / 100 * 92)}px` }}
                     />
                   </div>
                 </div>
               </div>
 
-              <button className="place-modal-bookmark" aria-label="Sauvegarder" onClick={handleFavoriteClick}>
-                <Icon name={isFavorite ? "fullheart" : "heart"} size={20} color="#2D3A40" />
+              <button 
+                className="place-modal-bookmark" 
+                aria-label="Sauvegarder" 
+                onClick={handleFavoriteClick}
+              >
+                <Icon 
+                  name={isFavorite ? "fullheart" : "heart"} 
+                  size={21} 
+                  color="#5D82CF" 
+                />
               </button>
             </div>
           </div>

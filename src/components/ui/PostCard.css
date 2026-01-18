@@ -1,0 +1,109 @@
+.post-card {
+  width: 100%;
+  background: #FAFBFE;
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  gap: 4px;
+  cursor: pointer;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.post-card-image {
+  width: 142px;
+  min-width: 142px;
+  height: 136px;
+  position: relative;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.post-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.post-card-image-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(0deg, rgba(141, 167, 226, 0.2) 0%, rgba(141, 167, 226, 0.2) 100%);
+  backdrop-filter: blur(2px);
+}
+
+.post-card-content {
+  flex: 1;
+  padding: 8px 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.post-card-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.post-card-title {
+  color: #2F2F2F;
+  font-size: 16px;
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 700;
+  margin: 0;
+  word-wrap: break-word;
+}
+
+.post-card-description {
+  color: #2F2F2F;
+  font-size: 14px;
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 400;
+  margin: 0;
+  word-wrap: break-word;
+}
+
+.post-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.post-card-author {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.post-card-avatar {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 1px solid #FAFBFE;
+}
+
+.post-card-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.post-card-username {
+  color: #364A78;
+  font-size: 14px;
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 400;
+}
+
+.post-card-time {
+  color: #2F2F2F;
+  font-size: 14px;
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 400;
+}

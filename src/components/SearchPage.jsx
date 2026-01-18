@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { Icon } from "./ui/Icon"
+import { Card } from "./ui/Card"
 import "../styles/SearchPage.css"
 
 const categoryIconMap = {
@@ -84,38 +85,40 @@ const SearchPage = ({ onClose, places, onPlaceSelect, onCategoryFilter, selected
 
   return (
     <div className="search-page">
-      <div className="search-page-header">
-        <div className="search-input-container">
-          <Icon name="search" size={25} color="#4F70B5" />
-          <input
-            type="text"
-            className="search-input"
-            placeholder="Rechercher une adresse..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            autoFocus
-          />
-        </div>
-        <button className="search-close-button" onClick={onClose}>
-          <Icon name="close" size={24} color="#445E9A" />
-        </button>
-      </div>
-
-      <div className="search-categories">
-        {categories.slice(0, 6).map((category, index) => (
-          <button
-            key={index}
-            className={`search-category-badge ${selectedCategory === category ? "active" : ""}`}
-            onClick={() => handleCategoryClick(category)}
-          >
-            <Icon
-              name={getCategoryIcon(category)}
-              size={20}
-              color={selectedCategory === category ? "#364A78" : "#445E9A"}
+      <div className="search-sticky-header">
+        <div className="search-page-header">
+          <div className="search-input-container">
+            <Icon name="search" size={25} color="#4F70B5" />
+            <input
+              type="text"
+              className="search-input"
+              placeholder="Rechercher une adresse..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              autoFocus
             />
-            <span>{category}</span>
+          </div>
+          <button className="search-close-button" onClick={onClose}>
+            <Icon name="close" size={24} color="#445E9A" />
           </button>
-        ))}
+        </div>
+
+        <div className="search-categories">
+          {categories.slice(0, 6).map((category, index) => (
+            <button
+              key={index}
+              className={`search-category-badge ${selectedCategory === category ? "active" : ""}`}
+              onClick={() => handleCategoryClick(category)}
+            >
+              <Icon
+                name={getCategoryIcon(category)}
+                size={20}
+                color={selectedCategory === category ? "#364A78" : "#445E9A"}
+              />
+              <span>{category}</span>
+            </button>
+          ))}
+        </div>
       </div>
 
       <div className="search-content">
@@ -175,36 +178,12 @@ const SearchPage = ({ onClose, places, onPlaceSelect, onCategoryFilter, selected
                 .filter((p) => p.type === "certified")
                 .slice(0, 2)
                 .map((place) => (
-                  <div key={place.id} className="drawer-card" onClick={() => handlePlaceClick(place)}>
-                    <div className="drawer-card-image">
-                      <div className="drawer-card-badge">
-                        <Icon name="certified" size={12} color="#FFFFFF" />
-                      </div>
-                      <img src={place.image || "/placeholder.svg"} alt={place.name} />
-                    </div>
-                    <div className="drawer-card-content">
-                      <h4>{place.name}</h4>
-                      <div className="drawer-card-footer">
-                        <div className="drawer-card-indicators">
-                          <div
-                            className="sense-indicator"
-                            style={{ backgroundColor: "#B597F6", width: `${place.senses.light}%` }}
-                          />
-                          <div
-                            className="sense-indicator"
-                            style={{ backgroundColor: "#BEDC9E", width: `${place.senses.sound}%` }}
-                          />
-                          <div
-                            className="sense-indicator"
-                            style={{ backgroundColor: "#F56E38", width: `${place.senses.crowd}%` }}
-                          />
-                        </div>
-                        <button className="drawer-card-bookmark">
-                          <Icon name="heart" size={20} color="#FFFFFF" />
-                        </button>
-                      </div>
-                    </div>
-                  </div>
+                  <Card
+                    key={place.id}
+                    place={place}
+                    variant={place.type === "certified" ? "certified" : "normal"}
+                    onClick={() => handlePlaceClick(place)}
+                  />
                 ))}
             </div>
           </div>
