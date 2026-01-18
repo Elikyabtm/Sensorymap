@@ -1,0 +1,495 @@
+.onboarding-container {
+  width: 100%;
+  height: 100vh;
+  background: #2A3556;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Ecran principal */
+.onboarding-screen {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Zone visuelle haute avec arrondi qui deborde */
+.onboarding-visual {
+  height: 52%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #F2F5FB;
+  overflow: visible;
+  border-radius: 80% / 0px 0px 100px 100px;
+  z-index: 2;
+}
+
+.onboarding-visual.visual-welcome {
+  background: #F2F5FB;
+}
+
+.onboarding-visual.visual-sensory {
+  background: #F2F5FB;
+}
+
+.onboarding-visual.visual-map {
+  background: #F2F5FB;
+}
+
+/* Progress bar */
+.onboarding-progress {
+  position: absolute;
+  top: 20px;
+  left: 24px;
+  right: 24px;
+  z-index: 10;
+}
+
+/* Ecran 1: Bienvenue */
+.welcome-mascot-image {
+  width: 150px;
+  height: auto;
+  object-fit: contain;
+}
+
+/* Photo groupe - Etape 6 */
+.group-visual {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  padding-top: 44px;
+}
+
+.group-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Zone de contenu basse */
+.onboarding-content {
+  flex: 1;
+  padding: 40px 24px 32px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 1;
+  margin-top: -20px;
+  padding-top: 60px;
+}
+
+.onboarding-content.content-dark {
+  background: #2A3556;
+}
+
+/* Ecran 1: Texte bienvenue */
+.welcome-text-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.welcome-title {
+  font-size: 30px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.welcome-title .white-text {
+  color: #FAFBFE;
+}
+
+.welcome-title .green-text {
+  color: #8FDA9C;
+}
+
+.welcome-description {
+  color: #FAFBFE;
+  font-size: 18px;
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 300;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.commencons-button {
+  width: 100%;
+  padding: 16px 20px;
+  background: #5D82CF;
+  border: none;
+  border-radius: 12px;
+  color: white;
+  font-size: 16px;
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 700;
+  line-height: 22.4px;
+  cursor: pointer;
+  margin-top: auto;
+}
+
+.commencons-button:hover {
+  opacity: 0.9;
+}
+
+/* Selection sensorielle - Etape 2 */
+.sensory-selection {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 18px;
+  padding: 20px;
+  margin-top: 44px;
+}
+
+.sensory-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 20px;
+  background: transparent;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.sensory-item.selected {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.sensory-icon-circle {
+  width: 59px;
+  height: 59px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.15);
+}
+
+.sensory-icon-circle.purple {
+  background: #9A7AC1;
+}
+
+.sensory-icon-circle.orange {
+  background: #D77A4F;
+}
+
+.sensory-icon-circle.teal {
+  background: #4FA1A1;
+}
+
+.sensory-label {
+  color: #2F2F2F;
+  font-size: 16px;
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 500;
+  text-align: center;
+}
+
+/* Texte onboarding */
+.onboarding-text {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.onboarding-title {
+  color: #FAFBFE;
+  font-size: 24px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.onboarding-description {
+  color: #FAFBFE;
+  font-size: 16px;
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 300;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Visuel carte - Etapes 3, 4, 5 */
+.map-visual {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  padding-top: 44px;
+}
+
+.map-background {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Pins sur la carte */
+.map-pins {
+  position: absolute;
+  top: 44px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.map-pin-small,
+.map-pin-large {
+  position: absolute;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255, 255, 255, 0.5);
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(33, 33, 33, 0.38);
+}
+
+.map-pin-small {
+  width: 42px;
+  height: 42px;
+}
+
+.map-pin-large {
+  width: 75px;
+  height: 75px;
+}
+
+.map-pin-small img,
+.map-pin-large img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Carte sensorielle */
+.sensory-card {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #FAFBFE;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 0 24px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.sensory-card-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.sensory-card-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.sensory-card-label {
+  color: #2A3556;
+  font-size: 14px;
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 400;
+  line-height: 22px;
+}
+
+.sensory-bar {
+  height: 8px;
+  position: relative;
+  border-radius: 1000px;
+  overflow: hidden;
+}
+
+.sensory-bar-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 1000px;
+}
+
+.sensory-bar-bg.purple-bg {
+  background: rgba(154, 122, 193, 0.2);
+}
+
+.sensory-bar-bg.orange-bg {
+  background: rgba(215, 122, 79, 0.2);
+}
+
+.sensory-bar-bg.teal-bg {
+  background: rgba(79, 161, 161, 0.2);
+}
+
+.sensory-bar-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  border-radius: 1000px;
+}
+
+.sensory-bar-fill.purple {
+  background: #9A7AC1;
+}
+
+.sensory-bar-fill.orange {
+  background: #D77A4F;
+}
+
+.sensory-bar-fill.teal {
+  background: #4FA1A1;
+}
+
+/* Pin certifie - Etape 4 */
+.certified-pin {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.certified-pin-image {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 4px solid #8FDA9C;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+.certified-pin-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.certified-pin-badge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  width: 32px;
+  height: 32px;
+  background: #8FDA9C;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Zone sensible - Etape 5 */
+.sensitive-zone {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 250px;
+  height: 250px;
+  background: radial-gradient(circle, rgba(93, 130, 207, 0.5) 0%, rgba(93, 130, 207, 0) 70%);
+  border-radius: 50%;
+}
+
+.alert-card {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  border-radius: 30px;
+  padding: 8px 16px 8px 8px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+.alert-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #D77A4F;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.alert-text {
+  color: #2A3556;
+  font-size: 14px;
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+/* Badge Lieu serein */
+.lieu-serein-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #8FDA9C;
+  border-radius: 20px;
+  padding: 6px 12px;
+  width: fit-content;
+  margin-bottom: 8px;
+}
+
+.lieu-serein-badge span {
+  color: rgba(32, 34, 43, 0.85);
+  font-size: 13px;
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 600;
+}
+
+/* Footer avec mascotte et bouton */
+.onboarding-footer {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-top: auto;
+}
+
+.mascot-container {
+  width: 151px;
+  height: 151px;
+}
+
+.mascot-gif {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.suivant-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 16px 20px;
+  background: #5D82CF;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 700;
+  line-height: 22.4px;
+  color: white;
+  cursor: pointer;
+  min-width: 189px;
+}
+
+.suivant-button:hover {
+  opacity: 0.9;
+}

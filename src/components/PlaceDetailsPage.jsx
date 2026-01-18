@@ -19,10 +19,10 @@ export default function PlaceDetailsPage({ place, onClose }) {
   const [showMenuModal, setShowMenuModal] = useState(false)
   const [showShareModal, setShowShareModal] = useState(false)
   const [showReviewFlow, setShowReviewFlow] = useState(false)
+  const [isCertifiedCardExpanded, setIsCertifiedCardExpanded] = useState(false)
 
   if (!place) return null
 
-  const days = ["lun", "mar", "mer", "jeu", "ven", "sam", "dim"]
   const fullDays = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche"]
 
   const getSliderBackground = (value, max) => {
@@ -32,7 +32,6 @@ export default function PlaceDetailsPage({ place, onClose }) {
 
   const handleReviewComplete = () => {
     setShowReviewFlow(false)
-    console.log("[v0] Review completed")
   }
 
   if (showReviewFlow) {
@@ -48,19 +47,17 @@ export default function PlaceDetailsPage({ place, onClose }) {
           className="place-details-hero-image"
         />
 
-        {place.certified && (
-          <div className="place-certified-badge">
-            <div className="certified-icon-wrapper">
-              <svg width="30" height="40" viewBox="0 0 30 40" fill="none">
-                <path d="M15 0L20 10L30 12L22 20L24 30L15 25L6 30L8 20L0 12L10 10L15 0Z" fill="#204040" />
+{place.type === "certified" && (
+          <div className="place-certified-mascot">
+            <div className="mascot-speech-bubble">On se sent bien ici</div>
+            <div className="mascot-speech-tail">
+              <svg width="19" height="22" viewBox="0 0 19 22" fill="none">
+                <path d="M18.8 0L0 10.5L9.4 21.5L18.8 0Z" fill="#8FDA9C" />
               </svg>
             </div>
-            <div className="certified-speech-tail">
-              <svg width="19" height="21" viewBox="0 0 19 21" fill="none">
-                <path d="M0 0L19 10.5L9.5 21L0 0Z" fill="#A6DDAF" />
-              </svg>
+            <div className="mascot-icon-wrapper">
+              <Icon name="certified" size={30} color="#204040" />
             </div>
-            <div className="certified-badge-text">On est bien ici</div>
           </div>
         )}
 
@@ -93,6 +90,69 @@ export default function PlaceDetailsPage({ place, onClose }) {
           </div>
         </div>
 
+        {place.type === "certified" && (
+          <div className={`certified-card ${isCertifiedCardExpanded ? 'expanded' : ''}`}>
+            <div className="certified-card-header">
+              <div className="certified-card-text">
+                <h3 className="certified-card-title">Lieu serein</h3>
+                <p className="certified-card-description">
+                  Ce lieu a ete evalue sur le terrain selon des criteres sensoriels et humains.
+                </p>
+              </div>
+              <button 
+                className="certified-card-toggle"
+                onClick={() => setIsCertifiedCardExpanded(!isCertifiedCardExpanded)}
+              >
+                <Icon name={isCertifiedCardExpanded ? "chevronUp" : "plus"} size={20} color="#2A3556" />
+              </button>
+            </div>
+            
+            {isCertifiedCardExpanded && (
+              <div className="certified-card-content">
+                <div className="certified-criteria">
+                  <div className="certified-criterion">
+                    <div className="criterion-icon">
+                      <div className="criterion-icon-bg">
+                        <Icon name="moon" size={24} color="#4FA1A1" />
+                      </div>
+                      <div className="criterion-check">
+                        <Icon name="check" size={10} color="white" />
+                      </div>
+                    </div>
+                    <span className="criterion-label">Lumiere douce</span>
+                  </div>
+                  
+                  <div className="certified-criterion">
+                    <div className="criterion-icon">
+                      <div className="criterion-icon-bg">
+                        <Icon name="smile" size={24} color="#4FA1A1" />
+                      </div>
+                      <div className="criterion-check">
+                        <Icon name="check" size={10} color="white" />
+                      </div>
+                    </div>
+                    <span className="criterion-label">Personnel sensibilise</span>
+                  </div>
+                  
+                  <div className="certified-criterion">
+                    <div className="criterion-icon">
+                      <div className="criterion-icon-bg">
+                        <Icon name="bell" size={24} color="#4FA1A1" />
+                      </div>
+                      <div className="criterion-check">
+                        <Icon name="check" size={10} color="white" />
+                      </div>
+                    </div>
+                    <span className="criterion-label">Ambiance sonore maitrisee</span>
+                  </div>
+                </div>
+                
+                <button className="certified-learn-more">En savoir plus</button>
+              </div>
+            )}
+          </div>
+        )}
+
         <div className="place-tabs">
           <button
             className={`place-tab ${activeTab === "sens" ? "place-tab-active" : ""}`}
@@ -112,9 +172,9 @@ export default function PlaceDetailsPage({ place, onClose }) {
           <div className="place-sens-content">
             <div className="sensory-intensity-card">
               <div className="intensity-header">
-                <h2 className="intensity-title">Intensité sensorielle</h2>
+                <h2 className="intensity-title">Intensite sensorielle</h2>
                 <p className="intensity-subtitle">
-                  {fullDays[daySliderValue]} à {timeSliderValue}h
+                  {fullDays[daySliderValue]} a {timeSliderValue}h
                 </p>
               </div>
 
@@ -124,13 +184,13 @@ export default function PlaceDetailsPage({ place, onClose }) {
                     <Icon name="light" size={24} color="#9A7AC1" />
                   </div>
                   <div className="sense-bar-content">
-                    <p className="sense-bar-label">Peu lumineux</p>
+                    <p className="sense-bar-label">Tres peu lumineux</p>
                     <div className="sense-progress-bar">
                       <div className="sense-progress-bg" style={{ background: "rgba(154, 122, 193, 0.20)" }} />
                       <div
                         className="sense-progress-fill"
                         style={{
-                          width: `${(place.senses?.light || 10) * 2.77}px`,
+                          width: `${100 - (place.senses?.light || 10)}%`,
                           background: "#9A7AC1",
                         }}
                       />
@@ -149,7 +209,7 @@ export default function PlaceDetailsPage({ place, onClose }) {
                       <div
                         className="sense-progress-fill"
                         style={{
-                          width: `${(place.senses?.sound || 10) * 2.77}px`,
+                          width: `${100 - (place.senses?.sound || 10)}%`,
                           background: "#D77A4F",
                         }}
                       />
@@ -168,7 +228,7 @@ export default function PlaceDetailsPage({ place, onClose }) {
                       <div
                         className="sense-progress-fill"
                         style={{
-                          width: `${(place.senses?.crowd || 10) * 2.77}px`,
+                          width: `${100 - (place.senses?.crowd || 10)}%`,
                           background: "#4FA1A1",
                         }}
                       />
@@ -252,76 +312,20 @@ export default function PlaceDetailsPage({ place, onClose }) {
               <div className="review-sense-bars">
                 <div className="review-sense-bar" data-type="light">
                   <div className="review-sense-bar-bg" style={{ background: "rgba(154, 122, 193, 0.20)" }} />
-                  <div className="review-sense-bar-fill" style={{ width: "7.98px", background: "#9A7AC1" }} />
+                  <div className="review-sense-bar-fill" style={{ width: "30%", background: "#9A7AC1" }} />
                 </div>
                 <div className="review-sense-bar" data-type="noise">
                   <div className="review-sense-bar-bg" style={{ background: "rgba(215, 122, 79, 0.20)" }} />
-                  <div className="review-sense-bar-fill" style={{ width: "7.98px", background: "#D77A4F" }} />
+                  <div className="review-sense-bar-fill" style={{ width: "45%", background: "#D77A4F" }} />
                 </div>
                 <div className="review-sense-bar" data-type="crowd">
                   <div className="review-sense-bar-bg" style={{ background: "rgba(79, 161, 161, 0.20)" }} />
-                  <div className="review-sense-bar-fill" style={{ width: "7.98px", background: "#4FA1A1" }} />
+                  <div className="review-sense-bar-fill" style={{ width: "25%", background: "#4FA1A1" }} />
                 </div>
               </div>
 
               <p className="review-text">
-                Avoir un lieu aussi incluant et soucieux des personnes sensibles c'est une bénédiction.
-              </p>
-
-              <div className="review-images">
-                <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=200&q=80" alt="Review 1" />
-                <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=200&q=80" alt="Review 2" />
-                <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=200&q=80" alt="Review 3" />
-              </div>
-
-              <div className="review-actions">
-                <div className="review-actions-left">
-                  <button className="review-action-button">
-                    <Icon name="heart" size={25} color="#2A3556" />
-                    <span>12</span>
-                  </button>
-                  <button className="review-action-button">
-                    <Icon name="comment" size={25} color="#2A3556" />
-                    <span>7</span>
-                  </button>
-                </div>
-                <button className="review-menu-button">
-                  <Icon name="dots" size={22} color="#2A3556" />
-                </button>
-              </div>
-            </div>
-
-            <div className="review-post">
-              <div className="review-header">
-                <div className="review-user-section">
-                  <div className="review-avatar">
-                    <img src="https://i.pravatar.cc/35?img=2" alt="User avatar" />
-                  </div>
-                  <div className="review-user-info">
-                    <span className="review-username">@user34</span>
-                    <div className="review-badge">EXPLORATEUR</div>
-                  </div>
-                </div>
-                <span className="review-date">3 jours</span>
-              </div>
-
-              <div className="review-sense-bars">
-                <div className="review-sense-bar" data-type="light">
-                  <div className="review-sense-bar-bg" style={{ background: "rgba(154, 122, 193, 0.20)" }} />
-                  <div className="review-sense-bar-fill" style={{ width: "7.98px", background: "#9A7AC1" }} />
-                </div>
-                <div className="review-sense-bar" data-type="noise">
-                  <div className="review-sense-bar-bg" style={{ background: "rgba(215, 122, 79, 0.20)" }} />
-                  <div className="review-sense-bar-fill" style={{ width: "7.98px", background: "#D77A4F" }} />
-                </div>
-                <div className="review-sense-bar" data-type="crowd">
-                  <div className="review-sense-bar-bg" style={{ background: "rgba(79, 161, 161, 0.20)" }} />
-                  <div className="review-sense-bar-fill" style={{ width: "7.98px", background: "#4FA1A1" }} />
-                </div>
-              </div>
-
-              <p className="review-text">
-                Avoir un lieu aussi incluant et soucieux des personnes sensibles c'est une bénédiction.
+                Avoir un lieu aussi incluant et soucieux des personnes sensibles c'est une benediction.
               </p>
 
               <div className="review-images">
@@ -360,9 +364,10 @@ export default function PlaceDetailsPage({ place, onClose }) {
           </div>
         </Button>
         <button className="btn-share-icon" onClick={() => setShowShareModal(true)}>
-          <Icon name="share" size={24} color="var(--components-input-form_fields-default-placeholder, #203461ff)" />
+          <Icon name="share" size={24} color="#203461" />
         </button>
       </div>
+      
       <PlaceMenuModal isOpen={showMenuModal} onClose={() => setShowMenuModal(false)} place={place} />
       <ShareModal
         isOpen={showShareModal}

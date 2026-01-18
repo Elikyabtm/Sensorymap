@@ -1,14 +1,23 @@
 "use client"
 
-import { MapContainer, TileLayer, Marker, useMap, Circle } from "react-leaflet"
+import { MapContainer, TileLayer, Marker, useMap, Circle, Polygon } from "react-leaflet"
+import MarkerClusterGroup from "react-leaflet-cluster"
 import L from "leaflet"
 import { useEffect, forwardRef, useImperativeHandle, useState } from "react"
+import { renderToStaticMarkup } from "react-dom/server"
 import placesData from "../data/places.json"
 import { filterPlacesBySenses } from "../utils/senseFilters"
+import { Icon } from "./ui"
+
+const getCertifiedIconHtml = () => {
+  return renderToStaticMarkup(<Icon name="certified" color="white" size={10} />)
+}
 
 const createMarkerIcon = (type, imageUrl) => {
   const isCertified = type === "certified"
-  const borderColor = isCertified ? "#9D9064" : "white"
+  const borderColor = isCertified ? "#8FDA9C" : "white"
+
+  const certifiedIconHtml = isCertified ? getCertifiedIconHtml() : ""
 
   const html = `
     <div style="width: 42px; height: 42px; position: relative;">
@@ -35,17 +44,15 @@ const createMarkerIcon = (type, imageUrl) => {
           left: 27.24px; 
           top: -1px; 
           position: absolute; 
-          background: #9D9064; 
+          background: #8FDA9C; 
           border-radius: 1000px; 
-          outline: 1px #9D9064 solid; 
+          outline: 1px #8FDA9C solid; 
           outline-offset: -1px;
           display: flex;
           justify-content: center;
           align-items: center;
         ">
-          <svg width="9" height="9" viewBox="0 0 24 24" fill="white">
-            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-          </svg>
+          ${certifiedIconHtml}
         </div>
       `
           : ""
@@ -83,20 +90,34 @@ const createUserLocationIcon = () => {
   })
 }
 
-const createPostMarkerIcon = (avatarUrl) => {
+const createPostMarkerIcon = (placeImageUrl, avatarUrl) => {
   const html = `
-    <div style="width: 36px; height: 36px; position: relative;">
+    <div style="width: 50px; height: 50px; position: relative;">
+      <img 
+        src="${placeImageUrl}" 
+        style="
+          width: 42px; 
+          height: 42px; 
+          position: absolute; 
+          left: 0; 
+          top: 8px; 
+          box-shadow: 0px 0px 10px rgba(33, 33, 33, 0.38); 
+          border-radius: 9999px; 
+          border: 1.5px white solid;
+          object-fit: cover;
+        " 
+      />
       <img 
         src="${avatarUrl}" 
         style="
-          width: 36px; 
-          height: 36px; 
+          width: 24px; 
+          height: 24px; 
           position: absolute; 
-          left: 0; 
+          right: 0; 
           top: 0; 
-          box-shadow: 0px 4px 8px rgba(54, 74, 120, 0.3); 
+          box-shadow: 0px 2px 6px rgba(33, 33, 33, 0.3); 
           border-radius: 9999px; 
-          border: 2px solid #4FA1A1;
+          border: 2px white solid;
           object-fit: cover;
         " 
       />
@@ -106,38 +127,80 @@ const createPostMarkerIcon = (avatarUrl) => {
   return L.divIcon({
     className: "post-marker",
     html: html,
-    iconSize: [36, 36],
-    iconAnchor: [18, 18],
+    iconSize: [50, 50],
+    iconAnchor: [25, 29],
   })
 }
 
-const createEventMarkerIcon = () => {
+const createEventMarkerIcon = (imageUrl) => {
   const html = `
-    <div style="width: 40px; height: 40px; position: relative;">
-      <div style="
-        width: 40px; 
-        height: 40px; 
-        background: linear-gradient(135deg, #9A7AC1 0%, #4FA1A1 100%);
-        border-radius: 50%;
-        box-shadow: 0px 4px 10px rgba(54, 74, 120, 0.4);
-        border: 2px solid white;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      ">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
-          <path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zM5 8V6h14v2H5z"/>
-        </svg>
-      </div>
+    <div style="width: 42px; height: 42px; position: relative;">
+      <img 
+        src="${imageUrl}" 
+        style="
+          width: 42px; 
+          height: 42px; 
+          position: absolute; 
+          left: 0; 
+          top: 0; 
+          box-shadow: 0px 0px 10px rgba(33, 33, 33, 0.38); 
+          border-radius: 9999px; 
+          border: 1.5px white solid;
+          object-fit: cover;
+        " 
+      />
     </div>
   `
 
   return L.divIcon({
     className: "event-marker",
     html: html,
-    iconSize: [40, 40],
-    iconAnchor: [20, 20],
+    iconSize: [42, 42],
+    iconAnchor: [21, 21],
   })
+}
+
+const createClusterCustomIcon = (cluster) => {
+  const count = cluster.getChildCount()
+  let size = 40
+  let className = "cluster-small"
+
+  if (count >= 10) {
+    size = 50
+    className = "cluster-medium"
+  }
+  if (count >= 20) {
+    size = 60
+    className = "cluster-large"
+  }
+
+  return L.divIcon({
+    html: `<div class="cluster-marker ${className}">
+      <span>${count}</span>
+    </div>`,
+    className: "custom-cluster-icon",
+    iconSize: L.point(size, size, true),
+  })
+}
+
+const generateBlobPoints = (centerLat, centerLng, baseRadius, irregularity = 0.4, numPoints = 12) => {
+  const points = []
+  const angleStep = (2 * Math.PI) / numPoints
+
+  // Convertir le rayon en degrés (approximation)
+  const radiusLat = baseRadius / 111000 // 1 degré latitude ≈ 111km
+  const radiusLng = baseRadius / (111000 * Math.cos((centerLat * Math.PI) / 180))
+
+  for (let i = 0; i < numPoints; i++) {
+    const angle = i * angleStep
+    // Variation aléatoire mais déterministe basée sur l'index
+    const randomFactor = 1 + Math.sin(i * 2.5) * irregularity + Math.cos(i * 1.7) * irregularity * 0.5
+    const lat = centerLat + radiusLat * randomFactor * Math.sin(angle)
+    const lng = centerLng + radiusLng * randomFactor * Math.cos(angle)
+    points.push([lat, lng])
+  }
+
+  return points
 }
 
 function MapController({ centerPosition }) {
@@ -297,86 +360,130 @@ const Map = forwardRef(
             center={[reportCircle.lat, reportCircle.lng]}
             radius={reportCircle.extent}
             pathOptions={{
-              color: "#364A78",
+              color: "transparent",
               fillColor: reportCircle.fillColor,
               fillOpacity: reportCircle.opacity,
-              weight: 2,
+              weight: 0,
             }}
+            className="report-blob-preview"
           />
         )}
 
         {reports &&
-          reports.map((report) => (
-            <Circle
-              key={report.id}
-              center={[report.location.lat, report.location.lng]}
-              radius={report.extent}
-              pathOptions={{
-                color: "#364A78",
-                fillColor: `rgba(54, 74, 120, ${0.2 + (report.intensity / 100) * 0.3})`,
-                fillOpacity: 0.2 + (report.intensity / 100) * 0.3,
-                weight: 2,
-              }}
-              eventHandlers={{
-                click: () => {
-                  if (onReportClick) {
-                    onReportClick(report)
-                  }
-                },
-              }}
-            />
-          ))}
+          reports.map((report) => {
+            const blobPoints = generateBlobPoints(report.location.lat, report.location.lng, report.extent, 0.35, 16)
+            const opacity = 0.4 + (report.intensity / 100) * 0.4
 
-        {showPlaceMarkers &&
-          filteredPlaces.map((place) => (
-            <Marker
-              key={place.id}
-              position={place.coordinates}
-              icon={createMarkerIcon(place.type, place.image)}
-              eventHandlers={{
-                click: () => {
-                  setCenterPosition(place.coordinates)
-                  if (onMarkerClick) {
-                    onMarkerClick(place)
-                  }
-                },
-              }}
-            />
-          ))}
+            return (
+              <Polygon
+                key={report.id}
+                positions={blobPoints}
+                pathOptions={{
+                  color: "transparent",
+                  fillColor: "#7B9AE0",
+                  fillOpacity: opacity,
+                  weight: 0,
+                  className: "report-blob-zone",
+                }}
+                eventHandlers={{
+                  click: () => {
+                    if (onReportClick) {
+                      onReportClick(report)
+                    }
+                  },
+                }}
+              />
+            )
+          })}
 
-        {showCommunityMarkers &&
-          communityPosts.map((post) => (
-            <Marker
-              key={`post-${post.id}`}
-              position={post.coordinates}
-              icon={createPostMarkerIcon(post.user.avatar)}
-              eventHandlers={{
-                click: () => {
-                  setCenterPosition(post.coordinates)
-                  if (onPostClick) {
-                    onPostClick(post)
-                  }
-                },
-              }}
-            />
-          ))}
+        {showPlaceMarkers && (
+          <MarkerClusterGroup
+            chunkedLoading
+            iconCreateFunction={createClusterCustomIcon}
+            maxClusterRadius={60}
+            spiderfyOnMaxZoom={true}
+            showCoverageOnHover={false}
+            zoomToBoundsOnClick={true}
+            disableClusteringAtZoom={16}
+          >
+            {filteredPlaces.map((place) => (
+              <Marker
+                key={place.id}
+                position={place.coordinates}
+                icon={createMarkerIcon(place.type, place.image)}
+                eventHandlers={{
+                  click: () => {
+                    setCenterPosition(place.coordinates)
+                    if (onMarkerClick) {
+                      onMarkerClick(place)
+                    }
+                  },
+                }}
+              />
+            ))}
+          </MarkerClusterGroup>
+        )}
 
-        {showCommunityMarkers &&
-          communityEvents.map((event) => (
-            <Marker
-              key={`event-${event.id}`}
-              position={event.coordinates}
-              icon={createEventMarkerIcon()}
-              eventHandlers={{
-                click: () => {
-                  setCenterPosition(event.coordinates)
-                  if (onEventClick) {
-                    onEventClick(event)
-                  }
-                },
-              }}
-            />
-          ))}
+        {showCommunityMarkers && communityPosts.length > 0 && (
+          <MarkerClusterGroup
+            chunkedLoading
+            iconCreateFunction={createClusterCustomIcon}
+            maxClusterRadius={50}
+            spiderfyOnMaxZoom={true}
+            showCoverageOnHover={false}
+            zoomToBoundsOnClick={true}
+            disableClusteringAtZoom={16}
+          >
+            {communityPosts.map((post) => (
+              <Marker
+                key={`post-${post.id}`}
+                position={post.coordinates}
+                icon={createPostMarkerIcon(
+                  post.image || "https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=100&h=100&fit=crop",
+                  post.user.avatar,
+                )}
+                eventHandlers={{
+                  click: () => {
+                    setCenterPosition(post.coordinates)
+                    if (onPostClick) {
+                      onPostClick(post)
+                    }
+                  },
+                }}
+              />
+            ))}
+          </MarkerClusterGroup>
+        )}
+
+        {showCommunityMarkers && communityEvents.length > 0 && (
+          <MarkerClusterGroup
+            chunkedLoading
+            iconCreateFunction={createClusterCustomIcon}
+            maxClusterRadius={50}
+            spiderfyOnMaxZoom={true}
+            showCoverageOnHover={false}
+            zoomToBoundsOnClick={true}
+            disableClusteringAtZoom={16}
+          >
+            {communityEvents.map((event) => (
+              <Marker
+                key={`event-${event.id}`}
+                position={event.coordinates}
+                icon={createEventMarkerIcon(
+                  event.image || "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=100&h=100&fit=crop",
+                )}
+                eventHandlers={{
+                  click: () => {
+                    setCenterPosition(event.coordinates)
+                    if (onEventClick) {
+                      onEventClick(event)
+                    }
+                  },
+                }}
+              />
+            ))}
+          </MarkerClusterGroup>
+        )}
       </MapContainer>
     )
   },

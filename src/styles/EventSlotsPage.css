@@ -1,0 +1,137 @@
+.event-slots-page {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #F2F5FB;
+  z-index: 2001;
+  display: flex;
+  flex-direction: column;
+  padding-top: 60px;
+}
+
+.event-slots-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+}
+
+.event-slots-back {
+  width: 30px;
+  height: 30px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.event-slots-title {
+  flex: 1;
+  text-align: center;
+  color: #2A3556;
+  font-size: 16px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  margin: 0;
+  font-weight: bold;
+}
+
+.event-slots-spacer {
+  width: 35px;
+  height: 36px;
+}
+
+.event-slots-content {
+  flex: 1;
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  overflow-y: auto;
+}
+
+.event-slot-card {
+  background: #FAFBFE;
+  border-radius: 8px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.event-slot-card:active {
+  transform: scale(0.98);
+}
+
+.event-slot-info {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.event-slot-datetime {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.event-slot-date,
+.event-slot-time {
+  color: #2A3556;
+  font-size: 18px;
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 700;
+}
+
+.event-slot-dot {
+  width: 5px;
+  height: 5px;
+  background: #2A3556;
+  border-radius: 50%;
+}
+
+.event-slot-organizer {
+  color: #364A78;
+  font-size: 14px;
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 400;
+}
+
+.event-slot-participants {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.event-slot-avatars {
+  display: flex;
+  align-items: center;
+}
+
+.event-slot-avatar {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  object-fit: cover;
+  outline: 1px solid #FAFBFE;
+  outline-offset: -0.5px;
+}
+
+.event-slot-participants-text {
+  flex: 1;
+  color: #445E9A;
+  font-size: 14px;
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 400;
+}
+
+.event-slots-footer {
+  background: transparent;
+  padding: 12px 24px 50px 24px;
+}

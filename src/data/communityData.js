@@ -1,30 +1,43 @@
 export const mockPosts = [
   {
     id: 1,
-    user: { username: "user34", avatar: "/placeholder.svg?height=40&width=40" },
+    user: { name: "user34", avatar: "/woman-pink-hair-avatar.jpg" },
     place: "Restaurant indien",
-    coordinates: [48.8606, 2.3376], // Près du Canal Saint-Martin
+    address: "17 avenue de la République, 75012 PARIS",
+    coordinates: [48.8606, 2.3376],
     senses: { light: 30, sound: 60, crowd: 45 },
-    content: "Avoir un lieu aussi incluant et soucieux des personnes sensibles c'est une bénédiction.",
+    content:
+      "Avoir un lieu aussi incluant et soucieux des personnes sensibles c'est une bénédiction. Avoir un lieu aussi incluant et soucieux des personnes sensibles c'est une bénédiction.",
     images: [
-      "/placeholder.svg?height=200&width=300",
-      "/placeholder.svg?height=200&width=300",
-      "/placeholder.svg?height=200&width=300",
+      "https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=800&h=500&fit=crop",
+      "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&h=500&fit=crop",
+      "https://images.unsplash.com/photo-1559339352-11d035aa65de?w=800&h=500&fit=crop",
     ],
     likes: 12,
-    comments: 3,
+    comments: [
+      { id: 1, user: "user23", avatar: "/woman-blue-hair-avatar.jpg", text: "Super cool post! :D", time: "2j" },
+      { id: 2, user: "user23", avatar: "/woman-blue-hair-avatar.jpg", text: "Super cool post! :D", time: "2j" },
+      { id: 3, user: "user23", avatar: "/woman-blue-hair-avatar.jpg", text: "Super cool post! :D", time: "2j" },
+    ],
     time: "3 jours",
   },
   {
     id: 2,
-    user: { username: "julia_food", avatar: "/placeholder.svg?height=40&width=40" },
+    user: { name: "julia_food", avatar: "/woman-blonde-avatar.jpg" },
     place: "Café Lumière",
-    coordinates: [48.8529, 2.3499], // Près de Bastille
+    address: "25 rue de la Paix, 75002 PARIS",
+    coordinates: [48.8529, 2.3499],
     senses: { light: 20, sound: 40, crowd: 30 },
     content: "Un endroit parfait pour travailler au calme. L'ambiance est douce et apaisante.",
-    images: ["/placeholder.svg?height=200&width=300", "/placeholder.svg?height=200&width=300"],
+    images: [
+      "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=800&h=500&fit=crop",
+      "https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=800&h=500&fit=crop",
+    ],
     likes: 8,
-    comments: 2,
+    comments: [
+      { id: 1, user: "sarah_m", avatar: "/woman-red-hair-avatar.jpg", text: "J'adore cet endroit!", time: "1j" },
+      { id: 2, user: "marc42", avatar: "/man-brown-hair-avatar.jpg", text: "Merci pour la découverte", time: "3j" },
+    ],
     time: "5 jours",
   },
 ]
@@ -33,28 +46,79 @@ export const mockEvents = [
   {
     id: 1,
     date: "17 oct.",
-    title: "Brunch au calme",
+    title: "Sortie à Montmartre",
     place: "Restaurant indien",
-    coordinates: [48.864, 2.3522], // Près de République
+    address: "17 avenue de la République, 75012 Paris",
+    district: "Paris 12ème Arr.",
+    coordinates: [48.864, 2.3522],
     senses: ["light", "sound", "crowd"],
-    participants: 5,
+    image: "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=800&h=500&fit=crop",
+    description: "Description bla blah blahDescription bla blah blahDescription bla blah blahDescription bla blah blahDescription bla blah blahDescription bla blah blah",
+    organizer: { name: "user_banana", avatar: "/woman-pink-hair-avatar.jpg" },
+    timeSlot: "11h00 - 14h00",
+    participants: [
+      { id: 1, name: "Laura", avatar: "/woman-blonde-avatar.jpg" },
+      { id: 2, name: "Eliott", avatar: "/man-brown-hair-avatar.jpg" },
+      { id: 3, name: "Marie", avatar: "/woman-blue-hair-avatar.jpg" },
+      { id: 4, name: "Alex", avatar: "/woman-red-hair-avatar.jpg" },
+    ],
+    slots: [
+      { id: 1, date: "Samedi 8 janvier", time: "11h00", organizer: "@heyjulia02", participants: ["Laura", "Eliott", "Marie"] },
+      { id: 2, date: "Samedi 8 janvier", time: "14h00", organizer: "@heyjulia02", participants: ["Laura", "Eliott"] },
+      { id: 3, date: "Dimanche 9 janvier", time: "10h00", organizer: "@heyjulia02", participants: ["Marie", "Alex"] },
+    ],
+    chatMessages: [
+      { id: 1, user: "@username", avatar: "/woman-pink-hair-avatar.jpg", text: "I'm a pro, that's why 😎", time: "15:20 PM", isOwn: false },
+      { id: 2, user: "@username", avatar: "/woman-blonde-avatar.jpg", text: "I'm a pro, that's why 😎", time: "15:20 PM", isOwn: true },
+      { id: 3, user: "@username", avatar: "/woman-blue-hair-avatar.jpg", text: "I'm a pro, that's why 😎", time: "15:20 PM", isOwn: false },
+    ],
+    isUserRegistered: false,
   },
   {
     id: 2,
     date: "20 oct.",
     title: "Exposition d'art",
     place: "Musée tranquille",
-    coordinates: [48.8584, 2.2945], // Près de la Tour Eiffel
+    address: "5 rue des Arts, 75004 Paris",
+    district: "Paris 4ème Arr.",
+    coordinates: [48.8584, 2.2945],
     senses: ["light", "crowd"],
-    participants: 8,
+    image: "https://images.unsplash.com/photo-1518998053901-5348d3961a04?w=800&h=500&fit=crop",
+    description: "Une visite guidée dans un musée calme et apaisant. Parfait pour les personnes sensibles à la foule.",
+    organizer: { name: "artlover", avatar: "/woman-blonde-avatar.jpg" },
+    timeSlot: "10h00 - 12h00",
+    participants: [
+      { id: 1, name: "Sophie", avatar: "/woman-red-hair-avatar.jpg" },
+      { id: 2, name: "Lucas", avatar: "/man-brown-hair-avatar.jpg" },
+    ],
+    slots: [
+      { id: 1, date: "Samedi 20 octobre", time: "10h00", organizer: "@artlover", participants: ["Sophie", "Lucas"] },
+    ],
+    chatMessages: [],
+    isUserRegistered: true,
   },
   {
     id: 3,
     date: "25 oct.",
     title: "Café lecture",
     place: "Bibliothèque cosy",
-    coordinates: [48.8534, 2.3488], // Près du Marais
+    address: "12 rue du Livre, 75005 Paris",
+    district: "Paris 5ème Arr.",
+    coordinates: [48.8534, 2.3488],
     senses: ["sound", "crowd"],
-    participants: 3,
+    image: "https://images.unsplash.com/photo-1521587760476-6c12a4b040da?w=800&h=500&fit=crop",
+    description: "Moment de lecture partagé dans une ambiance feutrée. Apportez votre livre préféré!",
+    organizer: { name: "bookworm", avatar: "/woman-blue-hair-avatar.jpg" },
+    timeSlot: "14h00 - 17h00",
+    participants: [
+      { id: 1, name: "Emma", avatar: "/woman-pink-hair-avatar.jpg" },
+    ],
+    slots: [
+      { id: 1, date: "Mercredi 25 octobre", time: "14h00", organizer: "@bookworm", participants: ["Emma"] },
+    ],
+    chatMessages: [
+      { id: 1, user: "@bookworm", avatar: "/woman-blue-hair-avatar.jpg", text: "Hâte de vous retrouver!", time: "10:30 AM", isOwn: false },
+    ],
+    isUserRegistered: true,
   },
 ]

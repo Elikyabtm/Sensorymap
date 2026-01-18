@@ -4,6 +4,19 @@ import { useState, useEffect } from "react"
 import { Icon } from "./ui/Icon"
 import "../styles/SearchPage.css"
 
+const categoryIconMap = {
+  Café: "cafe",
+  Restaurant: "restaurant",
+  Bar: "bar",
+  Musée: "museum",
+  Parc: "park",
+  Bibliothèque: "library",
+}
+
+const getCategoryIcon = (category) => {
+  return categoryIconMap[category] || categoryIconMap["default"]
+}
+
 const SearchPage = ({ onClose, places, onPlaceSelect, onCategoryFilter, selectedCategoryProp }) => {
   const [searchQuery, setSearchQuery] = useState("")
   const [recentSearches, setRecentSearches] = useState([])
@@ -89,13 +102,17 @@ const SearchPage = ({ onClose, places, onPlaceSelect, onCategoryFilter, selected
       </div>
 
       <div className="search-categories">
-        {categories.slice(0, 4).map((category, index) => (
+        {categories.slice(0, 6).map((category, index) => (
           <button
             key={index}
             className={`search-category-badge ${selectedCategory === category ? "active" : ""}`}
             onClick={() => handleCategoryClick(category)}
           >
-            <Icon name="cafe" size={20} color={selectedCategory === category ? "#364A78" : "#445E9A"} />
+            <Icon
+              name={getCategoryIcon(category)}
+              size={20}
+              color={selectedCategory === category ? "#364A78" : "#445E9A"}
+            />
             <span>{category}</span>
           </button>
         ))}

@@ -173,20 +173,12 @@ const ReportModal = ({ isOpen, onClose, onSubmit, userPosition, mapRef }) => {
         <div className="report-modal-header">
           {step > 1 && (
             <button className="report-back-btn" onClick={handleBack}>
-              <Icon name="arrow" color="#2D3A40" size={24} />
+              <Icon name="arrowLeft" color="#2D3A40" size={24} />
             </button>
           )}
           <h2>Signaler une zone</h2>
           <button className="report-close-btn" onClick={handleClose}>
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="M18 6L6 18M6 6L18 18"
-                stroke="#2D3A40"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
+            <Icon name="close" size={24} color="#2D3A40" />
           </button>
         </div>
 

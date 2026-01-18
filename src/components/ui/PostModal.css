@@ -1,0 +1,122 @@
+.post-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: transparent;
+  z-index: 999;
+}
+
+.post-modal-wrapper {
+  position: fixed;
+  left: 50%;
+  bottom: 100px;
+  transform: translateX(-50%);
+  z-index: 1000;
+  width: calc(100% - 48px);
+  max-width: 360px;
+}
+
+.post-modal {
+  width: 100%;
+  background: #fafbfe;
+  box-shadow: 0px 2px 15px rgba(24, 24, 24, 0.25);
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.post-modal-image-container {
+  position: relative;
+  width: 100%;
+  height: 163px;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  overflow: hidden;
+}
+
+.post-modal-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.post-modal-image-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(0deg, rgba(141, 167, 226, 0.2) 0%, rgba(141, 167, 226, 0.2) 100%);
+  backdrop-filter: blur(2px);
+}
+
+.post-modal-content {
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.post-modal-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.post-modal-title {
+  color: #2f2f2f;
+  font-size: 16px;
+  font-family: "Nunito Sans", sans-serif;
+  font-weight: 700;
+  margin: 0;
+}
+
+.post-modal-description {
+  color: #2f2f2f;
+  font-size: 14px;
+  font-family: "Nunito Sans", sans-serif;
+  font-weight: 400;
+  margin: 0;
+}
+
+.post-modal-user-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.post-modal-user {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.post-modal-avatar {
+  width: 25px;
+  height: 25px;
+  border-radius: 9999px;
+  background: #ffdcb9;
+  border: 1px solid #fafbfe;
+  object-fit: cover;
+}
+
+.post-modal-username {
+  color: #364a78;
+  font-size: 14px;
+  font-family: "Nunito Sans", sans-serif;
+  font-weight: 400;
+}
+
+.post-modal-time {
+  color: #2f2f2f;
+  font-size: 14px;
+  font-family: "Nunito Sans", sans-serif;
+  font-weight: 400;
+  text-align: right;
+}

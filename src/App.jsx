@@ -8,6 +8,7 @@ import LoginForm from "./components/LoginForm"
 import SignupForm from "./components/SignupForm"
 import HomePage from "./components/HomePage"
 
+
 function App() {
   const [view, setView] = useState("onboarding")
   const [loginEmail, setLoginEmail] = useState("")

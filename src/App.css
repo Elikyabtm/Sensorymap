@@ -130,7 +130,7 @@ body {
   height: 100vh;
   display: flex;
   flex-direction: column;
-  background: white;
+  background: #F2F5FB;
 }
 
 /* Styles pour l'écran de bienvenue */
@@ -139,40 +139,81 @@ body {
   height: 100vh;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
+}
+
+.welcome-top {
+  flex: 1;
+  background: #8FDA9C;
+  display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: 32px;
+  border-radius: 80% / 0px 0px 70px 70px;
+  position: relative;
+  z-index: 2;
+}
+
+.welcome-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
 }
 
-.logo-circle {
-  width: 200px;
-  height: 200px;
-  background-color: #d9d9d9;
-  border-radius: 50%;
-  margin-bottom: 60px;
+.welcome-mascot {
+  width: 150px;
+  height: auto;
+  margin-bottom: 24px;
 }
 
-.app-title {
-  font-size: 28px;
-  font-weight: 600;
-  color: #2f2f2f;
-  margin-bottom: 12px;
+.welcome-title {
+  font-size: 36px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  color: #2A3556;
+  margin: 0 0 8px 0;
+  letter-spacing: 2px;
 }
 
-.app-description {
-  font-size: 16px;
-  color: #666;
-  margin-bottom: 80px;
+.welcome-tagline {
+  font-size: 18px;
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 400;
+  color: #2A3556;
+  margin: 0;
+}
+
+.welcome-bottom {
+  background: #F2F5FB;
+  padding: 48px 24px 40px;
+  margin-top: -20px;
+  position: relative;
+  z-index: 1;
 }
 
 .welcome-buttons {
   width: 100%;
-  max-width: 362px; /* Ajout max-width 362px pour conteneurs de boutons */
+  max-width: 362px;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   gap: 16px;
   align-items: center;
+}
+
+.welcome-skip-link {
+  margin-top: 8px;
+  color: #5D82CF;
+  font-size: 16px;
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 400;
+  text-decoration: underline;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
 }
 
 .link-underline {
@@ -604,6 +645,108 @@ body {
 
 .leaflet-container {
   font-family: -apple-system, BlinkMacMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+/* Styles pour les clusters de marqueurs */
+.custom-cluster-icon {
+  background: transparent;
+  border: none;
+}
+
+.cluster-marker {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-weight: 700;
+  color: white;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  /* Changement couleur ombre vers #5671AE */
+  box-shadow: 0 4px 12px rgba(86, 113, 174, 0.4);
+}
+
+.cluster-marker span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cluster-small {
+  width: 40px;
+  height: 40px;
+  background: #5671ae;
+  font-size: 14px;
+}
+
+.cluster-medium {
+  width: 50px;
+  height: 50px;
+  background: #5671ae;
+  font-size: 16px;
+}
+
+.cluster-large {
+  width: 60px;
+  height: 60px;
+  background: #5671ae;
+  font-size: 18px;
+}
+
+/* Animation pulse pour les clusters */
+.cluster-marker::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: inherit;
+  opacity: 0.3;
+  animation: cluster-pulse 2s ease-out infinite;
+}
+
+@keyframes cluster-pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.3;
+  }
+  100% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
+
+/* Styles pour react-leaflet-cluster */
+.leaflet-cluster-anim .leaflet-marker-icon,
+.leaflet-cluster-anim .leaflet-marker-shadow {
+  transition: transform 0.3s ease-out, opacity 0.3s ease-in;
+}
+
+.marker-cluster-small,
+.marker-cluster-medium,
+.marker-cluster-large {
+  background: transparent !important;
+}
+
+.marker-cluster-small div,
+.marker-cluster-medium div,
+.marker-cluster-large div {
+  background: transparent !important;
+}
+
+/* Styles pour les zones de signalement organiques avec effet blur */
+.report-blob-zone {
+  filter: blur(15px);
+  opacity: 0.6;
+}
+
+.report-blob-preview {
+  filter: blur(20px);
+  opacity: 0.5;
+}
+
+/* Fallback pour navigateurs sans support SVG filter */
+.leaflet-overlay-pane svg path.report-blob-zone {
+  filter: url(#blur-filter) blur(15px);
 }
 
 /* Search header */

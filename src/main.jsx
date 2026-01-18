@@ -5,6 +5,7 @@ import "./index.css"
 import "./styles/design-tokens.css"
 import "leaflet/dist/leaflet.css"
 
+
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <App />

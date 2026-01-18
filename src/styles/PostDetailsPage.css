@@ -1,0 +1,419 @@
+.post-details-page {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #fafbfe;
+  z-index: 2000;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.post-details-hero {
+  position: relative;
+  width: 100%;
+  height: 45vh;
+  min-height: 300px;
+}
+
+.post-details-hero-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.post-details-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 40px;
+  height: 40px;
+  background: white;
+  border-radius: 50%;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.post-details-dots {
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+}
+
+.post-details-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.post-details-dot.active {
+  background: white;
+}
+
+.post-details-content {
+  flex: 1;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding-bottom: 100px;
+}
+
+.post-details-user-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.post-details-user {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.post-details-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #445e9a;
+}
+
+.post-details-user-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.post-details-user-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.post-details-username {
+  color: #364a78;
+  font-size: 14px;
+  font-family: "Nunito Sans", sans-serif;
+  font-weight: 400;
+}
+
+.post-details-badge {
+  background: #445e9a;
+  color: white;
+  font-size: 12px;
+  font-family: "SF Pro Text", sans-serif;
+  font-weight: 500;
+  padding: 4px 10px;
+  border-radius: 4px;
+}
+
+.post-details-time {
+  color: #969696;
+  font-size: 13px;
+  font-family: "Nunito Sans", sans-serif;
+  font-weight: 400;
+}
+
+.post-details-address {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #445e9a;
+  font-size: 14px;
+  font-family: "Nunito Sans", sans-serif;
+  font-weight: 400;
+}
+
+.post-details-text {
+  color: #2a3556;
+  font-size: 16px;
+  font-family: "Nunito Sans", sans-serif;
+  font-weight: 400;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.post-details-separator {
+  height: 1px;
+  background: #e4eaf7;
+  width: 100%;
+}
+
+.post-details-sensory-section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.post-details-sensory-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  width: 100%;
+}
+
+.post-details-sensory-title {
+  color: #2a3556;
+  font-size: 16px;
+  font-family: "Nunito Sans", sans-serif;
+  font-weight: 700;
+}
+
+.post-details-sensory-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Nouveau style pour les items de sens avec icône, label et barre */
+.post-details-sense-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.post-details-sense-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.post-details-sense-label {
+  color: #2a3556;
+  font-size: 14px;
+  font-family: "Nunito Sans", sans-serif;
+  font-weight: 400;
+}
+
+/* Barre de sens colorée horizontale */
+.post-details-sense-bar {
+  height: 8px;
+  width: 100%;
+  border-radius: 1000px;
+  margin-left: 28px; /* Alignement avec le label */
+}
+
+/* Styles pour les nouvelles barres de sens */
+.sense-bars-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.sense-bar-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.sense-bar-icon-wrapper {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sense-bar-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.sense-bar-label {
+  color: #2a3556;
+  font-size: 14px;
+  font-family: "Nunito Sans", sans-serif;
+  font-weight: 400;
+  margin: 0;
+}
+
+.sense-progress-bar {
+  position: relative;
+  width: 100%;
+  height: 8px;
+  border-radius: 1000px;
+  overflow: hidden;
+}
+
+.sense-progress-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 1000px;
+}
+
+.sense-progress-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  border-radius: 1000px;
+}
+
+.post-details-comments-section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 8px;
+}
+
+.post-details-comments-title {
+  color: #2a3556;
+  font-size: 16px;
+  font-family: "Nunito Sans", sans-serif;
+  font-weight: 700;
+  margin: 0;
+}
+
+.post-details-comments-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.post-details-comment {
+  display: flex;
+  gap: 12px;
+}
+
+.post-details-comment-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.post-details-comment-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* Header du commentaire avec user info à gauche et menu à droite */
+.post-details-comment-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.post-details-comment-user-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.post-details-comment-username {
+  color: #364a78;
+  font-size: 16px;
+  font-family: "SF Pro", sans-serif;
+  font-weight: 400;
+}
+
+.post-details-comment-time {
+  color: #969696;
+  font-size: 12px;
+  font-family: "SF Pro", sans-serif;
+  font-weight: 400;
+}
+
+/* Bouton menu dots */
+.post-details-comment-menu {
+  background: none;
+  border: none;
+  padding: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.post-details-comment-text {
+  color: #2a3556;
+  font-size: 16px;
+  font-family: "Nunito Sans", sans-serif;
+  font-weight: 400;
+  margin: 0;
+}
+
+.post-details-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #fafbfe;
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-top: 1px solid #e4eaf7;
+  z-index: 2001;
+}
+
+.post-details-like-btn {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1px solid #445e9a;
+  background: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.post-details-like-count {
+  color: #445e9a;
+  font-size: 16px;
+  font-family: "SF Pro", sans-serif;
+  font-weight: 400;
+  margin-right: 8px;
+}
+
+.post-details-comment-input {
+  flex: 1;
+  height: 48px;
+  border-radius: 24px;
+  border: 1px solid #445e9a;
+  background: white;
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+}
+
+.post-details-comment-input input {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: #2a3556;
+  font-size: 16px;
+  font-family: "Nunito Sans", sans-serif;
+}
+
+.post-details-comment-input input::placeholder {
+  color: #4f70b5;
+}

@@ -1,0 +1,334 @@
+.create-event-flow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #F2F5FB;
+  z-index: 2002;
+  display: flex;
+  flex-direction: column;
+  padding-top: 60px;
+}
+
+.create-event-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+}
+
+.create-event-back {
+  width: 30px;
+  height: 30px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.create-event-title {
+  flex: 1;
+  text-align: center;
+  color: #2A3556;
+  font-size: 16px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  margin: 0;
+}
+
+.create-event-close {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.create-event-close-btn {
+  width: 35px;
+  height: 35px;
+  background: #E4EAF7;
+  border-radius: 1000px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.create-event-content {
+  flex: 1;
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  overflow-y: auto;
+}
+
+.create-event-progress {
+  height: 44px;
+  display: flex;
+  align-items: center;
+}
+
+.create-event-step {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.create-event-question {
+  color: #2A3556;
+  font-size: 24px;
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 700;
+  margin: 0;
+}
+
+/* Calendar Styles */
+.create-event-calendar {
+  background: white;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.create-event-calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 16px;
+}
+
+.create-event-month {
+  color: #2A3556;
+  font-size: 20px;
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.2px;
+}
+
+.create-event-nav-buttons {
+  display: flex;
+  gap: 12px;
+}
+
+.create-event-nav-btn {
+  width: 28px;
+  height: 28px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.create-event-nav-btn:hover {
+  background: #F2F5FB;
+}
+
+.create-event-calendar-divider {
+  height: 1px;
+  background: #E4EAF7;
+  margin-bottom: 20px;
+}
+
+.create-event-weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  margin-bottom: 16px;
+}
+
+.create-event-weekday {
+  text-align: center;
+  color: #969696;
+  font-size: 12px;
+  font-family: 'SF Pro Display', sans-serif;
+  font-weight: 500;
+  text-transform: uppercase;
+  padding: 4px 0;
+}
+
+.create-event-days-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  row-gap: 8px;
+}
+
+.create-event-calendar-day {
+  width: 100%;
+  min-width: 0;
+  padding: 8px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #2A3556;
+  font-size: 16px;
+  font-family: 'SF Pro Display', sans-serif;
+  font-weight: 400;
+  transition: all 0.2s;
+}
+
+.create-event-calendar-day:hover:not(.empty):not(.selected) {
+  background: #F2F5FB;
+  border-radius: 50%;
+}
+
+.create-event-calendar-day.selected {
+  background: #5D82CF;
+  color: white;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  margin: 0 auto;
+}
+
+.create-event-calendar-day.empty {
+  cursor: default;
+}
+
+/* Time Picker Styles */
+.create-event-time-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.create-event-time-slot {
+  position: relative;
+  height: 44px;
+  padding: 6px 8px;
+  background: #FAFBFE;
+  border-radius: 1000px;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #2A3556;
+  font-size: 18px;
+  font-family: 'SF Pro', sans-serif;
+  font-weight: 400;
+  transition: all 0.2s;
+}
+
+.create-event-time-slot:hover:not(.selected) {
+  background: #E4EAF7;
+}
+
+.create-event-time-slot.selected {
+  background: #5D82CF;
+  color: white;
+}
+
+.create-event-time-notif {
+  position: absolute;
+  top: -4px;
+  right: 8px;
+  width: 12px;
+  height: 12px;
+  background: #5D82CF;
+  border-radius: 50%;
+}
+
+.create-event-time-slot.selected .create-event-time-notif {
+  background: white;
+}
+
+/* Message Form Styles */
+.create-event-message-form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.create-event-label {
+  color: #364A78;
+  font-size: 16px;
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 500;
+}
+
+.create-event-textarea {
+  min-height: 102px;
+  padding: 16px;
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid #AFC0E6;
+  border-radius: 8px;
+  font-size: 16px;
+  font-family: 'Nunito Sans', sans-serif;
+  color: #2A3556;
+  resize: none;
+  outline: none;
+}
+
+.create-event-textarea::placeholder {
+  color: #979797;
+}
+
+.create-event-textarea:focus {
+  border-color: #5D82CF;
+}
+
+.create-event-skip-link {
+  background: transparent;
+  border: none;
+  color: #445E9A;
+  font-size: 16px;
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 600;
+  text-decoration: underline;
+  cursor: pointer;
+  padding: 16px 0;
+  text-align: center;
+}
+
+/* Success Step Styles */
+.create-event-success {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.create-event-success-content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.create-event-success-title {
+  color: #2A3556;
+  font-size: 28px;
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 700;
+  margin: 0;
+}
+
+.create-event-success-text {
+  color: #4B4B4B;
+  font-size: 16px;
+  font-family: 'SF Pro', sans-serif;
+  font-weight: 400;
+  line-height: 22px;
+  margin: 0;
+}
+
+/* Footer Styles */
+.create-event-footer {
+  padding: 12px 24px 50px;
+  background: transparent;
+}
+
+.create-event-footer-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}

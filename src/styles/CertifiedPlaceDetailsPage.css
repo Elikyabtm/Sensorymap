@@ -1,0 +1,442 @@
+.certified-place-details-page {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #F2F5FB;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.certified-place-hero {
+  position: relative;
+  width: 100%;
+  height: 280px;
+  flex-shrink: 0;
+}
+
+.certified-place-hero-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.certified-place-close-btn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 40px;
+  height: 40px;
+  background: white;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Mascotte avec bulle */
+.certified-mascot-container {
+  position: absolute;
+  right: 24px;
+  bottom: -30px;
+  z-index: 10;
+}
+
+.certified-mascot-bubble {
+  position: absolute;
+  top: 0;
+  right: 55px;
+  background: #8FDA9C;
+  border-radius: 20px;
+  padding: 4px 8px;
+  color: rgba(32, 34, 43, 0.85);
+  font-size: 12px;
+  font-family: "Nunito Sans", sans-serif;
+  font-weight: 600;
+  line-height: 15px;
+  white-space: nowrap;
+}
+
+.certified-mascot-tail {
+  position: absolute;
+  top: 10px;
+  right: 47px;
+  transform: rotate(-147deg);
+}
+
+.certified-mascot-icon {
+  width: 66px;
+  height: 66px;
+  background: #F2F5FB;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 25px;
+}
+
+/* Body */
+.certified-place-details-body {
+  flex: 1;
+  padding: 24px;
+  padding-bottom: 100px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.certified-place-header {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.certified-place-title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.certified-place-name {
+  color: #2A3556;
+  font-size: 24px;
+  font-family: "Nunito Sans", sans-serif;
+  font-weight: 700;
+  margin: 0;
+}
+
+.certified-place-menu-btn {
+  width: 40px;
+  height: 40px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.certified-place-address-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.certified-place-address {
+  color: #2A3556;
+  font-size: 14px;
+  font-family: "Nunito Sans", sans-serif;
+  font-weight: 400;
+}
+
+/* Carte Lieu serein */
+.certified-serein-card {
+  background: linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%);
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.certified-serein-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.certified-serein-text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.certified-serein-title {
+  color: #2A3556;
+  font-size: 16px;
+  font-family: "Nunito Sans", sans-serif;
+  font-weight: 700;
+  margin: 0;
+}
+
+.certified-serein-description {
+  color: #2A3556;
+  font-size: 14px;
+  font-family: "Nunito Sans", sans-serif;
+  font-weight: 400;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.certified-serein-toggle {
+  width: 32px;
+  height: 32px;
+  background: transparent;
+  border: 1px solid #2A3556;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.certified-serein-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.certified-criteria-list {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.certified-criterion-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+}
+
+.certified-criterion-icon {
+  position: relative;
+  width: 44px;
+  height: 44px;
+}
+
+.certified-criterion-check {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  width: 16px;
+  height: 16px;
+  background: #4FA1A1;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.certified-criterion-label {
+  color: #2A3556;
+  font-size: 12px;
+  font-family: "Nunito Sans", sans-serif;
+  font-weight: 400;
+  text-align: center;
+  line-height: 1.3;
+}
+
+.certified-learn-more-btn {
+  background: none;
+  border: none;
+  color: #364A78;
+  font-size: 14px;
+  font-family: "Nunito Sans", sans-serif;
+  font-weight: 600;
+  text-decoration: underline;
+  cursor: pointer;
+  padding: 0;
+  align-self: flex-end;
+}
+
+/* Onglets */
+.certified-place-tabs {
+  display: flex;
+  gap: 0;
+  border-bottom: 1px solid #E4EAF7;
+}
+
+.certified-place-tab {
+  flex: 1;
+  padding: 12px 16px;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  color: #979797;
+  font-size: 14px;
+  font-family: "Nunito Sans", sans-serif;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.certified-place-tab.active {
+  color: #2A3556;
+  border-bottom-color: #5D82CF;
+}
+
+/* Contenu Sens */
+.certified-sens-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.certified-intensity-card {
+  background: white;
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.certified-intensity-title {
+  color: #2A3556;
+  font-size: 16px;
+  font-family: "Nunito Sans", sans-serif;
+  font-weight: 700;
+  margin: 0;
+}
+
+.certified-intensity-time {
+  color: #5D82CF;
+  font-size: 14px;
+  font-family: "Nunito Sans", sans-serif;
+  font-weight: 400;
+  margin: 0;
+}
+
+.certified-senses-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.certified-sense-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.certified-sense-icon {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+.certified-sense-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.certified-sense-label {
+  color: #2A3556;
+  font-size: 14px;
+  font-family: "Nunito Sans", sans-serif;
+  font-weight: 400;
+}
+
+.certified-sense-bar {
+  position: relative;
+  height: 6px;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.certified-sense-bar-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #E4EAF7;
+}
+
+.certified-sense-bar-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  border-radius: 3px;
+}
+
+/* Slider */
+.certified-time-slider {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.certified-slider {
+  width: 100%;
+  height: 4px;
+  -webkit-appearance: none;
+  appearance: none;
+  background: #E4EAF7;
+  border-radius: 2px;
+  outline: none;
+}
+
+.certified-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  background: #5D82CF;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.certified-slider-labels {
+  display: flex;
+  justify-content: space-between;
+  color: #979797;
+  font-size: 12px;
+  font-family: "Nunito Sans", sans-serif;
+}
+
+/* Avis */
+.certified-avis-content {
+  padding: 24px;
+  text-align: center;
+}
+
+.certified-no-reviews {
+  color: #979797;
+  font-size: 14px;
+  font-family: "Nunito Sans", sans-serif;
+}
+
+/* Footer */
+.certified-place-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 16px 24px 32px;
+  background: white;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.certified-place-footer button:first-child {
+  flex: 1;
+}
+
+.certified-share-btn {
+  width: 52px;
+  height: 52px;
+  background: transparent;
+  border: 1px solid #E4EAF7;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

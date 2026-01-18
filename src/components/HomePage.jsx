@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from "react"
 import Map from "./Map"
-import { Icon } from "./ui"
+import { Icon, PostModal, EventModal } from "./ui"
 import Header from "./Header"
 import PlaceModal from "./ui/PlaceModal"
 import CommunityContent from "./CommunityContent"
@@ -10,6 +10,8 @@ import DiscoveryContent from "./DiscoveryContent"
 import SenseModal from "./SenseModal"
 import SearchPage from "./SearchPage"
 import PlaceDetailsPage from "./PlaceDetailsPage"
+import PostDetailsPage from "./PostDetailsPage"
+import EventDetailsPage from "./EventDetailsPage"
 import ReportModal from "./ReportModal"
 import ProfilePage from "./ProfilePage"
 import placesData from "../data/places.json"
@@ -39,6 +41,14 @@ export default function HomePage({ userSensoryProfile = [], onUpdateSensoryProfi
   const [reports, setReports] = useState([])
   const [selectedReport, setSelectedReport] = useState(null)
   const [showProfilePage, setShowProfilePage] = useState(false)
+
+  const [selectedPost, setSelectedPost] = useState(null)
+  const [showPostDetails, setShowPostDetails] = useState(false)
+  const [postDetailsData, setPostDetailsData] = useState(null)
+
+  const [selectedEvent, setSelectedEvent] = useState(null)
+  const [showEventDetails, setShowEventDetails] = useState(false)
+  const [eventDetailsData, setEventDetailsData] = useState(null)
 
   const mapRef = useRef(null)
 
@@ -128,6 +138,7 @@ export default function HomePage({ userSensoryProfile = [], onUpdateSensoryProfi
   }
 
   const handleOpenPlaceDetails = (place) => {
+    console.log("[v0] Opening place details:", place.name, "type:", place.type)
     setPlaceDetailsData(place)
     setShowPlaceDetails(true)
     setSelectedPlace(null)
@@ -157,16 +168,36 @@ export default function HomePage({ userSensoryProfile = [], onUpdateSensoryProfi
   }
 
   const handlePostClick = (post) => {
-    console.log("[v0] Post clicked:", post)
-    // TODO: Ouvrir une modal de détails du post
+    setSelectedPost(post)
+    setDrawerHeight(80)
+  }
+
+  const handleOpenPostDetails = (post) => {
+    setPostDetailsData(post)
+    setShowPostDetails(true)
+    setSelectedPost(null)
+  }
+
+  const handleClosePostDetails = () => {
+    setShowPostDetails(false)
+    setPostDetailsData(null)
   }
 
   const handleEventClick = (event) => {
-    console.log("[v0] Event clicked:", event)
-    // TODO: Ouvrir une modal de détails de l'événement
+    setSelectedEvent(event)
+    setDrawerHeight(80)
   }
 
-  const showMapControls = !selectedPlace && clampedHeight < windowHeight * 0.6
+  const handleOpenEventDetails = (event) => {
+    setEventDetailsData(event)
+    setShowEventDetails(true)
+    setSelectedEvent(null)
+  }
+
+  const handleCloseEventDetails = () => {
+    setShowEventDetails(false)
+    setEventDetailsData(null)
+  }
 
   return (
     <div className="home-page">
@@ -178,6 +209,8 @@ export default function HomePage({ userSensoryProfile = [], onUpdateSensoryProfi
         />
       )}
       {showPlaceDetails && <PlaceDetailsPage place={placeDetailsData} onClose={handleClosePlaceDetails} />}
+      {showPostDetails && <PostDetailsPage post={postDetailsData} onClose={handleClosePostDetails} />}
+      {showEventDetails && <EventDetailsPage event={eventDetailsData} onClose={handleCloseEventDetails} />}
       {showSearchPage && (
         <SearchPage
           onClose={() => setShowSearchPage(false)}
@@ -198,7 +231,7 @@ export default function HomePage({ userSensoryProfile = [], onUpdateSensoryProfi
         <div className="report-details-overlay" onClick={() => setSelectedReport(null)}>
           <div className="report-details-modal" onClick={(e) => e.stopPropagation()}>
             <button className="report-details-close" onClick={() => setSelectedReport(null)}>
-              <Icon name="cross" size={24} color="#2D3A40" />
+              <Icon name="close" size={24} color="#2D3A40" />
             </button>
             <h3>Signalement</h3>
             <div className="report-details-content">
@@ -250,6 +283,9 @@ export default function HomePage({ userSensoryProfile = [], onUpdateSensoryProfi
             onOpenDetails={handleOpenPlaceDetails}
           />
         )}
+        {selectedPost && (
+          <PostModal post={selectedPost} onClose={() => setSelectedPost(null)} onOpenDetails={handleOpenPostDetails} />
+        )}
       </div>
       <Header
         selectedSenses={selectedSenses}
@@ -264,7 +300,7 @@ export default function HomePage({ userSensoryProfile = [], onUpdateSensoryProfi
         onToggleSense={toggleSense}
         windowHeight={windowHeight}
       />
-      {showMapControls && (
+      {clampedHeight < windowHeight * 0.6 && (
         <div className="map-controls" style={{ bottom: `${clampedHeight + 12}px` }}>
           <button className="recenter-button" onClick={handleRecenterMap}>
             <Icon name="position" size={24} color="#364A78" />
