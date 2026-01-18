@@ -1,4 +1,4 @@
-"use client"
+
 
 import { MapContainer, TileLayer, Marker, useMap, Circle, Polygon } from "react-leaflet"
 import MarkerClusterGroup from "react-leaflet-cluster"
