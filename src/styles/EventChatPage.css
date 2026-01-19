@@ -51,6 +51,7 @@
   flex-direction: column;
   gap: 28px;
   overflow-y: auto;
+  min-height: 0;
 }
 
 .event-chat-message {
