@@ -1,5 +1,3 @@
-'use client';
-
 import { Icon } from "./index"
 import "./EventModal.css"
 
@@ -19,7 +17,7 @@ export default function EventModal({ event, onClose, onOpenDetails }) {
       </div>
       <div className="event-modal-content">
         <h3 className="event-modal-title">{event.title}</h3>
-        <p className="event-modal-description">Description de la sortie ici</p>
+        <p className="event-modal-description">Cette sortie accompagnée propose une découverte progressive d’un espace public en petit groupe.</p>
         <div className="event-modal-footer">
           <div className="event-modal-user">
             <img

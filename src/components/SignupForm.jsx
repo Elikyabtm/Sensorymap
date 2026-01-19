@@ -37,7 +37,6 @@ export default function SignupForm({ onBack, onClose, onSignupSuccess }) {
     if (step < 4 && isStepValid()) {
       setStep(step + 1)
     } else if (step === 4 && isStepValid()) {
-      console.log("Compte créé:", { pseudo, firstName, lastName, email, age, avoids, theme })
       onSignupSuccess()
     }
   }

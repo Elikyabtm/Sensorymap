@@ -1,4 +1,3 @@
-"use client"
 import "./PostModal.css"
 
 export const PostModal = ({ post, onClose, onOpenDetails }) => {
@@ -45,7 +44,7 @@ export const PostModal = ({ post, onClose, onOpenDetails }) => {
             <div className="post-modal-user-row">
               <div className="post-modal-user">
                 <img
-                  src={post.user?.avatar || "/placeholder.svg?height=25&width=25"}
+                  src={post.user?.avatar || "/avatar.jpeg"}
                   alt={post.user?.name}
                   className="post-modal-avatar"
                 />

@@ -1,4 +1,3 @@
-"use client"
 
 import { Icon } from "./ui/Icon"
 import "../styles/CertificationAboutPage.css"
@@ -6,17 +5,17 @@ import "../styles/CertificationAboutPage.css"
 export function CertificationAboutPage({ onClose }) {
   const criteriaCards = [
     {
-      icon: "users",
+      icon: "smile",
       title: "Personnel sensibilisé",
       description: "Équipe formée et à l'écoute.",
     },
     {
-      icon: "sound",
+      icon: "music",
       title: "Ambiance sonore maîtrisée",
       description: "Musiques et bruits modérés",
     },
     {
-      icon: "light",
+      icon: "flash",
       title: "Éclairage doux",
       description: "Peu de contrastes agressifs, lumière adaptée",
     },
@@ -26,7 +25,7 @@ export function CertificationAboutPage({ onClose }) {
       description: "Moments ou horaires avec moins d'affluence",
     },
     {
-      icon: "space",
+      icon: "cloud",
       title: "Espaces confortables",
       description: "Circulation fluide, possibilité de s'isoler ou de s'asseoir tranquillement.",
     },

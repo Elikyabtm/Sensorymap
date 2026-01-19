@@ -1,4 +1,4 @@
-/* Select Component - Basé sur le design Figma */
+
 
 .select-container {
   display: flex;
@@ -34,7 +34,7 @@
 .select-option:focus {
   background: var(--components-select-large-focused-fill);
   border: 2px solid var(--components-select-large-focused-stroke);
-  padding: 19px; /* Compensation pour la bordure plus épaisse */
+  padding: 19px; 
 }
 
 .select-option-selected {

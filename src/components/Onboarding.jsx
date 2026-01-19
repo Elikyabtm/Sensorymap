@@ -1,7 +1,6 @@
 "use client"
 
 import { useState } from "react"
-import { ProgressBar } from "./ui/ProgressBar"
 import { Icon } from "./ui/Icon"
 import "../styles/Onboarding.css"
 
@@ -64,9 +63,7 @@ export default function Onboarding({ onComplete }) {
       <div className="onboarding-screen">
         {/* Zone haute avec visuel */}
         <div className={`onboarding-visual ${currentStep === 1 ? 'visual-sensory' : 'visual-map'}`}>
-          <div className="onboarding-progress">
-            <ProgressBar progress={progress} />
-          </div>
+
 
           {/* Etape 2: Selection des sens */}
           {currentStep === 1 && (
@@ -78,7 +75,7 @@ export default function Onboarding({ onComplete }) {
                 <div className="sensory-icon-circle purple">
                   <Icon name="light" size={36} color="white" />
                 </div>
-                <span className="sensory-label">Lumiere</span>
+                <span className="sensory-label">Lumière</span>
               </button>
               <button 
                 className={`sensory-item ${selectedSenses.includes('sound') ? 'selected' : ''}`}
@@ -104,20 +101,16 @@ export default function Onboarding({ onComplete }) {
           {/* Etape 3: Carte avec jauges - Trouver des lieux */}
           {currentStep === 2 && (
             <div className="map-visual">
-              <img 
-                src="/images/onboarding-map.png" 
-                alt="Carte" 
-                className="map-background"
-              />
+  
               <div className="map-pins">
                 <div className="map-pin-small" style={{ top: '25%', left: '25%' }}>
-                  <img src="/woman-pink-hair-avatar.jpg" alt="Pin" />
+                  <img src="public/pins.png" alt="Pin" />
                 </div>
                 <div className="map-pin-large" style={{ top: '15%', left: '45%' }}>
-                  <img src="/woman-blonde-avatar.jpg" alt="Pin" />
+                  <img src="public/pins.png" alt="Pin" />
                 </div>
                 <div className="map-pin-small" style={{ top: '30%', left: '70%' }}>
-                  <img src="/woman-blue-hair-avatar.jpg" alt="Pin" />
+                  <img src="public/pins.png" alt="Pin" />
                 </div>
               </div>
               <div className="sensory-card">
@@ -144,7 +137,7 @@ export default function Onboarding({ onComplete }) {
                 <div className="sensory-card-item">
                   <Icon name="crowd" size={24} color="#2A3556" />
                   <div className="sensory-card-info">
-                    <span className="sensory-card-label">Tres frequente</span>
+                    <span className="sensory-card-label">Tres fréquente</span>
                     <div className="sensory-bar">
                       <div className="sensory-bar-bg teal-bg" />
                       <div className="sensory-bar-fill teal" style={{ width: '85%' }} />
@@ -158,11 +151,6 @@ export default function Onboarding({ onComplete }) {
           {/* Etape 4: Zones sensibles - Anticipons */}
           {currentStep === 3 && (
             <div className="map-visual">
-              <img 
-                src="/images/onboarding-map.png" 
-                alt="Carte" 
-                className="map-background"
-              />
               <div className="sensitive-zone" />
               <div className="alert-card">
                 <div className="alert-icon">
@@ -176,17 +164,9 @@ export default function Onboarding({ onComplete }) {
           {/* Etape 5: Lieu serein - Decouvrons */}
           {currentStep === 4 && (
             <div className="map-visual">
-              <img 
-                src="/images/onboarding-map.png" 
-                alt="Carte" 
-                className="map-background"
-              />
               <div className="certified-pin">
                 <div className="certified-pin-image">
-                  <img src="/woman-blonde-avatar.jpg" alt="Lieu certifie" />
-                </div>
-                <div className="certified-pin-badge">
-                  <Icon name="certified" size={20} color="#204040" />
+                  <img src="public/pin-certfified.png" alt="Lieu certifie" />
                 </div>
               </div>
             </div>
@@ -195,11 +175,7 @@ export default function Onboarding({ onComplete }) {
           {/* Etape 6: Explorons les lieux a plusieurs */}
           {currentStep === 5 && (
             <div className="group-visual">
-              <img 
-                src="/images/onboarding-group.jpg" 
-                alt="Groupe de personnes" 
-                className="group-photo"
-              />
+
             </div>
           )}
         </div>
@@ -208,7 +184,7 @@ export default function Onboarding({ onComplete }) {
         <div className="onboarding-content content-dark">
           {currentStep === 1 && (
             <div className="onboarding-text">
-              <h2 className="onboarding-title">Choisissons les elements qui te touchent le plus</h2>
+              <h2 className="onboarding-title">Choisissons les éléments qui te touchent le plus</h2>
               <p className="onboarding-description">
                 Nous ne reagissons pas tous aux memes choses.<br/>
                 Dis-moi ce qui te perturbe, je m'adapterai.

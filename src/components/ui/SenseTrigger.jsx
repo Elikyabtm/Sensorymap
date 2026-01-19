@@ -1,4 +1,3 @@
-"use client"
 import SenseBadge from "./SenseBadge"
 import "./SenseTrigger.css"
 

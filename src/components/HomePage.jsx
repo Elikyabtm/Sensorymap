@@ -75,7 +75,7 @@ export default function HomePage({ userSensoryProfile = [], onUpdateSensoryProfi
           })
         },
         (error) => {
-          console.log("[v0] Geolocation error:", error)
+          // Geolocation error - silently ignore
         },
       )
     }
@@ -140,7 +140,7 @@ export default function HomePage({ userSensoryProfile = [], onUpdateSensoryProfi
   }
 
   const handleOpenPlaceDetails = (place) => {
-    console.log("[v0] Opening place details:", place.name, "type:", place.type)
+    // Opening place details
     setPlaceDetailsData(place)
     setShowPlaceDetails(true)
     setSelectedPlace(null)
@@ -201,21 +201,26 @@ export default function HomePage({ userSensoryProfile = [], onUpdateSensoryProfi
     setEventDetailsData(null)
   }
 
+  const handlePlaceClick = (place) => {
+    setSelectedPlace(place)
+    setDrawerHeight(80)
+  }
+
   return (
     <div className="home-page">
-{showProfilePage && (
-  <ProfilePage
-  onClose={() => setShowProfilePage(false)}
-  sensoryProfile={userSensoryProfile}
-  onUpdateProfile={onUpdateSensoryProfile}
-  onOpenCertificationAbout={() => setShowCertificationAbout(true)}
-  />
-  )}
+      {showProfilePage && (
+        <ProfilePage
+          onClose={() => setShowProfilePage(false)}
+          sensoryProfile={userSensoryProfile}
+          onUpdateProfile={onUpdateSensoryProfile}
+          onOpenCertificationAbout={() => setShowCertificationAbout(true)}
+        />
+      )}
 
-  {showPlaceDetails && <PlaceDetailsPage place={placeDetailsData} onClose={handleClosePlaceDetails} onOpenCertificationAbout={() => setShowCertificationAbout(true)} />}
+      {showPlaceDetails && <PlaceDetailsPage place={placeDetailsData} onClose={handleClosePlaceDetails} onOpenCertificationAbout={() => setShowCertificationAbout(true)} />}
       {showCertificationAbout && (
-  <CertificationAboutPage onClose={() => setShowCertificationAbout(false)} />
-  )}
+        <CertificationAboutPage onClose={() => setShowCertificationAbout(false)} />
+      )}
       {showPostDetails && <PostDetailsPage post={postDetailsData} onClose={handleClosePostDetails} />}
       {showEventDetails && <EventDetailsPage event={eventDetailsData} onClose={handleCloseEventDetails} />}
       {showSearchPage && (
@@ -284,11 +289,11 @@ export default function HomePage({ userSensoryProfile = [], onUpdateSensoryProfi
           onEventClick={handleEventClick}
         />
         {selectedPlace && (
-<PlaceModal
-  place={selectedPlace}
-  onClose={() => setSelectedPlace(null)}
-  onOpenDetails={handleOpenPlaceDetails}
-  />
+          <PlaceModal
+            place={selectedPlace}
+            onClose={() => setSelectedPlace(null)}
+            onOpenDetails={handleOpenPlaceDetails}
+          />
         )}
         {selectedPost && (
           <PostModal post={selectedPost} onClose={() => setSelectedPost(null)} onOpenDetails={handleOpenPostDetails} />
@@ -354,6 +359,7 @@ export default function HomePage({ userSensoryProfile = [], onUpdateSensoryProfi
                     selectedSenses={selectedSenses}
                     selectedCategory={selectedCategory}
                     onCategoryClick={handleCategoryClick}
+                    onPlaceClick={handlePlaceClick}
                   />
                 ) : (
                   <CommunityContent

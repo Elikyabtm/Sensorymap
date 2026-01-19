@@ -1,6 +1,6 @@
 @import "../../styles/design-tokens.css";
 
-/* Structure Figma - Base button avec inline-flex */
+/* Base button avec inline-flex */
 .button {
   border: none;
   cursor: pointer;

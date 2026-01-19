@@ -1,5 +1,3 @@
-"use client"
-
 import { useState } from "react"
 import { Icon } from "./Icon"
 import "./PlaceModal.css"
@@ -27,7 +25,7 @@ export const PlaceModal = ({ place, onClose, onOpenDetails }) => {
 
   const handleLearnMoreClick = (e) => {
     e.stopPropagation()
-    // Logic for handling learn more click
+
   }
 
   return (

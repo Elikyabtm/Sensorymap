@@ -1,5 +1,3 @@
-'use client';
-
 import "./EventCard.css"
 
 export function EventCard({ event, onClick }) {
@@ -8,7 +6,7 @@ export function EventCard({ event, onClick }) {
   return (
     <div className="event-card" onClick={onClick}>
       <div className="event-card-image">
-        <img src={image || "/placeholder.svg"} alt={title} />
+        <img src={image || "public/avatar.jpeg"} alt={title} />
         <div className="event-card-overlay" />
       </div>
       

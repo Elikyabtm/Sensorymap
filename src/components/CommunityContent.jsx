@@ -1,5 +1,3 @@
-"use client"
-
 import "../styles/CommunityContent.css"
 import { Icon } from "./ui"
 import { EventCard } from "./ui/EventCard"

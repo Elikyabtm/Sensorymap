@@ -8,7 +8,6 @@ import LoginForm from "./components/LoginForm"
 import SignupForm from "./components/SignupForm"
 import HomePage from "./components/HomePage"
 
-
 function App() {
   const [view, setView] = useState("onboarding")
   const [loginEmail, setLoginEmail] = useState("")
@@ -36,7 +35,6 @@ function App() {
 
   const handleLogin = () => {
     if (isLoginFormValid) {
-      console.log("Login avec:", loginEmail, loginPassword)
       setView("home")
     }
   }
@@ -64,15 +62,6 @@ function App() {
     if (signupStep < 4 && isSignupStepValid()) {
       setSignupStep(signupStep + 1)
     } else if (signupStep === 4 && isSignupStepValid()) {
-      console.log("Compte créé:", {
-        signupPseudo,
-        signupFirstName,
-        signupLastName,
-        signupEmail,
-        signupAge,
-        selectedAvoids,
-        signupTheme,
-      })
       setUserSensoryProfile(selectedAvoids)
       setView("home")
     }

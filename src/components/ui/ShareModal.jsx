@@ -1,5 +1,3 @@
-"use client"
-
 import { Icon } from "./Icon"
 import "../../styles/ShareModal.css"
 
@@ -11,8 +9,7 @@ export default function ShareModal({ isOpen, onClose, shareUrl }) {
   }
 
   const handleShare = (platform) => {
-    console.log(`Partage sur ${platform}`)
-    // Logique de partage vers les réseaux sociaux
+
   }
 
   return (

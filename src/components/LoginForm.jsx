@@ -11,7 +11,6 @@ export default function LoginForm({ onBack, onClose, onLoginSuccess }) {
 
   const handleLogin = () => {
     if (isFormValid) {
-      console.log("Login avec:", email, password)
       onLoginSuccess()
     }
   }

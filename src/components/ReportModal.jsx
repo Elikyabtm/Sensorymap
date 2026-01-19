@@ -41,23 +41,17 @@ const ReportModal = ({ isOpen, onClose, onSubmit, userPosition, mapRef }) => {
   }, [location, extent, intensity, mapRef])
 
   const handleUseCurrentLocation = () => {
-    console.log("[v0] Use current location clicked")
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
-          console.log("[v0] Got position:", position.coords)
           const pos = {
             lat: position.coords.latitude,
             lng: position.coords.longitude,
           }
           setLocation(pos)
 
-          // Center map on user location using exposed method
           if (mapRef?.current?.setViewToPosition) {
-            console.log("[v0] Centering map on position")
             mapRef.current.setViewToPosition([pos.lat, pos.lng])
-          } else {
-            console.log("[v0] mapRef.current.setViewToPosition not available")
           }
 
           setTimeout(() => {
@@ -65,7 +59,6 @@ const ReportModal = ({ isOpen, onClose, onSubmit, userPosition, mapRef }) => {
           }, 500)
         },
         (error) => {
-          console.error("[v0] Geolocation error:", error)
           alert(`Impossible d'obtenir votre position: ${error.message}`)
         },
       )

@@ -8,7 +8,7 @@ export function PostCard({ post, onClick }) {
   return (
     <div className="post-card" onClick={onClick}>
       <div className="post-card-image">
-        <img src={image || "/placeholder.svg"} alt={title} />
+        <img src={image || "/avatar.jpeg"} alt={title} />
         <div className="post-card-image-overlay" />
       </div>
       
@@ -21,7 +21,7 @@ export function PostCard({ post, onClick }) {
         <div className="post-card-footer">
           <div className="post-card-author">
             <div className="post-card-avatar">
-              <img src={avatar || "/placeholder.svg"} alt={author} />
+              <img src={avatar || "/avatar.jpeg"} alt={author} />
             </div>
             <span className="post-card-username">@{author}</span>
           </div>

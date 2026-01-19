@@ -1,5 +1,3 @@
-"use client"
-
 import { Icon } from "./Icon"
 import "../../styles/PlaceMenuModal.css"
 
@@ -7,11 +5,11 @@ export default function PlaceMenuModal({ isOpen, onClose, place }) {
   if (!isOpen) return null
 
   const menuItems = [
-    { icon: "search", label: "Voir plus de détails", action: () => console.log("Voir détails") },
-    { icon: "mail", label: "Contacter l'établissement", action: () => console.log("Contacter") },
+    { icon: "search", label: "Voir plus de détails", action: () => {} },
+    { icon: "mail", label: "Contacter l'établissement", action: () => {} },
     { icon: "web", label: "Visiter le site internet", action: () => window.open(place?.website, "_blank") },
-    { icon: "position", label: "Y aller", action: () => console.log("Y aller") },
-    { icon: "warning", label: "Signaler une erreur", action: () => console.log("Signaler erreur"), noBorder: true },
+    { icon: "position", label: "Y aller", action: () => {} },
+    { icon: "warning", label: "Signaler une erreur", action: () => {}, noBorder: true },
   ]
 
   return (

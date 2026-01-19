@@ -1,4 +1,3 @@
-"use client"
 import { useState } from "react"
 import "../../styles/design-tokens.css"
 import "./Button.css"
@@ -14,9 +13,8 @@ export const Button = ({
 }) => {
   const [isPressed, setIsPressed] = useState(false)
 
-  const classes = `button button-${variant} ${
-    disabled ? "button-disabled" : isPressed ? "button-pressed" : "button-default"
-  } ${fullWidth ? "button-full-width" : ""} ${className}`
+  const classes = `button button-${variant} ${disabled ? "button-disabled" : isPressed ? "button-pressed" : "button-default"
+    } ${fullWidth ? "button-full-width" : ""} ${className}`
 
   return (
     <button
