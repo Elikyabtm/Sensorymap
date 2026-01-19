@@ -63,7 +63,7 @@
   height: 100%;
   position: relative;
   padding-top: 44px;
-  background-image: url("/Users/elikya/sensorymap/public/images/groupe.png");
+  background-image: url("public/images/groupe.png");
   border-radius: 80% / 0px 0px 100px 100px;
 }
 
@@ -223,7 +223,7 @@
   height: 100%;
   position: relative;
   padding-top: 44px;
-  background-image: url("/Users/elikya/sensorymap/public/images/onboarding-map.png");
+  background-image: url("public/images/onboarding-map.png");
   border-radius: 80% / 0px 0px 100px 100px;
 }
 

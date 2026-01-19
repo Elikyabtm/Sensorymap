@@ -83,7 +83,7 @@ export const mockEvents = [
     coordinates: [48.864, 2.3522],
     senses: ["light", "sound", "crowd"],
     image: "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=800&h=500&fit=crop",
-    description: "Description bla blah blahDescription bla blah blahDescription bla blah blahDescription bla blah blahDescription bla blah blahDescription bla blah blah",
+    description: "Sortie chill en petit groupe pour manger et se balader sans pression. On vise des horaires “hors rush” pour limiter le bruit et la foule, avec pauses possibles si besoin.",
     organizer: { name: "user_banana", avatar: "/woman-pink-hair-avatar.jpg" },
     timeSlot: "11h00 - 14h00",
     participants: [

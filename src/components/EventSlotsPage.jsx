@@ -43,7 +43,7 @@ export default function EventSlotsPage({ event, onClose, onSlotSelect }) {
         <button className="event-slots-back" onClick={onClose}>
           <Icon name="arrowLeft" size={30} color="#2A3556" />
         </button>
-        <h1 className="event-slots-title">Title</h1>
+        <h1 className="event-slots-title">Les sorties proposées</h1>
         <div className="event-slots-spacer" />
       </div>
 
